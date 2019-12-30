@@ -1,0 +1,6 @@
+﻿<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading" fxLayout="column" fxLayoutGap="5px" fxLayoutGap.gt-xs="5px">
+    <events-component *ngFor="let item of participantEvents" [event]="this.eventList[item.objectType]" [data]="item">
+    </events-component>
+</div>
+<span class="mat-display-1" *ngIf="eventListNotFound">Atualmente não há eventos!</span>
