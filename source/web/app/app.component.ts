@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
-import {AuthenticationService} from './providers';
+import {AlertService, AuthenticationService} from './providers';
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private changeDetectorRef: ChangeDetectorRef,
-    private media: MediaMatcher
+    private media: MediaMatcher,
+    private alertService: AlertService
   ) {
     this.authenticationService.CurrentUser.subscribe((user) => {
       this.currentUser = user;
@@ -35,20 +37,23 @@ export class AppComponent implements OnInit {
         this.opened = false;
       }
     });
-    // this.matIconRegistry.addSvgIcon(
-    //   'participant-app',
-    //   this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/participant-app.svg')
-    // );
+
     this.mobileQuery = media.matchMedia('(max-width: 1024px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   logout() {
-    this.authenticationService.logout(() => {
-      this.opened = false;
-      this.router.navigate(['/login']);
-    });
+    this.authenticationService.logout()
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.opened = false;
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.alertService.error(error);
+        });
   }
 
   ngOnInit(): void {

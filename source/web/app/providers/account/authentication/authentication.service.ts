@@ -43,10 +43,9 @@ export class AuthenticationService {
     });
   }
 
-  logout(navigateToLogin) {
-    this.client.logout(() => {
+  logout() {
+    return this.client.logout(this.currentUserValue.email, () => {
       this.clearLocalStorage();
-      navigateToLogin();
     });
   }
 

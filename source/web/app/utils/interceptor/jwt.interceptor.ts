@@ -13,7 +13,7 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const authToken = this.authenticationService.authToken;
         const baseURL = this.cookieService.get(environment.API_URL) ?
-          this.cookieService.get(environment.API_URL) + '/api' :
+          this.cookieService.get(environment.API_URL) + environment.basePath :
           environment.baseUrl;
         if (authToken && request.url.match(baseURL)) {
             request = request.clone({

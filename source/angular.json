@@ -32,7 +32,7 @@
               "fileReplacements": [
                 {
                   "replace": "web/environments/environment.ts",
-                  "with": "web/environments/environment.prod.ts"
+                  "with": "web/environments/environment.ts"
                 }
               ],
               "optimization": true,

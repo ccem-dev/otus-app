@@ -14,9 +14,9 @@ export class EventClientService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
     if (this.cookieService.get(environment.API_URL)) {
-      this.baseUrl = this.cookieService.get(environment.API_URL);
+      this.baseUrl = this.cookieService.get(environment.API_URL) + environment.basePath;
     } else {
-      this.baseUrl = environment.baseUrl;
+      this.baseUrl = environment.baseUrl + environment.basePath;
     }
   }
 

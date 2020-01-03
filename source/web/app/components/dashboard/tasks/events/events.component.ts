@@ -19,7 +19,6 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.event);
-    console.log(this.data);
     const componentRef = this.viewContainerRef.createComponent(componentFactory);
     (<EventsComponent>componentRef.instance).data = this.data;
   }

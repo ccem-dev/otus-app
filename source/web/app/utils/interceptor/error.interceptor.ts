@@ -28,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           queryParams: {
             returnUrl: this.router.routerState.snapshot.url,
             errorCode: 500,
-            errorMessage: err.error.data.message
+            errorMessage: err.error.MESSAGE
           }
         };
       }
@@ -37,7 +37,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.router.navigate(navigateTo, navigationExtras);
       }
 
-      const error = (err.error.data && err.error.data.message) || err.statusText;
+      const error = (err.error && err.error.MESSAGE) || err.statusText;
       return throwError(error);
     }));
   }

@@ -18,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { environment } from '../environments/environment';
 import {SanitizeHtmlPipe} from './utils/sanitize-html/sanitize-html.pipe';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {CreateAccountComponent} from './components/account/create-account/create-account.component';
 import {EventService} from './providers';
@@ -30,6 +30,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {TasksComponent} from './components/dashboard/tasks/tasks.component';
 import {EventClientService} from './providers/rest/event-client.service';
+import {ErrorInterceptor, JwtInterceptor} from "./utils";
 
 
 @NgModule({
@@ -74,6 +75,8 @@ import {EventClientService} from './providers/rest/event-client.service';
     MatProgressSpinnerModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     EventService,
     EventClientService,
     CookieService
