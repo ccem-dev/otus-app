@@ -39,4 +39,7 @@ testem.log
 .DS_Store
 Thumbs.db
 **/**.swp
-/coverage
+/source/coverage
+**/**.tfstate
+**/**.tfstate.backup
+**/**.terraform
