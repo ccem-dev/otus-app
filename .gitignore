@@ -38,3 +38,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+**/**.swp
+/source/coverage
+**/**.tfstate
+**/**.tfstate.backup
+**/**.terraform
