@@ -1,0 +1,55 @@
+.account-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  .content {
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    .mat-form-field {
+      width: 100%;
+      min-width: 252px;
+    }
+    mat-card-title,
+    mat-card-content {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .button {
+      display: flex;
+      justify-content: center;
+    }
+
+  }
+  &:after {
+    content: '';
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 50%;
+    right: 0;
+  }
+  &:before {
+    content: '';
+    background: #3f51b5;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 360px){
+  .creation {
+    height: auto;
+  }
+}
+
+
