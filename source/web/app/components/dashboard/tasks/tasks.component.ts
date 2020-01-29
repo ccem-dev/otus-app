@@ -27,7 +27,7 @@ export class TasksComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.eventService.getParticipantEvents(ownerId).subscribe(response => {
         if (response['data']) {
-          this.participantEvents = response['data'].eventList;
+          this.participantEvents = response['data'];
         }
         this.isLoading = false;
       }, error => {
