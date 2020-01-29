@@ -21,14 +21,12 @@ export class ActivityAutofillEventComponent implements EventI, OnInit {
   }
 
   callPreview() {
-    if (!this.previewAddress || !this.appAddress) {
+    if (!this.previewAddress || !this.appAddress || !this.data.activityId) {
       this.alertService.error('Event Unavailable');
     } else {
       window.location.href = this.previewAddress + '/#/?activity=' + this.data.activityId + '&token=123&callback=' + this.appAddress ;
     }
   }
 
-  ngOnInit(): void {
-    this.data.activityId = 'survey.json';
-  }
+  ngOnInit(): void {}
 }
