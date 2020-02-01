@@ -10,7 +10,7 @@ export class EventService {
 
   getEventComponents() {
     return {
-      ActivityAutoFillEvent: ActivityAutofillEventComponent
+      ParticipantActivityAutoFillEvent: ActivityAutofillEventComponent
     };
   }
 

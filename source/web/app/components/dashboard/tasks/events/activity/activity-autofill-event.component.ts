@@ -13,6 +13,10 @@ export class ActivityAutofillEventComponent implements EventI, OnInit {
   @Input() data: any;
   private previewAddress: string;
   private appAddress: string;
+  private translatedStatus = {
+    ACCOMPLISHED: {translation: 'Realizado', style: {color: '#1B9A59'}},
+    PENDING: {translation: ' Pendente', style: {color: '#bfbe00'}}
+  };
 
 
   constructor(public cookieService: CookieService, public alertService: AlertService) {
