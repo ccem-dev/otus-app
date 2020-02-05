@@ -23,7 +23,7 @@ export class ActivityAutofillEventComponent implements EventI, OnInit {
 
 
   constructor(public cookieService: CookieService, public eventService: EventService,public alertService: AlertService, public authenticationService: AuthenticationService, public activityEventService: ActivityEventService) {
-    this.previewAddress = cookieService.get('preview-address');
+    this.previewAddress = cookieService.get('PREVIEW_ADDRESS');
   }
 
   callPreview() {

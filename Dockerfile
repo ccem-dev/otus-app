@@ -2,6 +2,7 @@ FROM nginx
 RUN rm -rf /usr/share/nginx/html/index.html
 RUN rm -rf /usr/share/nginx/html/50x.html
 ENV API_URL "http://localhost:51002"
+ENV PREVIEW_ADDRESS "http://localhost:51001"
 ENV NGINX_HOST "localhost"
 ENV SOURCE_DIR "/usr/share/nginx/html/otus-app"
 COPY source/dist/otus-app/. ${SOURCE_DIR}

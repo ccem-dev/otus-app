@@ -109,7 +109,7 @@ describe('CreateAccountComponent', () => {
 
   it('should not create new user', () => {
     const alertServiceSpy = spyOn(app.alertService, 'error');
-    const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(throwError('test'));
+    const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(throwError({error:{MESSAGE:'test'}}));
     app.ngOnInit();
     app.f.password.setValue('Test@1234');
     app.f.confirmPassword.setValue('Test@1234');

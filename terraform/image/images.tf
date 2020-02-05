@@ -26,7 +26,7 @@ variable "otus-app-npmtest" {
 }
 
 variable "otus-app-npmbuild" {
-  default = "ng build"
+  default = "npm run build"
 }
 
 variable "otus-app-npmprune" {

@@ -3,11 +3,11 @@ variable "otus-app-name"{
 }
 
 variable "otus-app-port"{
-  default = 51003
+  default = 51005
 }
 
 variable "otus-app-apiurl"{
-  default = "http://localhost:51006"
+  default = "http://localhost:51002/otus-rest/v01"
 }
 
 variable "otus-app-version"{

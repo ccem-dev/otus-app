@@ -3,7 +3,7 @@ export const environment = {
   API_URL: 'OTUS_API',
   baseUrl: 'http://localhost:51002/otus-rest/v01',
   authBasePath: '/participant-authentication',
-  activityBasePath: '/app/activities',
+  activityBasePath: '/activities',
   registerPasswordUrl: '/registerPassword',
   loginUrl: '/auth',
   logoutUrl: '/invalidate',
