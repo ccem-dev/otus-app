@@ -20,4 +20,8 @@ export class EventClientService {
   getEvents(OwnerRn: String) {
     return this.http.get<any>(`${this.baseUrl}${environment.getEvents}/${OwnerRn}`);
   }
+
+  accomplishEvent(EventId: String) {
+    return this.http.put<any>(`${this.baseUrl}${environment.accomplishEvent}/${EventId}`,{});
+  }
 }

@@ -36,7 +36,7 @@ export class AuthenticationService {
   login(username, password) {
     return this.client.login(username, password, (resultJson) => {
       localStorage.setItem('currentUser', JSON.stringify(resultJson.user));
-      this.cookieService.set('authToken', resultJson.token, 1);
+      this.cookieService.set('authToken', resultJson.token);
       const user: User = new User();
       user.fromJSON(resultJson.user);
       this.currentUserSubject.next(user);

@@ -11,6 +11,7 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class AccountClientService {
   baseUrl: String;
+  MODE: String = "participant";
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
     if (this.cookieService.get(environment.API_URL)) {
@@ -21,7 +22,7 @@ export class AccountClientService {
   }
 
   public login(email: string, password: string, setCurrentUser: CallableFunction): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}${environment.loginUrl}`, {email, password})
+    return this.http.post<any>(`${this.baseUrl}${environment.loginUrl}`, {email, password, mode: this.MODE})
       .pipe(map(result => {
         const resultData: Object = {user: result.data, token: result.data.token};
         setCurrentUser(resultData);

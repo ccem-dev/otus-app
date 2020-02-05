@@ -2,6 +2,7 @@
 import {AlertService} from '../../../providers';
 import {EventService} from '../../../providers/event.service';
 import {Router} from '@angular/router';
+import {events} from "./events/events";
 
 @Component({
   selector: 'tasks',
@@ -18,7 +19,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
 
   constructor(private alertService: AlertService, private eventService: EventService, private router: Router, private ngZone: NgZone) {
-    this.eventList = this.eventService.getEventComponents();
+    this.eventList = events;
   }
 
   ngOnInit() {
