@@ -31,7 +31,9 @@ export class ActivityAutofillEventComponent implements EventI, OnInit {
       this.alertService.error('Event Unavailable');
     } else {
       localStorage.setItem(this.data._id, "true");
-      window.location.href = this.previewAddress + '/#/?activity=' + this.data.activityId + '&token=' + this.authenticationService.authToken + '&callback=' + location.href ;
+      let callback = location.href;
+      callback = callback.replace(/#\//,"");
+      window.location.href = this.previewAddress + '/#/?activity=' + this.data.activityId + '&token=' + this.authenticationService.authToken + '&callback=' + callback ;
     }
   }
 
