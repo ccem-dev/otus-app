@@ -64,6 +64,7 @@ export class CreateAccountComponent implements OnInit {
     }
 
     this.loading = true;
+    this.email = this.email.toLowerCase();
     this.accountClientService.register(this.email, this.registerForm.value.password)
       .pipe(first())
       .subscribe(
