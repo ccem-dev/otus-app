@@ -99,6 +99,7 @@ describe('CreateAccountComponent', () => {
     const routerSpy = spyOn(app.router, 'navigate');
     const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(obs);
     app.ngOnInit();
+    app.email="EMAIL@EMAIL.COM";
     app.f.password.setValue('Test@1234');
     app.f.confirmPassword.setValue('Test@1234');
     app.onSubmit();
@@ -109,8 +110,9 @@ describe('CreateAccountComponent', () => {
 
   it('should not create new user', () => {
     const alertServiceSpy = spyOn(app.alertService, 'error');
-    const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(throwError('test'));
+    const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(throwError({error:{MESSAGE:'test'}}));
     app.ngOnInit();
+    app.email="EMAIL@EMAIL.COM";
     app.f.password.setValue('Test@1234');
     app.f.confirmPassword.setValue('Test@1234');
     app.onSubmit();

@@ -52,7 +52,7 @@ describe(`ErrorInterceptor`, () => {
     const routerSpy = spyOn(service.router, 'navigate');
     service.router.routerState.snapshot.url = '/return';
     service.intercept(dummyRequest, {
-      handle: () => throwError(new HttpErrorResponse({status: 500, error: { data: { message: 'testError'}} }))
+      handle: () => throwError(new HttpErrorResponse({status: 500, error:{ MESSAGE: 'testError' }}))
     }).subscribe(
       (r) => {},
       (e) => {}
@@ -69,7 +69,7 @@ describe(`ErrorInterceptor`, () => {
   it('should throwError', () => {
     const AuthenticationServiceSpy = spyOn(service.authenticationService, 'clearLocalStorage');
     service.intercept(dummyRequest, {
-      handle: () => throwError(new HttpErrorResponse({status: 402, error: { data: { message: 'testError'}}}))
+      handle: () => throwError(new HttpErrorResponse({status: 402, statusText: 'testError'}))
     }).subscribe(
       (r) => {},
       (e) => expect(e).toEqual('testError')

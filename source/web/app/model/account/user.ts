@@ -14,7 +14,7 @@
   public billing: any;
 
   public fromJSON(userJson) {
-    this.recruitmentNumber = '123';
+    this.recruitmentNumber = userJson.recruitmentNumber;
     this.name = userJson.name;
     this.surname = userJson.surname;
     this.email = userJson.email;

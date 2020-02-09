@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
-import {ActivityAutofillEventComponent} from '../components/dashboard/tasks/events/activity/activity-autofill-event.component';
 import {EventClientService} from './rest/event-client.service';
 
 @Injectable()
 export class EventService {
 
-  constructor(private client: EventClientService) {
+  constructor(private eventClientService: EventClientService) {
       }
 
-  getEventComponents() {
-    return {
-      ActivityAutoFillEvent: ActivityAutofillEventComponent
-    };
+  getParticipantEvents(ownerRn: String) {
+     return this.eventClientService.getEvents(ownerRn);
   }
 
-  getParticipantEvents(ownerRn: String) {
-     return this.client.getEvents(ownerRn);
+  accomplishEvent(eventId : string) {
+     return this.eventClientService.accomplishEvent(eventId);
   }
 
   public getOwner() {

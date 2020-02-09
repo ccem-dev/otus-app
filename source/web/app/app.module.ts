@@ -31,6 +31,8 @@ import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {TasksComponent} from './components/dashboard/tasks/tasks.component';
 import {EventClientService} from './providers/rest/event-client.service';
 import {ErrorInterceptor, JwtInterceptor} from "./utils";
+import {ActivityClientService} from "./providers/rest/activity-client.service";
+import {ActivityEventService} from "./providers/activity-event.service";
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import {ErrorInterceptor, JwtInterceptor} from "./utils";
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     EventService,
+    ActivityEventService,
     EventClientService,
+    ActivityClientService,
     CookieService
   ],
   bootstrap: [AppComponent]

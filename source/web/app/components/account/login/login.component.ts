@@ -57,7 +57,8 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.email.value, this.f.password.value)
+    let email = this.f.email.value.toLowerCase();
+    this.authenticationService.login(email, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {

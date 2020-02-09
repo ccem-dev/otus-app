@@ -1,17 +1,20 @@
 ﻿<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar><mat-icon>description</mat-icon></div>
-    <mat-card-title>{{data.name}}</mat-card-title>
-    <mat-card-subtitle>{{data.acronym}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      {{data.description}}
-    </p>
-  </mat-card-content>
-  <mat-card-actions  style="text-align:right;" >
-    <button mat-fab class="mat-mini-fab" matTooltip="Preencher atividade" aria-label="Preencher atividade" on-click="callPreview()">
+  <mat-card-header fxLayoutAlign="center center">
+    <div mat-card-avatar ><mat-icon>description</mat-icon></div>
+    <div fxFlex>
+      <mat-card-title>{{data.event.acronym}}-{{data.event.name}}</mat-card-title>
+      <mat-card-subtitle>Criado em: {{data.date | date : "dd/mm/yyy HH:mm"}}</mat-card-subtitle>
+    </div>
+    <button mat-fab class="mat-mini-fab" matTooltip="Preencher atividade" aria-label="Preencher atividade" on-click="callPreview()" [disabled]="data.status !== 'PENDING'">
       <mat-icon>play_circle_outline</mat-icon>
     </button>
-  </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content>
+    <p fxFlex="80" fxLayoutAlign="start center">
+      {{data.event.description}}
+    </p>
+    <p fxFlex="20" fxLayoutAlign="end center" [ngStyle]="translatedStatus[data.status].style">
+      {{translatedStatus[data.status].translation}}
+    </p>
+  </mat-card-content>
 </mat-card>
