@@ -43,3 +43,4 @@ Thumbs.db
 **/**.tfstate
 **/**.tfstate.backup
 **/**.terraform
+**/.npmrc
