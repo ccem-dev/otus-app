@@ -1,12 +1,12 @@
-variable "Papp-name"{
-  default = "participant-app"
+variable "papp-name"{
+  default = "papp-frontend:latest"
 }
 
-variable "Papp-port"{
+variable "papp-port"{
   default = 51005
 }
 
-variable "Papp-apiurl"{
+variable "papp-apiurl"{
   default = "http://localhost:51002/otus-rest/v01"
 }
 
@@ -14,16 +14,12 @@ variable "preview-address"{
   default = "http://localhost:51001"
 }
 
-variable "Papp-version"{
-  default = "participant-app:latest"
-}
-
-resource "docker_container" "participant-app" {
-  name = "participant-app"
-  image = "${var.Papp-version}"
-  env = ["API_URL=${var.Papp-apiurl}", "PREVIEW_ADDRESS=${var.preview-address}"]
+resource "docker_container" "papp" {
+  name = "papp-frontend"
+  image = "${var.papp-name}"
+  env = ["API_URL=${var.papp-apiurl}", "PREVIEW_ADDRESS=${var.preview-address}"]
   ports {
 	internal = 80
-	external = "${var.Papp-port}"
+	external = "${var.papp-port}"
   }
 }

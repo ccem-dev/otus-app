@@ -6,7 +6,7 @@ variable "papp-dockerfile" {
 }
 
 variable "papp-name" {
-  default = "participant-app"
+  default = "papp-frontend"
 }
 
 variable "papp-source" {
