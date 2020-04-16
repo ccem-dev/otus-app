@@ -1,82 +1,82 @@
 ###############################################
 ###               Variables                 ###
 ###############################################
-variable "otus-app-dockerfile" {
+variable "papp-dockerfile" {
   default = "."
 }
 
-variable "otus-app-name" {
-  default = "otus-app"
+variable "papp-name" {
+  default = "participant-app"
 }
 
-variable "otus-app-source" {
+variable "papp-source" {
   default = "source"
 }
 
-variable "otus-app-cleanup" {
+variable "papp-cleanup" {
   default = "rm -rf dist node_modules package-lock.json"
 }
 
-variable "otus-app-npminstall" {
+variable "papp-npminstall" {
   default = "npm install"
 }
 
-variable "otus-app-npmtest" {
+variable "papp-npmtest" {
   default = "npm test"
 }
 
-variable "otus-app-npmbuild" {
+variable "papp-npmbuild" {
   default = "npm run build"
 }
 
-variable "otus-app-npmprune" {
+variable "papp-npmprune" {
   default = "npm prune --production"
 }
 ###############################################
-###  OTUS APP: Build Image Front-End           ###
+###  Papp: Build Image Front-End           ###
 ###############################################
-resource "null_resource" "otus-app-cleanup" {
+resource "null_resource" "papp-cleanup" {
   provisioner "local-exec" {
-    working_dir = "${var.otus-app-source}"
-    command = "${var.otus-app-cleanup}"
+    working_dir = "${var.papp-source}"
+    command = "${var.papp-cleanup}"
   }
 }
 
-resource "null_resource" "otus-app-install" {
-depends_on = [null_resource.otus-app-cleanup]
+resource "null_resource" "papp-install" {
+depends_on = [null_resource.papp-cleanup]
   provisioner "local-exec" {
-    working_dir = "${var.otus-app-source}"
-    command = "${var.otus-app-npminstall}"
+    working_dir = "${var.papp-source}"
+    command = "${var.papp-npminstall}"
   }
 }
 
-resource "null_resource" "otus-app-test" {
-depends_on = [null_resource.otus-app-install]
+resource "null_resource" "papp-test" {
+depends_on = [null_resource.papp-install]
   provisioner "local-exec" {
-    working_dir = "${var.otus-app-source}"
-    command = "${var.otus-app-npmtest}"
+    working_dir = "${var.papp-source}"
+    command = "${var.papp-npmtest}"
   }
 }
 
-resource "null_resource" "otus-app-build" {
-depends_on = [null_resource.otus-app-test]
+resource "null_resource" "papp-build" {
+depends_on = [null_resource.papp-test]
   provisioner "local-exec" {
-    working_dir = "${var.otus-app-source}"
-    command = "${var.otus-app-npmbuild}"
+    working_dir = "${var.papp-source}"
+    command = "${var.papp-npmbuild}"
   }
 }
 
-resource "null_resource" "otus-app-prune" {
-depends_on = [null_resource.otus-app-build]
+resource "null_resource" "papp-prune" {
+depends_on = [null_resource.papp-build]
   provisioner "local-exec" {
-    working_dir = "${var.otus-app-source}"
-    command = "${var.otus-app-npmprune}"
+    working_dir = "${var.papp-source}"
+    command = "${var.papp-npmprune}"
   }
 }
 
-resource "null_resource" "otus-app" {
-depends_on = [null_resource.otus-app-prune]
+resource "null_resource" "papp" {
+depends_on = [null_resource.papp-prune]
   provisioner "local-exec" {
-    command = "docker build -t ${var.otus-app-name} ${var.otus-app-dockerfile}"
+    command = "docker build -t ${var.papp-name} ${var.papp-dockerfile}"
   }
 }

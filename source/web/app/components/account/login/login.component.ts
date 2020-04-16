@@ -14,7 +14,7 @@ const {required, email} = Validators;
 })
 export class LoginComponent implements OnInit {
 
-  title = 'Participant App';
+  title = 'Papp';
   hide = true;
 
   loginForm: FormGroup;
