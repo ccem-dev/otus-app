@@ -99,7 +99,7 @@ describe('CreateAccountComponent', () => {
     const routerSpy = spyOn(app.router, 'navigate');
     const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(obs);
     app.ngOnInit();
-    app.email="EMAIL@EMAIL.COM";
+    app.token = 'eyJhbGciOiJIUzI1NiJ9.eyJtb2RlIjoicGFzc3dvcmQtcmVzZXQiLCJpc3MiOiJib2VzZS53b3JrQGdtYWlsLmNvbSJ9.PtpoAEmOV5F9AwornwnZzpXz-b57YWgwD2zZWvI-M90';
     app.f.password.setValue('Test@1234');
     app.f.confirmPassword.setValue('Test@1234');
     app.onSubmit();
@@ -108,15 +108,27 @@ describe('CreateAccountComponent', () => {
     expect(accountClientServiceSpy).toHaveBeenCalled();
   });
 
-  it('should not create new user', () => {
+  it('should throw Error', () => {
     const alertServiceSpy = spyOn(app.alertService, 'error');
-    const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(throwError({error:{MESSAGE:'test'}}));
+    const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(throwError( 'test' ));
     app.ngOnInit();
-    app.email="EMAIL@EMAIL.COM";
+    app.token = 'eyJhbGciOiJIUzI1NiJ9.eyJtb2RlIjoicGFzc3dvcmQtcmVzZXQiLCJpc3MiOiJib2VzZS53b3JrQGdtYWlsLmNvbSJ9.PtpoAEmOV5F9AwornwnZzpXz-b57YWgwD2zZWvI-M90';
     app.f.password.setValue('Test@1234');
     app.f.confirmPassword.setValue('Test@1234');
     app.onSubmit();
-    expect(alertServiceSpy).toHaveBeenCalledWith('test');
+    expect(alertServiceSpy).toHaveBeenCalledWith('Ocorreu um erro, entre em contato com o administrador do sistema');
+    expect(accountClientServiceSpy).toHaveBeenCalled();
+  });
+
+  it('should throw Invalid Token Error', () => {
+    const alertServiceSpy = spyOn(app.alertService, 'error');
+    const accountClientServiceSpy = spyOn(app.accountClientService, 'register').and.returnValue(throwError( 'Invalid token' ));
+    app.ngOnInit();
+    app.token = 'eyJhbGciOiJIUzI1NiJ9.eyJtb2RlIjoicGFzc3dvcmQtcmVzZXQiLCJpc3MiOiJib2VzZS53b3JrQGdtYWlsLmNvbSJ9.PtpoAEmOV5F9AwornwnZzpXz-b57YWgwD2zZWvI-M90';
+    app.f.password.setValue('Test@1234');
+    app.f.confirmPassword.setValue('Test@1234');
+    app.onSubmit();
+    expect(alertServiceSpy).toHaveBeenCalledWith('Token invalido');
     expect(accountClientServiceSpy).toHaveBeenCalled();
   });
 
