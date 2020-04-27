@@ -1,2 +1,2 @@
-# otus-app
-
+# Papp
+Otus Platform - Participante APP
