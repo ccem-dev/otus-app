@@ -2,7 +2,7 @@
   <mat-card-header fxLayoutAlign="center center">
     <div mat-card-avatar ><mat-icon>description</mat-icon></div>
     <div fxFlex>
-      <mat-card-title>{{data.event.acronym}}-{{data.event.name}}</mat-card-title>
+      <mat-card-title>{{data.acronym}}-{{data.name}}</mat-card-title>
       <mat-card-subtitle>Criado em: {{data.date | date : "dd/MM/yyy HH:mm"}}</mat-card-subtitle>
     </div>
     <button mat-fab class="mat-mini-fab" matTooltip="Preencher atividade" aria-label="Preencher atividade" on-click="callPreview()" [disabled]="data.status !== 'PENDING'">
@@ -11,7 +11,7 @@
   </mat-card-header>
   <mat-card-content>
     <p fxFlex="80" fxLayoutAlign="start center">
-      {{data.event.description}}
+      {{data.description}}
     </p>
     <p fxFlex="20" fxLayoutAlign="end center" [ngStyle]="translatedStatus[data.status].style">
       {{translatedStatus[data.status].translation}}
