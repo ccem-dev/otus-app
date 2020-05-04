@@ -26,12 +26,9 @@ variable "papp-npmtest" {
 }
 
 variable "papp-npmbuild" {
-  default = "npm run build"
+  default = "ng build --prod"
 }
 
-variable "papp-npmprune" {
-  default = "npm prune --production"
-}
 ###############################################
 ###  Papp: Build Image Front-End           ###
 ###############################################
@@ -66,16 +63,8 @@ depends_on = [null_resource.papp-test]
   }
 }
 
-resource "null_resource" "papp-prune" {
-depends_on = [null_resource.papp-build]
-  provisioner "local-exec" {
-    working_dir = "${var.papp-source}"
-    command = "${var.papp-npmprune}"
-  }
-}
-
 resource "null_resource" "papp" {
-depends_on = [null_resource.papp-prune]
+depends_on = [null_resource.papp-build]
   provisioner "local-exec" {
     command = "docker build -t ${var.papp-name} ${var.papp-dockerfile}"
   }

@@ -1,7 +1,8 @@
 {
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
   "assetGroups": [{
-    "name": "app",
+    "name": "Papp",
     "installMode": "prefetch",
     "resources": {
       "files": [

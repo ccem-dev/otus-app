@@ -1,5 +1,5 @@
 {
-  "name": "papp",
+  "name": "Papp",
   "version": "1.0.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
@@ -8,7 +8,7 @@
     "test": "./node_modules/.bin/ng test",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
-    "production": "npm install && npm test && ng build && npm prune --production"
+    "production": "npm install && npm test && ng build --prod"
   },
   "dependencies": {
     "@angular/animations": "8.2.14",
