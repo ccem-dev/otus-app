@@ -1,6 +1,6 @@
 {
-  "name": "Papp",
-  "version": "1.0.0",
+  "name": "papp",
+  "version": "1.2.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
