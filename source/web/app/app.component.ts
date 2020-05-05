@@ -14,7 +14,7 @@ import {first} from "rxjs/operators";
 })
 
 export class AppComponent implements OnInit {
-  title = 'Otus App';
+  title = 'Papp';
   currentUser: User;
   mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
