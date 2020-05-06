@@ -43,4 +43,9 @@ export class AccountClientService {
         return result;
       }));
   }
+
+  public resetPassword(email: String): Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}${environment.resetPassword}`, {userEmail: email})
+      .pipe(map(result => result));
+  }
 }

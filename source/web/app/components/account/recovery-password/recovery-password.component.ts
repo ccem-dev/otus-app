@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {Router} from "@angular/router";
+import {AlertService, AuthenticationService} from "../../../providers";
 
 const {required, email} = Validators;
 
@@ -16,13 +17,15 @@ export class RecoveryPasswordComponent implements OnInit {
 
   recoveryPasswordForm: FormGroup
   loading = false;
-  submitted = false;
+  // submitted = false;
   requiredMessage = environment.requiredMessage;
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService
   ) {
   }
 
@@ -39,6 +42,19 @@ export class RecoveryPasswordComponent implements OnInit {
 
   onSubmit() {
     let email = this.f.email.value.toLowerCase();
+      if (this.recoveryPasswordForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.recoveryPassword(email)
+      .subscribe(() => {
+        this.loading = false;
+        this.alertService.success("Email Enviado")
+      }, error => {
+        this.alertService.error(error);
+        this.loading = false;
+      })
   }
 
   redirectToLogin(){
