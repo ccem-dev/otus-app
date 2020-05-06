@@ -71,6 +71,6 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToRecoveryPassword(){
-    console.log("teste")
+    this.router.navigate(['/recovery-password']);
   }
 }
