@@ -47,14 +47,16 @@ export class RecoveryPasswordComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.recoveryPassword(email)
-      .subscribe(() => {
-        this.loading = false;
-        this.alertService.success("Email Enviado")
-      }, error => {
-        this.alertService.error(error);
-        this.loading = false;
-      })
+
+      this.authenticationService.recoveryPassword(email)
+        .toPromise()
+        .then(() => this.alertService.success("Solicitação enviada por Email"))
+        .then(() => this.loading = false)
+        .then(() => setInterval(() => {this.redirectToLogin()}, 4000))
+        .catch( (error) => {
+          this.alertService.error(error);
+          this.loading = false;
+        })
   }
 
   redirectToLogin(){
