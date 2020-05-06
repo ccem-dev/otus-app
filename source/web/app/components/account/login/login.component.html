@@ -29,7 +29,10 @@
               </mat-error>
             </mat-form-field>
           </p>
-          <div fxLayout="row" fxLayoutAlign="end">
+          <div fxLayout="row" fxLayoutAlign="space-between">
+            <button mat-icon-button color="primary" (click)="redirectToRecoveryPassword()">
+              <mat-icon>vpn_key</mat-icon>
+            </button>
             <div class="button">
               <button [disabled]="loading" type="submit" mat-button fxFlexFill class="mat-raised-button mat-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

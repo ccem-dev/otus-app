@@ -33,6 +33,7 @@ import {EventClientService} from './providers/rest/event-client.service';
 import {ErrorInterceptor, JwtInterceptor} from "./utils";
 import {ActivityClientService} from "./providers/rest/activity-client.service";
 import {ActivityEventService} from "./providers/activity-event.service";
+import { RecoveryPasswordComponent } from './components/account/recovery-password/recovery-password.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {ActivityEventService} from "./providers/activity-event.service";
     ErrorPageComponent,
     SanitizeHtmlPipe,
     CreateAccountComponent,
-    TasksComponent
+    TasksComponent,
+    RecoveryPasswordComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent

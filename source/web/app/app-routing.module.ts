@@ -7,6 +7,7 @@ import {LoginComponent} from './components/account/login/login.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {TasksComponent} from './components/dashboard/tasks/tasks.component';
 import {ErrorPageComponent} from './components/error-page/error-page.component';
+import {RecoveryPasswordComponent} from "./components/account/recovery-password/recovery-password.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'register-password/:token' ,
     component: CreateAccountComponent
+  },
+  {
+    path: 'recovery-password',
+    component: RecoveryPasswordComponent
   },
   {
     path: 'dashboard',

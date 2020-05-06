@@ -69,4 +69,8 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         });
   }
+
+  redirectToRecoveryPassword(){
+    console.log("teste")
+  }
 }
