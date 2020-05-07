@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {environment} from "../../../../environments/environment";
-import {Router} from "@angular/router";
-import {AlertService, AuthenticationService} from "../../../providers";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {environment} from '../../../../environments/environment';
+import {Router} from '@angular/router';
+import {AlertService, AuthenticationService} from '../../../providers';
 
 const {required, email} = Validators;
 
@@ -14,12 +14,9 @@ const {required, email} = Validators;
 export class RecoveryPasswordComponent implements OnInit {
   title = 'Recuperação de Senha';
 
-
-  recoveryPasswordForm: FormGroup
+  recoveryPasswordForm: FormGroup;
   loading = false;
-  // submitted = false;
   requiredMessage = environment.requiredMessage;
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,33 +32,29 @@ export class RecoveryPasswordComponent implements OnInit {
     });
   }
 
-  get f(){
+  get rpForm() {
     return this.recoveryPasswordForm.controls;
-
   }
 
   onSubmit() {
-    let email = this.f.email.value.toLowerCase();
-      if (this.recoveryPasswordForm.invalid) {
+    const informedEmail = this.rpForm.email.value.toLowerCase();
+    if (this.recoveryPasswordForm.invalid) {
       return;
     }
-
     this.loading = true;
-
-      this.authenticationService.recoveryPassword(email)
-        .toPromise()
-        .then(() => this.alertService.success("Solicitação enviada por Email"))
-        .then(() => this.loading = false)
-        .then(() => setInterval(() => {this.redirectToLogin()}, 4000))
-        .catch( (error) => {
-          this.alertService.error(error);
-          this.loading = false;
-        })
+    this.authenticationService.recoveryPassword(informedEmail)
+      .toPromise()
+      .then(() => this.alertService.success('Solicitação enviada por email'))
+      .then(() => this.loading = false)
+      .then(() => setInterval(() => this.redirectToLogin(), 4000))
+      .catch((error) => {
+        this.alertService.error(error);
+        this.loading = false;
+      });
   }
 
-  redirectToLogin(){
+  redirectToLogin() {
     this.router.navigate(['/login']);
-
   }
 
 }
