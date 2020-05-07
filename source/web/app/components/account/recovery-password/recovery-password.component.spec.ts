@@ -1,6 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecoveryPasswordComponent } from './recovery-password.component';
+import {
+  MatCardModule,
+  MatDatepickerModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatRadioModule
+} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {SanitizeHtmlPipe} from '../../../utils/sanitize-html/sanitize-html.pipe';
+import {CookieService} from 'ngx-cookie-service';
+import {AlertService} from '../../../providers';
+import {BehaviorSubject} from 'rxjs';
 
 describe('RecoveryPasswordComponent', () => {
   let component: RecoveryPasswordComponent;
@@ -8,7 +25,22 @@ describe('RecoveryPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecoveryPasswordComponent ]
+      imports: [
+        MatCardModule,
+        MatFormFieldModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+        HttpClientModule,
+        MatInputModule,
+        MatIconModule
+        // MatDatepickerModule,
+        // MatNativeDateModule,
+        // BrowserDynamicTestingModule,
+        // MatRadioModule,
+      ],
+      declarations: [ RecoveryPasswordComponent, SanitizeHtmlPipe],
+      providers: [ CookieService, AlertService, SanitizeHtmlPipe]
     })
     .compileComponents();
   }));
@@ -22,4 +54,24 @@ describe('RecoveryPasswordComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should invalidate form', function () {
+    component.ngOnInit();
+    component.onSubmit();
+    expect(component.rpForm.email.hasError('required')).toEqual(true);
+    component.rpForm.email.setValue('invalidValueEmail');
+    component.onSubmit();
+    expect(component.rpForm.email.hasError('email')).toEqual(true);
+  });
+
+  it('should send password recovery request', function () {
+    const behaviorSubject = new BehaviorSubject([{data: true}]);
+    const observable = behaviorSubject.asObservable();
+    const authenticationServiceSpy = spyOn(component['authenticationService'], 'recoveryPassword').and.returnValue(observable);
+    component.ngOnInit();
+    component.rpForm.email.setValue('mockEmail@gmail.com');
+    component.onSubmit();
+    expect(authenticationServiceSpy).toHaveBeenCalledTimes(1);
+  });
+
 });

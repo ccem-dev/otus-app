@@ -42,19 +42,19 @@ export class RecoveryPasswordComponent implements OnInit {
       return;
     }
     this.loading = true;
+
+    function _redirectToLogin() {
+      this.router.navigate(['/login']);
+    }
+
     this.authenticationService.recoveryPassword(informedEmail)
       .toPromise()
       .then(() => this.alertService.success('Solicitação enviada por email'))
       .then(() => this.loading = false)
-      .then(() => setInterval(() => this.redirectToLogin(), 4000))
+      .then(() => setInterval(() => _redirectToLogin(), 4000))
       .catch((error) => {
         this.alertService.error(error);
         this.loading = false;
       });
   }
-
-  redirectToLogin() {
-    this.router.navigate(['/login']);
-  }
-
 }
