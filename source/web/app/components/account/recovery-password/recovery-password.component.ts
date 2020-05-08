@@ -4,6 +4,7 @@ import {environment} from '../../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService, AuthenticationService} from '../../../providers';
 
+
 const {required, email} = Validators;
 
 @Component({
@@ -21,7 +22,7 @@ export class RecoveryPasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService,
+    public authenticationService: AuthenticationService,
     private alertService: AlertService
   ) {
   }
@@ -43,18 +44,18 @@ export class RecoveryPasswordComponent implements OnInit {
     }
     this.loading = true;
 
-    function _redirectToLogin() {
-      this.router.navigate(['/login']);
-    }
-
     this.authenticationService.recoveryPassword(informedEmail)
       .toPromise()
       .then(() => this.alertService.success('Solicitação enviada por email'))
       .then(() => this.loading = false)
-      .then(() => setInterval(() => _redirectToLogin(), 4000))
+      .then(() => setInterval(() => this.redirectToLogin(), 4000))
       .catch((error) => {
         this.alertService.error(error);
         this.loading = false;
       });
+  }
+
+  redirectToLogin() {
+    this.router.navigate(['/login']);
   }
 }

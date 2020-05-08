@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  redirectToRecoveryPassword(){
+  redirectToRecoveryPassword() {
     this.router.navigate(['/recovery-password']);
   }
 }
