@@ -29,7 +29,10 @@
               </mat-error>
             </mat-form-field>
           </p>
-          <div fxLayout="row" fxLayoutAlign="end">
+          <div fxLayout="row" fxLayoutAlign="space-between">
+            <button mat-button color="primary" (click)="redirectToRecoveryPassword()">
+              <small>Esqueci minha senha</small>
+            </button>
             <div class="button">
               <button [disabled]="loading" type="submit" mat-button fxFlexFill class="mat-raised-button mat-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
