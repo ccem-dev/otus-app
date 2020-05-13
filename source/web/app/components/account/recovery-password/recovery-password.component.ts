@@ -22,7 +22,7 @@ export class RecoveryPasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public authenticationService: AuthenticationService,
+    private authenticationService: AuthenticationService,
     private alertService: AlertService
   ) {
   }
@@ -48,7 +48,7 @@ export class RecoveryPasswordComponent implements OnInit {
       .toPromise()
       .then(() => this.alertService.success('Solicitação enviada por email'))
       .then(() => this.loading = false)
-      .then(() => setInterval(() => this.redirectToLogin(), 4000))
+      .then(() => setInterval(() => this.redirectToLogin(), 3000))
       .catch((error) => {
         this.alertService.error(error);
         this.loading = false;
