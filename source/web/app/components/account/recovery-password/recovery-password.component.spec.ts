@@ -1,4 +1,4 @@
-import {async, ComponentFixture, fakeAsync, flush, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, TestBed, tick} from '@angular/core/testing';
 
 import {RecoveryPasswordComponent} from './recovery-password.component';
 import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
@@ -8,15 +8,23 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientModule} from '@angular/common/http';
 import {SanitizeHtmlPipe} from '../../../utils/sanitize-html/sanitize-html.pipe';
 import {CookieService} from 'ngx-cookie-service';
-import {AlertService} from '../../../providers';
-import {BehaviorSubject, observable, Observable} from 'rxjs';
+import {AlertService, AuthenticationService} from '../../../providers';
+import {Observable} from 'rxjs';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import 'rxjs-compat/add/observable/of';
+import 'rxjs-compat/add/observable/fromPromise';
+import 'rxjs-compat/add/observable/from';
+import {Router} from '@angular/router';
+
 
 describe('RecoveryPasswordComponent', () => {
   let component: RecoveryPasswordComponent;
   let fixture: ComponentFixture<RecoveryPasswordComponent>;
+  let authenticationService: AuthenticationService;
+  let alertService: AlertService;
+  let router: Router;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +41,7 @@ describe('RecoveryPasswordComponent', () => {
 
       ],
       declarations: [RecoveryPasswordComponent, SanitizeHtmlPipe],
-      providers: [CookieService, AlertService, SanitizeHtmlPipe],
+      providers: [AuthenticationService, CookieService, AlertService, SanitizeHtmlPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
@@ -42,6 +50,10 @@ describe('RecoveryPasswordComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RecoveryPasswordComponent);
     component = fixture.componentInstance;
+    authenticationService = TestBed.get(AuthenticationService);
+    alertService = TestBed.get(AlertService);
+    router = TestBed.get(Router);
+
     fixture.detectChanges();
   });
 
@@ -56,16 +68,27 @@ describe('RecoveryPasswordComponent', () => {
     component.rpForm.email.setValue('invalidValueEmail');
     component.onSubmit();
     expect(component.rpForm.email.hasError('email')).toEqual(true);
+    fixture.destroy();
   });
 
-  it('should send password recovery request', function () {
-    const behaviorSubject = new BehaviorSubject([{data: true}]);
-    const observable = behaviorSubject.asObservable();
-    const authenticationServiceSpy = spyOn(component['authenticationService'], 'recoveryPassword').and.returnValue(observable);
+
+  it('should send password recovery request', fakeAsync(() => {
+    const promiseResolved = new Promise((resolve) => resolve({data: true}));
+    spyOn(authenticationService, 'recoveryPassword').and.returnValue(Observable.from(promiseResolved));
+    spyOn(alertService, 'success');
+    spyOn(router, 'navigate').withArgs(['/login']);
+
     component.ngOnInit();
     component.rpForm.email.setValue('mockEmail@gmail.com');
     component.onSubmit();
-    expect(authenticationServiceSpy).toHaveBeenCalledTimes(1);
-  });
+    tick( 3000);
+    expect(authenticationService.recoveryPassword).toHaveBeenCalledTimes(1);
+    expect(component.loading).toBeFalse();
+    expect(alertService.success).toHaveBeenCalledTimes(1);
+    expect(router.navigate).toHaveBeenCalledTimes(1);
+
+    discardPeriodicTasks();
+    fixture.destroy();
+  }));
 
 });
