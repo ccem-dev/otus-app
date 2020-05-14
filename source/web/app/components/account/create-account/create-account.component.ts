@@ -14,13 +14,13 @@ const {required, email, pattern} = Validators;
   styleUrls: ['../account.scss']
 })
 export class CreateAccountComponent implements OnInit {
-  title = 'Cadastrar senha';
+  title = 'Definir senha';
 
   registerForm: FormGroup;
   loading = false;
   submitted = false;
   requiredMessage = environment.requiredMessage;
-  private email: string;
+  private token: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,7 +36,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.email = this.route.snapshot.paramMap.get('email');
+    this.token = this.route.snapshot.paramMap.get('token');
     this.registerForm = this.formBuilder.group({
       password: new FormControl('', [required, pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
       confirmPassword: new FormControl('', [required])
@@ -64,8 +64,7 @@ export class CreateAccountComponent implements OnInit {
     }
 
     this.loading = true;
-    this.email = this.email.toLowerCase();
-    this.accountClientService.register(this.email, this.registerForm.value.password)
+    this.accountClientService.register(this.token, this.registerForm.value.password)
       .pipe(first())
       .subscribe(
         data => {
@@ -73,7 +72,11 @@ export class CreateAccountComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error => {
-          this.alertService.error(error.error.MESSAGE);
+          if (error.match('Invalid token')) {
+            this.alertService.error('Token invalido');
+          } else {
+            this.alertService.error('Ocorreu um erro, entre em contato com o administrador do sistema');
+          }
           this.loading = false;
         });
   }

@@ -55,4 +55,8 @@ export class AuthenticationService {
     this.cookieService.deleteAll();
     this.currentUserSubject.next(null);
   }
+
+  recoveryPassword(email){
+    return this.client.resetPassword(email);
+  }
 }

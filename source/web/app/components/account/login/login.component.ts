@@ -14,7 +14,7 @@ const {required, email} = Validators;
 })
 export class LoginComponent implements OnInit {
 
-  title = 'Participant App';
+  title = 'Papp';
   hide = true;
 
   loginForm: FormGroup;
@@ -68,5 +68,9 @@ export class LoginComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
+  }
+
+  redirectToRecoveryPassword() {
+    this.router.navigate(['/recovery-password']);
   }
 }
