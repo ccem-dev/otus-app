@@ -1,1 +1,27 @@
-<p>contact-project works!</p>
+<style>
+  .cp-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 5fr 5fr;
+    grid-template-areas: "title title title title";
+  }
+
+  .title {
+    grid-area: title;
+    display:flex;
+    justify-content: space-between;
+
+  }
+
+  .btn-new-contact {
+    grid-area: btnNewContact;
+  }
+</style>
+
+
+<section class="cp-layout">
+  <mat-toolbar class="title">
+    <span>Contato com o Projeto</span>
+    <button mat-button color="primary">Novo</button>
+  </mat-toolbar>
+</section>
