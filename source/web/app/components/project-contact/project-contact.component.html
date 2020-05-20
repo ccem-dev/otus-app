@@ -40,7 +40,7 @@
   </mat-toolbar>
 
   <mat-card class="card-form-contact">Solicitação de Chamado
-    <form  class="form-contact"[formGroup]="contactProjectForm" (ngSubmit)="onSubmit()">
+    <form class="form-contact" [formGroup]="projectContactForm" (ngSubmit)="onSubmit()">
       <mat-form-field  appearance="legacy">
         <mat-label>Titulo</mat-label>
         <input matInput #input maxlength="120" placeholder="Ex. Não consigo visualizar atividades">
@@ -56,7 +56,7 @@
   </mat-card>
   <mat-card class="historic">Histórico
     <mat-nav-list>
-      <mat-list-item *ngFor="let contact of contactProjects">
+      <mat-list-item *ngFor="let contact of projectContacts">
         <a matLine (click)="viewContact()">{{contact.title}}</a>
         <mat-divider></mat-divider>
       </mat-list-item>
