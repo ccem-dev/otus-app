@@ -29,15 +29,16 @@
 
   .historic {
     grid-area: historic;
-    margin: 10px;
+    margin: 8px;
   }
 
   .subtitle {
     display: flex;
     flex-direction: row-reverse;
   }
-
-
+  .contactItem{
+    margin: 10px;
+  }
 </style>
 
 
@@ -63,16 +64,20 @@
       <button type="submit" mat-button color="primary">CRIAR CHAMADO</button>
     </form>
   </mat-card>
-  <mat-card class="historic">
+  <div class="historic">
     <mat-card-subtitle class="subtitle">Histórico</mat-card-subtitle>
         <mat-accordion  *ngFor="let contact of projectContacts">
-          <mat-expansion-panel>
+          <mat-expansion-panel class="contactItem">
             <mat-expansion-panel-header>
               <mat-panel-title>
+                <mat-icon *ngIf="contact.status === 'OPEN'" >local_library</mat-icon>
+                <mat-icon *ngIf="contact.status !== 'OPEN'">verified_user</mat-icon>
                 {{contact.title}}
               </mat-panel-title>
             </mat-expansion-panel-header>
+            <p>Mensagem: {{contact.message}}</p>
+            <p>Criada em: {{contact.creationDate}}</p>
           </mat-expansion-panel>
         </mat-accordion>
-  </mat-card>
+  </div>
 </section>
