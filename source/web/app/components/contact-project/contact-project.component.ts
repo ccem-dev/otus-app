@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {ContactProjectService} from '../../providers/contact-project/contact-project.service';
 
 @Component({
   selector: 'source-contact-project',
@@ -8,18 +9,26 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class ContactProjectComponent implements OnInit {
   contactProjectForm: FormGroup;
+  contactProjects: any[];
 
-
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private contactProjectService: ContactProjectService
+  ) {
+  }
 
   ngOnInit() {
-    this.contactProjectForm = this.formBuilder.group({
+    this.contactProjects = this.contactProjectService.getContactProject();
+    this.contactProjectForm = this.formBuilder.group({});
 
-    })
   }
 
   onSubmit() {
-    console.log("submeteu")
+    console.log('submeteu');
 
+  }
+
+  viewContact(){
+    console.log("view")
   }
 }

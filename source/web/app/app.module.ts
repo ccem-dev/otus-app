@@ -34,6 +34,7 @@ import {ErrorInterceptor, JwtInterceptor} from "./utils";
 import {ActivityClientService} from "./providers/rest/activity-client.service";
 import {ActivityEventService} from "./providers/activity-event.service";
 import { RecoveryPasswordComponent } from './components/account/recovery-password/recovery-password.component';
+import { ContactProjectComponent } from './components/contact-project/contact-project.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { RecoveryPasswordComponent } from './components/account/recovery-passwor
     SanitizeHtmlPipe,
     CreateAccountComponent,
     TasksComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    ContactProjectComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent
