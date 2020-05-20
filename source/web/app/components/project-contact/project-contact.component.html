@@ -11,8 +11,6 @@
       "historic historic historic historic"
   }
 
-
-
   .title {
     grid-area: title;
     display:flex;
@@ -50,7 +48,7 @@
   </mat-toolbar>
 
   <mat-card class="card-form-contact">
-    <mat-card-subtitle class="subtitle">Solicitação de Chamado</mat-card-subtitle>
+    <mat-card-subtitle class="subtitle">Solicitação</mat-card-subtitle>
     <form class="form-contact" [formGroup]="projectContactForm" (ngSubmit)="onSubmit()">
       <mat-form-field  appearance="legacy">
         <mat-label>Titulo</mat-label>
@@ -62,20 +60,19 @@
         <mat-label>Descreva a situação</mat-label>
         <textarea matInput rows="5"></textarea>
       </mat-form-field>
-      <button type="submit" mat-button color="primary">ENVIAR</button>
+      <button type="submit" mat-button color="primary">CRIAR CHAMADO</button>
     </form>
   </mat-card>
   <mat-card class="historic">
     <mat-card-subtitle class="subtitle">Histórico</mat-card-subtitle>
-    <mat-nav-list>
-      <mat-list-item *ngFor="let contact of projectContacts">
-        <a matLine (click)="viewContact()">{{contact.title}}</a>
-        <mat-divider></mat-divider>
-      </mat-list-item>
-    </mat-nav-list>
-
+        <mat-accordion  *ngFor="let contact of projectContacts">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{contact.title}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion>
   </mat-card>
-
-
-
 </section>

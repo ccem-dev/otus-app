@@ -10,6 +10,8 @@ import {ProjectContactService} from '../../providers/project-contact/project-con
 export class ProjectContactComponent implements OnInit {
   projectContactForm: FormGroup;
   projectContacts: any[];
+  panelOpenState: boolean;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,15 +22,17 @@ export class ProjectContactComponent implements OnInit {
   ngOnInit() {
     this.projectContacts = this.projectContactService.getProjectContacts();
     this.projectContactForm = this.formBuilder.group({});
-
+    this.panelOpenState = false;
   }
+
 
   onSubmit() {
     console.log('submeteu');
 
   }
 
-  viewContact(){
+  viewContact(contact){
+    contact.view = true;
     console.log("view")
   }
 }

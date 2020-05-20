@@ -6,30 +6,30 @@ export class ProjectContactService {
   Mock = {
     projectContacts: [{
       '_id': '123456',
-      'objectType': 'issue',
+      'objectType': 'Issue',
       'emailReporter': 'fulano@gmail.com',
       'title': 'Não consigo preencher a atividade TCLEC',
-      'description': 'Quando tento responder uma pergunta, não consigo inserir a resposta',
-      'date': new Date(),
-      'state': 'open',
+      'message': 'Quando tento responder uma pergunta, não consigo inserir a resposta',
+      'creationDate': new Date(),
+      'status': 'OPEN',
       'answers': [{
-        'email': 'ciclano@gmail.com',
-        'answer': 'solicitação em análise',
+        'sender': 'ciclano@gmail.com',
+        'text': 'solicitação em análise',
         'date': new Date()
       }]
     },
 
       {
-        '_id': '654321',
-        'objectType': 'issue',
+        '_id': '45693214',
+        'objectType': 'Issue',
         'emailReporter': 'fulano@gmail.com',
         'title': 'Não consigo salvar uma atividade',
-        'description': 'Quando tento salvar os dados, o sistema não aceita',
-        'date': new Date(),
-        'state': 'open',
+        'message': 'Quando tento salvar os dados, o sistema não aceita',
+        'creationDate': new Date(),
+        'status': 'CLOSE',
         'answers': [{
-          'email': 'ciclano@gmail.com',
-          'answer': 'solicitação em análise',
+          'sender': 'ciclano@gmail.com',
+          'text': 'Sem permissão',
           'date': new Date()
         }]
       }

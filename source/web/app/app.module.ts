@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatDatepickerModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -78,7 +78,8 @@ import { ProjectContactComponent } from './components/project-contact/project-co
     MatDatepickerModule,
     MatRadioModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
