@@ -52,11 +52,11 @@ export class AuthenticationService {
   clearLocalStorage() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('authToken');
-    this.cookieService.deleteAll();
+    this.cookieService.delete('authToken');
     this.currentUserSubject.next(null);
   }
 
-  recoveryPassword(email){
+  recoveryPassword(email) {
     return this.client.resetPassword(email);
   }
 }
