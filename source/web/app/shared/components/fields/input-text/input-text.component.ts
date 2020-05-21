@@ -10,6 +10,7 @@ import {FieldValidatorService} from '../field-validator.service';
 export class InputTextComponent {
 
   @Input() title: string;
+  @Input() placeholder: string;
   @Input() formGroup: FormGroup;
   @Input() controlName: string;
 
