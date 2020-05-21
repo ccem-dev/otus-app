@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
 
 @Component({
@@ -11,18 +11,22 @@ export class ProjectContactComponent implements OnInit {
   projectContactForm: FormGroup;
   projectContacts: any[];
   panelOpenState: boolean;
+  viewCallFormState: boolean;
 
 
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private projectContactService: ProjectContactService
   ) {
   }
 
   ngOnInit() {
     this.projectContacts = this.projectContactService.getProjectContacts();
-    this.projectContactForm = this.formBuilder.group({});
+    this.projectContactForm = this.fb.group({
+      title: ['', [Validators.required, Validators.maxLength(120)] ]
+    });
     this.panelOpenState = false;
+    this.viewCallFormState = false;
   }
 
 
@@ -31,8 +35,16 @@ export class ProjectContactComponent implements OnInit {
 
   }
 
+  onReset(){
+    console.log('reset');
+  }
+
   viewContact(contact){
     contact.view = true;
-    console.log("view")
+
+  }
+
+  accessCallForm() {
+    this.viewCallFormState = true;
   }
 }

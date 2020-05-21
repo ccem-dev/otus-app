@@ -35,6 +35,8 @@ import {ActivityClientService} from "./providers/rest/activity-client.service";
 import {ActivityEventService} from "./providers/activity-event.service";
 import { RecoveryPasswordComponent } from './components/account/recovery-password/recovery-password.component';
 import { ProjectContactComponent } from './components/project-contact/project-contact.component';
+import { InputTextComponent } from './shared/components/fields/input-text/input-text.component';
+import { InputTextAreaComponent } from './shared/components/fields/input-text-area/input-text-area.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { ProjectContactComponent } from './components/project-contact/project-co
     CreateAccountComponent,
     TasksComponent,
     RecoveryPasswordComponent,
-    ProjectContactComponent
+    ProjectContactComponent,
+    InputTextComponent,
+    InputTextAreaComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent
@@ -81,6 +85,10 @@ import { ProjectContactComponent } from './components/project-contact/project-co
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatChipsModule
+  ],
+  exports: [
+    InputTextComponent,
+    InputTextAreaComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
