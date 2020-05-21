@@ -1,1 +1,15 @@
-<p>input-text-area works!</p>
+<div [formGroup]="formGroup" class="form">
+  <mat-form-field appearance="legacy">
+    <mat-label>{{title}}</mat-label>
+    <textarea matInput
+              [rows]="rows"
+              [placeholder]="placeholder"
+              [name]="controlName"
+              [formControlName]="controlName">
+       </textarea>
+    <mat-error *ngIf="fieldValidator.hasErrorValidate(formControl,'required')">Campo obrigatório</mat-error>
+    <mat-error *ngIf="fieldValidator.hasErrorValidate(formControl, 'minlength')">valor mínimo de caracteres:  {{fieldValidator.lengthValidate(formControl, 'minlength')}}</mat-error>
+    <mat-error *ngIf="fieldValidator.hasErrorValidate(formControl, 'maxlength')">valor máximo de caracteres: {{fieldValidator.lengthValidate(formControl, 'maxlength')}}</mat-error>
+  </mat-form-field>
+</div>
+

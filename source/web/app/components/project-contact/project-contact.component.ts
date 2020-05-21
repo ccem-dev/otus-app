@@ -23,7 +23,8 @@ export class ProjectContactComponent implements OnInit {
   ngOnInit() {
     this.projectContacts = this.projectContactService.getProjectContacts();
     this.projectContactForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(120)] ]
+      title: ['', [Validators.required, Validators.maxLength(120)] ],
+      description: ['', [Validators.required, Validators.maxLength(500)] ],
     });
     this.panelOpenState = false;
     this.viewCallFormState = false;
