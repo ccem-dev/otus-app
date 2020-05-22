@@ -32,20 +32,19 @@ export class ProjectContactComponent implements OnInit {
 
 
   onSubmit() {
-    console.log('submeteu');
-
+    this.projectContactForm.markAllAsTouched();
+    if(this.projectContactForm.invalid){
+      return;
+    }
+    alert(JSON.stringify(this.projectContactForm.value));
   }
 
   onReset(){
-    console.log('reset');
+    this.projectContactForm.reset();
   }
 
-  viewContact(contact){
-    contact.view = true;
-
-  }
-
-  accessCallForm() {
-    this.viewCallFormState = true;
+  changeViewCallFormState() {
+    this.viewCallFormState = !this.viewCallFormState;
+    this.onReset();
   }
 }

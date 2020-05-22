@@ -29,12 +29,30 @@
     margin: 8px;
   }
 
+
   .solicitation-subtitle {
     display: flex;
     flex-direction: column-reverse;
     grid-area: solicitation;
     margin: 20px;
+  }
 
+  .contactItem {
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+    justify-content: space-between
+  }
+
+  .btn-form-row {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .historic-panel-title {
+    display: flex;
+    align-items: baseline;
+    margin-top: 10px;
   }
 
   .history-subtitle {
@@ -44,8 +62,12 @@
     margin-right: 20px;
   }
 
-  .contactItem {
-    margin-top: 5px;
+  .historic-panel-title .mat-card-subtitle{
+    margin-left: 5px;
+  }
+
+  .mat-icon-button {
+    margin-left: 20px;
   }
 </style>
 
@@ -69,14 +91,13 @@
         a seção de histórico e expanda um ou mais titulos.</i>obs: é possivel dar réplica para as respostas
         que vem do projeto</p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button mat-raised-button color="primary" (click)="accessCallForm()">ABRIR CHAMADO</button>
+    <mat-card-actions class="btn-form-row">
+      <button mat-button mat-raised-button color="primary" (click)="changeViewCallFormState()">ABRIR CHAMADO</button>
     </mat-card-actions>
   </mat-card>
 
   <mat-card class="card-form-contact" *ngIf="viewCallFormState">
     <form class="form-contact" [formGroup]="projectContactForm" (ngSubmit)="onSubmit()">
-
       <otus-input-text title="Titulo"
                        controlName="title"
                        [formGroup]="projectContactForm"
@@ -89,8 +110,19 @@
                             rows=3
                             placeholder="Ex. Quando entro no sistema via 3g não estou conseguindo visualizar atividades">
       </otus-input-text-area>
+      <div class="btn-form-row">
+        <button mat-icon-button type="submit" mat-button color="primary">
+          <mat-icon>save</mat-icon>
+        </button>
 
-      <button type="submit" mat-button color="primary">CRIAR CHAMADO</button>
+        <button mat-icon-button type="reset" mat-button color="primary" (click)="onReset()">
+          <mat-icon>clear</mat-icon>
+        </button>
+
+        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewCallFormState()">
+          <mat-icon>undo</mat-icon>
+        </button>
+      </div>
     </form>
 
   </mat-card>
@@ -99,10 +131,12 @@
     <mat-accordion *ngFor="let contact of projectContacts">
       <mat-expansion-panel class="contactItem">
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon *ngIf="contact.status === 'OPEN'">local_library</mat-icon>
-            <mat-icon *ngIf="contact.status !== 'OPEN'">verified_user</mat-icon>
-            {{contact.title}}
+          <mat-panel-title class="historic-panel-title">
+            <mat-chip-list aria-label="Fish selection">
+              <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
+              <mat-chip color="none" selected *ngIf="contact.status !== 'OPEN'">Fechado</mat-chip>
+            </mat-chip-list>
+            <span class="mat-card-subtitle">{{contact.title}}</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>Mensagem: {{contact.message}}</p>
@@ -111,5 +145,10 @@
         <p>{{contact}}</p>
       </mat-expansion-panel>
     </mat-accordion>
+
+
+
+
+
   </div>
 </section>
