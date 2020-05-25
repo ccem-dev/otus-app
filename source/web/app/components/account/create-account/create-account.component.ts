@@ -38,7 +38,7 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit() {
     this.token = this.route.snapshot.paramMap.get('token');
     this.registerForm = this.formBuilder.group({
-      password: new FormControl('', [required, pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z-0-9\d$@$!%*?&].{4,}')]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
       confirmPassword: new FormControl('', [required])
     }, {
       validator: MustMatch('password', 'confirmPassword')
