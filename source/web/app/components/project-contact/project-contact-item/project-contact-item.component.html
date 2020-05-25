@@ -1,3 +1,31 @@
-<p>Mensagem: {{contactItem.message}}</p>
-<p>Criada em: {{contactItem.creationDate}}</p>
-<p>Por: {{contactItem.sender}}</p>
+<style>
+  .pci-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: none;
+  }
+
+
+
+
+</style>
+
+<section class="pci-layout">
+  <small>Criado por: {{contactItem.sender}}</small>
+  <small>em:{{contactItem.creationDate}}</small>
+  <small>Situação:{{contactItem.message}}</small>
+  <small>Última mensagem: espaço </small>
+  <form [formGroup]="feedBackForm" (ngSubmit)="onSubmit()">
+    <otus-input-text-area title="Escreva seu FeedBack"
+                          controlName="feedBack"
+                          [formGroup]="feedBackForm"
+                          rows=1
+                          placeholder="Ex.Não funcionou procedimento, preciso de mais detalhes">
+    </otus-input-text-area>
+  </form>
+
+</section>
+
+
+
