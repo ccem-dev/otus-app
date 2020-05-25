@@ -2,28 +2,86 @@
   .pci-layout {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: none;
+    grid-template-rows: .5fr .5fr .5fr 1fr;
+    grid-template-areas: "mainMessage" "info" "lastFeedBack" "feedBack"
   }
 
+  .main-message {
+    grid-area: mainMessage;
+  }
 
+  .info {
+    grid-area: info;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .last-feed-back {
+    grid-area: lastFeedBack
+  }
+
+  .feed-back {
+    grid-area: feedBack;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .feed-back-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+
+  }
+
+  .feed-back-input{
+    flex-grow: 4
+  }
 
 
 </style>
 
 <section class="pci-layout">
-  <small>Criado por: {{contactItem.sender}}</small>
-  <small>em:{{contactItem.creationDate}}</small>
-  <small>Situação:{{contactItem.message}}</small>
-  <small>Última mensagem: espaço </small>
-  <form [formGroup]="feedBackForm" (ngSubmit)="onSubmit()">
-    <otus-input-text-area title="Escreva seu FeedBack"
-                          controlName="feedBack"
-                          [formGroup]="feedBackForm"
-                          rows=1
-                          placeholder="Ex.Não funcionou procedimento, preciso de mais detalhes">
-    </otus-input-text-area>
-  </form>
+  <span class="mat-h4 main-message">{{contactItem.message}}
+    <mat-divider></mat-divider>
+  </span>
+  <div class="info">
+    <span class="mat-body-2 sender">Criado por: {{contactItem.sender}}</span>
+    <span class="mat-body-2 creation-date">em:{{contactItem.creationDate}}</span>
+    <mat-chip-list aria-label="more info" class="more-info">
+      <mat-chip>+ info</mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <span class="mat-body-2 last-feed-back">Última mensagem: espaço </span>
+  <div class="mat-body-2 feed-back">
+    <button *ngIf="!viewFeedBackFormState" mat-button mat-raised color="primary"
+            (click)="changeViewFeedBackFormState()">FEEDBACK
+    </button>
+
+    <form class="feed-back-form" *ngIf="viewFeedBackFormState" [formGroup]="feedBackForm" (ngSubmit)="onSubmit()">
+      <otus-input-text-area title="Escreva seu FeedBack class" class="feed-back-input"
+                            controlName="feedBack"
+                            [formGroup]="feedBackForm"
+                            rows=3
+                            placeholder="Ex. Não funcionou o procedimento, preciso de mais detalhes">
+      </otus-input-text-area>
+
+      <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewFeedBackFormState()">
+        <mat-icon>undo</mat-icon>
+      </button>
+
+      <button mat-icon-button type="reset" mat-button color="primary" (click)="onReset()">
+        <mat-icon>clear</mat-icon>
+      </button>
+
+      <button mat-icon-button type="submit" mat-button color="primary">
+        <mat-icon>save</mat-icon>
+      </button>
+
+
+    </form>
+  </div>
 
 </section>
 

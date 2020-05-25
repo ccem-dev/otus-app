@@ -11,6 +11,7 @@ export class ProjectContactItemComponent implements OnInit {
 
    @Input() public contactItem: any;
   feedBackForm: FormGroup;
+  private viewFeedBackFormState: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,4 +36,13 @@ export class ProjectContactItemComponent implements OnInit {
 
   }
 
+  onReset() {
+
+  }
+
+  changeViewFeedBackFormState() {
+    this.viewFeedBackFormState = !this.viewFeedBackFormState;
+    this.onReset();
+
+  }
 }
