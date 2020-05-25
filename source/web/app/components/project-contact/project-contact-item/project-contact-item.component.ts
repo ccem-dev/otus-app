@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'source-project-contact-item',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-contact-item.component.css']
 })
 export class ProjectContactItemComponent implements OnInit {
+
+   @Input() public contactItem: any;
 
   constructor() { }
 

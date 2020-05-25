@@ -1,47 +1,34 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {ProjectContact} from '../../model/contact/project-contact';
+import {HttpClient} from '@angular/common/http';
+
+const url = 'http://localhost:3077/project-contact/';
 
 @Injectable({providedIn: 'root'})
 export class ProjectContactService {
 
-  Mock = {
-    projectContacts: [{
-      '_id': '123456',
-      'objectType': 'Issue',
-      'emailReporter': 'fulano@gmail.com',
-      'title': 'Não consigo preencher a atividade TCLEC',
-      'message': 'Quando tento responder uma pergunta, não consigo inserir a resposta',
-      'creationDate': new Date(),
-      'status': 'OPEN',
-      'answers': [{
-        'sender': 'ciclano@gmail.com',
-        'text': 'solicitação em análise',
-        'date': new Date()
-      }]
-    },
-
-      {
-        '_id': '45693214',
-        'objectType': 'Issue',
-        'emailReporter': 'fulano@gmail.com',
-        'title': 'Não consigo salvar uma atividade',
-        'message': 'Quando tento salvar os dados, o sistema não aceita',
-        'creationDate': new Date(),
-        'status': 'CLOSE',
-        'answers': [{
-          'sender': 'ciclano@gmail.com',
-          'text': 'Sem permissão',
-          'date': new Date()
-        }]
-      }
-    ]
-  };
-
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  getProjectContacts() {
-    return this.Mock.projectContacts;
+  getProjectContacts(): Observable<ProjectContact[]> {
+    return this.http.get<ProjectContact[]>(url) ;
   }
+
+  // getProjectContactMessages() : Observable<any>{
+  //   return null;
+  // }
+
+  createProjectContact(projectContact: ProjectContact): Observable<ProjectContact>{
+    console.log(projectContact);
+    // this.Mock.projectContacts.push(projectContact);
+    return new Observable<ProjectContact>();
+  }
+
+  // createProjectContactMessage(ProjectContactMessage:any): Observable<any> {
+  //   return null;
+  // }
+
 }
 
 

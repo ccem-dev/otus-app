@@ -29,7 +29,6 @@
     margin: 8px;
   }
 
-
   .solicitation-subtitle {
     display: flex;
     flex-direction: column-reverse;
@@ -88,8 +87,9 @@
       </i></p>
 
       <p><i>Caso queira somente ver a respostas dos especialistas em relação aos chamados criados, vá para
-        a seção de histórico e expanda um ou mais titulos.</i>obs: é possivel dar réplica para as respostas
-        que vem do projeto</p>
+        a seção de histórico e expanda um ou mais titulos.</i>
+        obs: Se necessário tirar mais dúvidas sobre a solução enviada, crie feedbacks com mais detalhes ou sugestões
+      </p>
     </mat-card-content>
     <mat-card-actions class="btn-form-row">
       <button mat-button mat-raised-button color="primary" (click)="changeViewCallFormState()">ABRIR CHAMADO</button>
@@ -105,7 +105,7 @@
       </otus-input-text>
 
       <otus-input-text-area title="Descreva a situação"
-                            controlName="description"
+                            controlName="message"
                             [formGroup]="projectContactForm"
                             rows=3
                             placeholder="Ex. Quando entro no sistema via 3g não estou conseguindo visualizar atividades">
@@ -139,16 +139,8 @@
             <span class="mat-card-subtitle">{{contact.title}}</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Mensagem: {{contact.message}}</p>
-        <p>Criada em: {{contact.creationDate}}</p>
-        <p>Por: {{contact.sender}}</p>
-        <p>{{contact}}</p>
+        <source-project-contact-item [contactItem]="contact" ></source-project-contact-item>
       </mat-expansion-panel>
     </mat-accordion>
-
-
-
-
-
   </div>
 </section>

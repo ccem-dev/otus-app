@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
+import {ProjectContact} from '../../model/contact/project-contact';
+import {create} from 'domain';
 
 @Component({
   selector: 'source-project-contact',
@@ -9,22 +11,19 @@ import {ProjectContactService} from '../../providers/project-contact/project-con
 })
 export class ProjectContactComponent implements OnInit {
   projectContactForm: FormGroup;
-  projectContacts: any[];
+  projectContacts: ProjectContact[] = [];
   panelOpenState: boolean;
   viewCallFormState: boolean;
 
-
   constructor(
     private fb: FormBuilder,
-    private projectContactService: ProjectContactService
-  ) {
-  }
+    private projectContactService: ProjectContactService) {}
 
   ngOnInit() {
-    this.projectContacts = this.projectContactService.getProjectContacts();
+    this.getProjectContacts();
     this.projectContactForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(120)] ],
-      description: ['', [Validators.required, Validators.maxLength(500)] ],
+      title: ['', [Validators.required, Validators.maxLength(120)]],
+      message: ['', [Validators.required, Validators.maxLength(500)]],
     });
     this.panelOpenState = false;
     this.viewCallFormState = false;
@@ -33,18 +32,30 @@ export class ProjectContactComponent implements OnInit {
 
   onSubmit() {
     this.projectContactForm.markAllAsTouched();
-    if(this.projectContactForm.invalid){
+    if (this.projectContactForm.invalid) {
       return;
     }
-    alert(JSON.stringify(this.projectContactForm.value));
+
+    this.create(new ProjectContact(this.projectContactForm.getRawValue(), ""));
   }
 
-  onReset(){
+  onReset() {
     this.projectContactForm.reset();
   }
 
   changeViewCallFormState() {
     this.viewCallFormState = !this.viewCallFormState;
     this.onReset();
+  }
+
+  getProjectContacts(): void{
+    this.projectContactService.getProjectContacts()
+      .subscribe((projectContacts: ProjectContact[]) => this.projectContacts = projectContacts);
+  }
+
+  private create(projectContact: ProjectContact): void {
+    this.projectContactService.createProjectContact(projectContact)
+      .subscribe(sucess => console.log('gravou'),
+        e => console.log(e));
   }
 }

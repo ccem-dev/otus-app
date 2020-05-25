@@ -37,6 +37,7 @@ import { RecoveryPasswordComponent } from './components/account/recovery-passwor
 import { ProjectContactComponent } from './components/project-contact/project-contact.component';
 import { InputTextComponent } from './shared/components/fields/input-text/input-text.component';
 import { InputTextAreaComponent } from './shared/components/fields/input-text-area/input-text-area.component';
+import { ProjectContactItemComponent } from './components/project-contact/project-contact-item/project-contact-item.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { InputTextAreaComponent } from './shared/components/fields/input-text-ar
     RecoveryPasswordComponent,
     ProjectContactComponent,
     InputTextComponent,
-    InputTextAreaComponent
+    InputTextAreaComponent,
+    ProjectContactItemComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent
