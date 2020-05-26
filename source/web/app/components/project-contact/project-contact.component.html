@@ -51,7 +51,7 @@
   .historic-panel-title {
     display: flex;
     align-items: baseline;
-    margin-top: 10px;
+    margin-top: 1vh;
   }
 
   .history-subtitle {
@@ -61,12 +61,13 @@
     margin-right: 20px;
   }
 
-  .historic-panel-title .mat-card-subtitle{
-    margin-left: 5px;
-  }
-
   .mat-icon-button {
     margin-left: 20px;
+  }
+
+  .chip {
+    display: flex;
+    width: 100px;
   }
 </style>
 
@@ -77,9 +78,7 @@
   </mat-toolbar>
   <span class="mat-card-subtitle solicitation-subtitle">Solicitação</span>
   <mat-card class="card-form-contact" *ngIf="!viewCallFormState">
-    <mat-card-header>
-      <mat-card-subtitle>Instruções de Uso</mat-card-subtitle>
-    </mat-card-header>
+    <mat-card-subtitle>Instruções de Uso</mat-card-subtitle>
     <mat-card-content>
       <p><i>Caso esteja acessando este módulo pela primeira vez, e precise contactar-se com o projeto para informar
         alguma anomalia do sistema ou simplesmente tentar solucionar uma dúvida,
@@ -132,14 +131,14 @@
       <mat-expansion-panel class="contactItem">
         <mat-expansion-panel-header>
           <mat-panel-title class="historic-panel-title">
-            <mat-chip-list aria-label="status contact">
-              <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
-              <mat-chip color="none" selected *ngIf="contact.status !== 'OPEN'">Fechado</mat-chip>
+            <mat-chip-list aria-label="status contact" class="chip">
+              <mat-chip  color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
+              <mat-chip  color="none" selected *ngIf="contact.status !== 'OPEN'">Fechado</mat-chip>
             </mat-chip-list>
             <span class="mat-card-subtitle">{{contact.title}}</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <source-project-contact-item [contactItem]="contact" ></source-project-contact-item>
+        <source-project-contact-item [contactItem]="contact"></source-project-contact-item>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
