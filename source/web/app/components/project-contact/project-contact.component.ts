@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
 import {ProjectContact} from '../../model/contact/project-contact';
 import {create} from 'domain';
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material';
 
 @Component({
   selector: 'source-project-contact',
@@ -15,9 +16,11 @@ export class ProjectContactComponent implements OnInit {
   panelOpenState: boolean;
   viewCallFormState: boolean;
 
+
   constructor(
     private fb: FormBuilder,
-    private projectContactService: ProjectContactService) {}
+    private projectContactService: ProjectContactService,
+    ) {}
 
   ngOnInit() {
     this.getProjectContacts();
@@ -36,7 +39,7 @@ export class ProjectContactComponent implements OnInit {
       return;
     }
 
-    this.create(new ProjectContact(this.projectContactForm.getRawValue(), ""));
+    this.create(new ProjectContact(this.projectContactForm.getRawValue(), "fulano@email.com"));
   }
 
   onReset() {
@@ -55,7 +58,11 @@ export class ProjectContactComponent implements OnInit {
 
   private create(projectContact: ProjectContact): void {
     this.projectContactService.createProjectContact(projectContact)
-      .subscribe(sucess => console.log('gravou'),
-        e => console.log(e));
+      .subscribe(() => [
+        this.getProjectContacts(),
+        this.changeViewCallFormState(),
+        this.projectContactService.showMessage("comunicação OK: Chamado gravado")
+        ],
+        () => this.projectContactService.showMessage("Falha na comunicação: Chamado não gravado", true));
   }
 }

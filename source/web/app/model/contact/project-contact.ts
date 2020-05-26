@@ -1,5 +1,5 @@
 export class ProjectContact {
-  _id?: string;
+  id?: string;
   objectType: string;
   sender: string;
   title: string;
@@ -9,6 +9,7 @@ export class ProjectContact {
   messages?: []
 
   constructor(form: any, sender: string) {
+    this.id = form.id || "";
     this.objectType = 'Issue'
     this.sender = sender;
     this.title = form.title;
@@ -19,7 +20,7 @@ export class ProjectContact {
   }
 
   public fromJSON(contactJson){
-    this._id = contactJson._id;
+    this.id = contactJson.id;
     this.objectType = contactJson.objectType;
     this.sender = contactJson.sender;
     this.title = contactJson.title;
@@ -31,7 +32,7 @@ export class ProjectContact {
 
   public toJSON() {
     return {
-      _id: this._id,
+      id: this.id,
       objectType: this.objectType,
       sender: this.sender,
       title: this.title,
