@@ -20,7 +20,8 @@ export class ProjectContactComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private projectContactService: ProjectContactService,
-    ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getProjectContacts();
@@ -39,7 +40,7 @@ export class ProjectContactComponent implements OnInit {
       return;
     }
 
-    this.create(new ProjectContact(this.projectContactForm.getRawValue(), "fulano@email.com"));
+    this.create(new ProjectContact(this.projectContactForm.getRawValue(), 'fulano@email.com'));
   }
 
   onReset() {
@@ -51,7 +52,7 @@ export class ProjectContactComponent implements OnInit {
     this.onReset();
   }
 
-  getProjectContacts(): void{
+  getProjectContacts(): void {
     this.projectContactService.getProjectContacts()
       .subscribe((projectContacts: ProjectContact[]) => this.projectContacts = projectContacts);
   }
@@ -59,10 +60,10 @@ export class ProjectContactComponent implements OnInit {
   private create(projectContact: ProjectContact): void {
     this.projectContactService.createProjectContact(projectContact)
       .subscribe(() => [
-        this.getProjectContacts(),
-        this.changeViewCallFormState(),
-        this.projectContactService.showMessage("comunicação OK: Chamado gravado")
+          this.getProjectContacts(),
+          this.changeViewCallFormState(),
+          this.projectContactService.showMessage('comunicação OK: Chamado gravado')
         ],
-        () => this.projectContactService.showMessage("Falha na comunicação: Chamado não gravado", true));
+        () => this.projectContactService.showMessage('Falha na comunicação: Chamado não gravado', true));
   }
 }

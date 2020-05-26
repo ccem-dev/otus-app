@@ -12,6 +12,7 @@ export class ProjectContactItemComponent implements OnInit {
    @Input() public contactItem: any;
   answerForm: FormGroup;
   private viewAnswerFormState: boolean = false;
+  loadingLastMessage: boolean = true;
 
   constructor(
     private fb: FormBuilder,
