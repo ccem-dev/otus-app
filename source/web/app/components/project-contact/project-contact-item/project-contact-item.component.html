@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: .5fr .5fr .5fr 1fr;
-    grid-template-areas: "info" "mainMessage" "lastFeedBack" "feedBack"
+    grid-template-areas: "info" "mainMessage" "lastAnswer" "answer"
   }
 
   .main-message {
@@ -16,23 +16,23 @@
     justify-content: space-between;
   }
 
-  .last-feed-back {
-    grid-area: lastFeedBack
+  .last-answer {
+    grid-area: lastAnswer
   }
 
-  .feed-back {
-    grid-area: feedBack;
+  .answer {
+    grid-area: answer;
     display: flex;
     flex-direction: row-reverse;
   }
 
-  .feed-back-form {
+  .answer-form {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
 
-  .btn-answser-form {
+  .btn-answer-form {
     display: flex;
     flex-direction: row-reverse;
   }
@@ -54,26 +54,26 @@
     <mat-divider></mat-divider>
   </span>
 
-  <div class="last-feed-back">
-    <span class="mat-card-subtitle last-feed-back">Última mensagem | 26/05/2020 | fulano@email.com</span>
+  <div class="last-answer">
+    <span class="mat-card-subtitle last-answer">Última mensagem | 26/05/2020 | fulano@email.com</span>
     <span class="mat-body-2">
     Mussum Ipsum, cacilds vidis litro abertis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Delegadis gente finis, bibendum egestas augue arcu ut est. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis.
   </span>
   </div>
 
-  <div class="mat-body-2 feed-back">
-    <button *ngIf="!viewFeedBackFormState" mat-button mat-raised color="primary"
-            (click)="changeViewFeedBackFormState()">MENSAGEM
+  <div class="mat-body-2 answer">
+    <button *ngIf="!viewAnswerFormState" mat-button mat-raised color="primary"
+            (click)="changeViewAnswerFormState()">MENSAGEM
     </button>
 
-    <form class="feed-back-form" *ngIf="viewFeedBackFormState" [formGroup]="feedBackForm" (ngSubmit)="onSubmit()">
-      <otus-input-text-area title="Escreva sua mensagem" class="feed-back-input"
-                            controlName="feedBack"
-                            [formGroup]="feedBackForm"
+    <form class="answer-form" *ngIf="viewAnswerFormState" [formGroup]="answerForm" (ngSubmit)="onSubmit()">
+      <otus-input-text-area title="Escreva sua mensagem" class="answer-input"
+                            controlName="answer"
+                            [formGroup]="answerForm"
                             rows=3
                             placeholder="Ex. Não funcionou o procedimento, preciso de mais detalhes">
       </otus-input-text-area>
-      <div class="btn-answser-form">
+      <div class="btn-answer-form">
         <button mat-icon-button type="submit" mat-button color="primary">
           <mat-icon>save</mat-icon>
         </button>
@@ -82,7 +82,7 @@
           <mat-icon>clear</mat-icon>
         </button>
 
-        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewFeedBackFormState()">
+        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewAnswerFormState()">
           <mat-icon>undo</mat-icon>
         </button>
       </div>

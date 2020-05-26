@@ -10,29 +10,29 @@ import {ProjectContactService} from '../../../providers/project-contact/project-
 export class ProjectContactItemComponent implements OnInit {
 
    @Input() public contactItem: any;
-  feedBackForm: FormGroup;
-  private viewFeedBackFormState: boolean = false;
+  answerForm: FormGroup;
+  private viewAnswerFormState: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private projectContactService: ProjectContactService) {}
 
   ngOnInit() {
-    this.feedBackForm = this.fb.group({
-      feedBack:['', [Validators.required, Validators.maxLength(500)]]
+    this.answerForm = this.fb.group({
+      answer:['', [Validators.required, Validators.maxLength(500)]]
     })
   }
 
   onSubmit(){
-    this.feedBackForm.markAllAsTouched();
-    if(this.feedBackForm.invalid){
+    this.answerForm.markAllAsTouched();
+    if(this.answerForm.invalid){
       return
     }
-    this._createFeedBack(this.feedBackForm.getRawValue());
+    this._createAnswer(this.answerForm.getRawValue());
   }
 
-  private _createFeedBack(feedBackItem){
-    this.projectContactService.createFeedBack(feedBackItem);
+  private _createAnswer(answerItem){
+    this.projectContactService.createAnswer(answerItem);
 
   }
 
@@ -40,8 +40,8 @@ export class ProjectContactItemComponent implements OnInit {
 
   }
 
-  changeViewFeedBackFormState() {
-    this.viewFeedBackFormState = !this.viewFeedBackFormState;
+  changeViewAnswerFormState() {
+    this.viewAnswerFormState = !this.viewAnswerFormState;
     this.onReset();
 
   }
