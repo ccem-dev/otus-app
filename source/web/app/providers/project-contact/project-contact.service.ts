@@ -26,14 +26,6 @@ export class ProjectContactService {
     return this.http.post<ProjectContact>(url, projectContact);
   }
 
-  // getProjectContactMessages() : Observable<any>{
-  //   return null;
-  // }
-
-  // createProjectContactMessage(ProjectContactMessage:any): Observable<any> {
-  //   return null;
-  // }
-
   createAnswer(answerItem: any) {
     console.log(answerItem);
   }
@@ -48,6 +40,23 @@ export class ProjectContactService {
   }
 
 
+  getLastMessage(contact: ProjectContact): Observable<any> {
+    return this.http.get<any>("http://localhost:3077/lastMessage");
+  }
+
+  getProjectContactMessages() : Observable<any>{
+    return this.http.get<any>("http://localhost:3077/messages");
+  }
+
+  // createProjectContactMessage(ProjectContactMessage:any): Observable<any> {
+  //   return null;
+  // }
+
+
+  addContactMessages(contact: ProjectContact, message: any) : void {
+    contact.messages = []
+    contact.messages.push(message)
+  }
 }
 
 

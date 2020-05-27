@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
+import {ProjectContact} from '../../../model/contact/project-contact';
 
 @Component({
   selector: 'otus-project-contact-item',
@@ -10,10 +11,12 @@ import {Router} from '@angular/router';
 })
 export class ProjectContactItemComponent implements OnInit {
 
-   @Input() public contactItem: any;
+  @Input() public contactItem: any;
   answerForm: FormGroup;
+
   private viewAnswerFormState: boolean = false;
-  loadingLastMessage: boolean = true;
+  private loadingLastMessage: boolean;
+
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +28,7 @@ export class ProjectContactItemComponent implements OnInit {
     this.answerForm = this.fb.group({
       answer:['', [Validators.required, Validators.maxLength(500)]]
     })
+    this.loadingLastMessage = true;
   }
 
   onSubmit(){
@@ -52,7 +56,15 @@ export class ProjectContactItemComponent implements OnInit {
 
   goToMessages(contactItem: any) {
     this.router.navigate([`/project-contact/${contactItem.id}/messages`]);
+  }
 
-
+  openPanel(contact: ProjectContact) {
+    if(!contact.messages)
+      this.projectContactService.getLastMessage(contact)
+        .subscribe( message => [
+          this.projectContactService.addContactMessages(contact, message),
+          this.loadingLastMessage = false,
+          console.log(contact.messages[0].text)
+        ])
   }
 }

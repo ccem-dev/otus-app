@@ -6,7 +6,8 @@ export class ProjectContact {
   message: string;
   creationDate: Date;
   status: string;
-  messages?: []
+  messages?: any
+
 
   constructor(form: any, sender: string) {
     this.id = form.id || "";
@@ -16,7 +17,7 @@ export class ProjectContact {
     this.message = form.message;
     this.creationDate = new Date();
     this.status = "OPEN";
-    this.messages = [];
+    this.messages = new Array();
   }
 
   public fromJSON(contactJson){
@@ -27,7 +28,7 @@ export class ProjectContact {
     this.message= contactJson.message;
     this.creationDate= contactJson.creationDate;
     this.status = contactJson.status;
-    this.messages = [];
+    // this.messages = [];
   }
 
   public toJSON() {

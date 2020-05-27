@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
 import {ProjectContact} from '../../model/contact/project-contact';
@@ -15,7 +15,6 @@ export class ProjectContactComponent implements OnInit {
   projectContacts: ProjectContact[] = [];
   panelOpenState: boolean;
   viewCallFormState: boolean;
-
 
   constructor(
     private fb: FormBuilder,
