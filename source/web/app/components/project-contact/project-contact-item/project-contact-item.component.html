@@ -52,7 +52,8 @@
   <div class="info">
     <span class="mat-body-2 creation-date">{{contactItem.creationDate | date: 'dd/MM/yyyy - HH:mm'}}</span>
     <mat-chip-list aria-label="more info" class="more-info">
-      <mat-chip>ver +</mat-chip>
+<!--      <a routerLink="{{contactItem.id}}/messages"><mat-chip>ver +</mat-chip></a>-->
+      <mat-chip (click) = "goToMessages(contactItem)">ver +</mat-chip>
     </mat-chip-list>
   </div>
   <span class="mat-h4 main-message">{{contactItem.message}}

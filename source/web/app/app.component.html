@@ -4,7 +4,7 @@
       <a routerLink="/dashboard/tasks" id="title">{{ title }}</a>
       <span fxFlex></span>
       <div fxFlex="" fxLayoutAlign="end center" fxLayoutGap="10px">
-        <button mat-button (click)="redirectToProjectContact()">Contato</button>
+        <a class="mat-body" routerLink="/project-contact">Contato</a>
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon aria-hidden="false" aria-label="user" matBadgeOverlap="false" matBadgeColor="warn"
                     matBadgePosition="before">account_circle</mat-icon>

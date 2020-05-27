@@ -38,6 +38,7 @@ import { ProjectContactComponent } from './components/project-contact/project-co
 import { InputTextComponent } from './shared/components/fields/input-text/input-text.component';
 import { InputTextAreaComponent } from './shared/components/fields/input-text-area/input-text-area.component';
 import { ProjectContactItemComponent } from './components/project-contact/project-contact-item/project-contact-item.component';
+import { MessagesComponent } from './components/project-contact/messages/messages.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ProjectContactItemComponent } from './components/project-contact/projec
     ProjectContactComponent,
     InputTextComponent,
     InputTextAreaComponent,
-    ProjectContactItemComponent
+    ProjectContactItemComponent,
+    MessagesComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent

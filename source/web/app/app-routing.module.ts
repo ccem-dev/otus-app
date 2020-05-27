@@ -9,6 +9,7 @@ import {TasksComponent} from './components/dashboard/tasks/tasks.component';
 import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {RecoveryPasswordComponent} from "./components/account/recovery-password/recovery-password.component";
 import {ProjectContactComponent} from './components/project-contact/project-contact.component';
+import {MessagesComponent} from './components/project-contact/messages/messages.component';
 
 const routes: Routes = [
   {
@@ -31,8 +32,14 @@ const routes: Routes = [
 
   {
     path: 'project-contact',
-    component: ProjectContactComponent
+    component: ProjectContactComponent,
   },
+
+  {
+    path: 'project-contact/:id/messages',
+    component:MessagesComponent
+  },
+
 
   {
     path: 'dashboard',

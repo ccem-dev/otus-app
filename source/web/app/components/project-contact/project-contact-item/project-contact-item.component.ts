@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'source-project-contact-item',
+  selector: 'otus-project-contact-item',
   templateUrl: './project-contact-item.component.html',
   styleUrls: ['./project-contact-item.component.css']
 })
@@ -16,7 +17,9 @@ export class ProjectContactItemComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private projectContactService: ProjectContactService) {}
+
 
   ngOnInit() {
     this.answerForm = this.fb.group({
@@ -44,6 +47,12 @@ export class ProjectContactItemComponent implements OnInit {
   changeViewAnswerFormState() {
     this.viewAnswerFormState = !this.viewAnswerFormState;
     this.onReset();
+
+  }
+
+  goToMessages(contactItem: any) {
+    this.router.navigate([`/project-contact/${contactItem.id}/messages`]);
+
 
   }
 }
