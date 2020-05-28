@@ -55,7 +55,7 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   goToMessages(contactItem: any) {
-    this.router.navigate([`/project-contact/${contactItem.id}/messages`, { contact: contactItem }]);
+    this.router.navigate([`/project-contact/${contactItem.id}/messages/`], {state: contactItem});
   }
 
   openPanel(contact: ProjectContact) {

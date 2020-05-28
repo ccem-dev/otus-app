@@ -8,14 +8,13 @@ import {ProjectContact} from '../../../model/contact/project-contact';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-  contact: any;
+  contact: ProjectContact;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
-
-  ngOnInit() {
-    this.contact = this.route.snapshot.paramMap.get('contact');
-
-    console.log("Data via params: ",this.route.snapshot.paramMap.get('contact'));
+  constructor(private route: ActivatedRoute, private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    this.contact = navigation.extras.state as ProjectContact;
   }
+
+  ngOnInit() {}
 
 }
