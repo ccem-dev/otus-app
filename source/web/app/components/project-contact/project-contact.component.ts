@@ -4,6 +4,7 @@ import {ProjectContactService} from '../../providers/project-contact/project-con
 import {ProjectContact} from '../../model/contact/project-contact';
 import {create} from 'domain';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material';
+import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 
 @Component({
   selector: 'source-project-contact',
@@ -19,6 +20,7 @@ export class ProjectContactComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private projectContactService: ProjectContactService,
+    private otusToasterService: OtusToasterService
   ) {
   }
 
@@ -61,8 +63,8 @@ export class ProjectContactComponent implements OnInit {
       .subscribe(() => [
           this.getProjectContacts(),
           this.changeViewCallFormState(),
-          this.projectContactService.showMessage('comunicação OK: Chamado gravado')
+          this.otusToasterService.showMessage('comunicação OK: Chamado gravado')
         ],
-        () => this.projectContactService.showMessage('Falha na comunicação: Chamado não gravado', true));
+        () => this.otusToasterService.showMessage('Falha na comunicação: Chamado não gravado', true));
   }
 }

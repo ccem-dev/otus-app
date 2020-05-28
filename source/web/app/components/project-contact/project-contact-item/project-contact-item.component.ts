@@ -55,7 +55,7 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   goToMessages(contactItem: any) {
-    this.router.navigate([`/project-contact/${contactItem.id}/messages`]);
+    this.router.navigate([`/project-contact/${contactItem.id}/messages`, { contact: contactItem }]);
   }
 
   openPanel(contact: ProjectContact) {
@@ -63,8 +63,7 @@ export class ProjectContactItemComponent implements OnInit {
       this.projectContactService.getLastMessage(contact)
         .subscribe( message => [
           this.projectContactService.addContactMessages(contact, message),
-          this.loadingLastMessage = false,
-          console.log(contact.messages[0].text)
+          this.loadingLastMessage = false
         ])
   }
 }

@@ -16,14 +16,19 @@
     justify-content: space-between;
   }
 
+  .last-answer-spinner {
+    grid-area: lastAnswer;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
   .last-answer {
     grid-area: lastAnswer;
     display: flex;
     flex-direction: column;
-  }
 
-  .spinner {
-    align-items: center;
   }
 
   .answer {
@@ -64,8 +69,8 @@
     <mat-divider></mat-divider>
   </span>
 
-  <div class="last-answer spinner" *ngIf="loadingLastMessage">
-    <label>aguardando dados da internet...</label>
+  <div class="last-answer-spinner" *ngIf="loadingLastMessage">
+    <span class="mat-card-subtitle">aguardando dados da internet...</span>
     <mat-spinner></mat-spinner>
   </div>
 
