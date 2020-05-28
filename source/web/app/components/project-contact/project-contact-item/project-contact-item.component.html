@@ -35,6 +35,7 @@
     grid-area: answer;
 
   }
+
   .answer-btn {
     display: flex;
     flex-direction: row-reverse;
@@ -75,10 +76,11 @@
   </div>
 
   <div class="last-answer" *ngIf="!loadingLastMessage">
-    <pre><span class="mat-card-subtitle">Última mensagem | {{contactItem.messages[0].creationDate | date:'dd/MM/yyyy - HH:mm' }} | {{contactItem.messages[0].sender}}</span></pre>
-    <span class="mat-body-2">
-    {{contactItem.messages[0].text}}
-  </span>
+    <span class="mat-card-subtitle">Última mensagem |
+    {{contactItem.messages[0].creationDate | date:'dd/MM/yyyy - HH:mm' }} |
+    {{contactItem.messages[0].sender}}
+    </span>
+    <span class="mat-body-2">{{contactItem.messages[0].text}}</span>
   </div>
 
   <div class="mat-body-2 answer">
