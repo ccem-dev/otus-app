@@ -2,7 +2,7 @@
   .pci-layout {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: .5fr .5fr .5fr 1fr;
+    grid-template-rows: .1fr .1fr 1fr .1fr;
     grid-template-areas: "info" "mainMessage" "lastAnswer" "answer"
   }
 
@@ -20,13 +20,17 @@
     grid-area: lastAnswer;
     display: flex;
     flex-direction: column;
+  }
+
+  .spinner {
     align-items: center;
   }
 
-
-
   .answer {
     grid-area: answer;
+
+  }
+  .answer-btn {
     display: flex;
     flex-direction: row-reverse;
   }
@@ -52,7 +56,7 @@
   <div class="info">
     <span class="mat-body-2 creation-date">{{contactItem.creationDate | date: 'dd/MM/yyyy - HH:mm'}}</span>
     <mat-chip-list aria-label="more info" class="more-info">
-<!--      <a routerLink="{{contactItem.id}}/messages"><mat-chip>ver +</mat-chip></a>-->
+      <!--      <a routerLink="{{contactItem.id}}/messages"><mat-chip>ver +</mat-chip></a>-->
       <mat-chip (click)="goToMessages(contactItem)">ver +</mat-chip>
     </mat-chip-list>
   </div>
@@ -60,22 +64,25 @@
     <mat-divider></mat-divider>
   </span>
 
-  <div class="last-answer" *ngIf="loadingLastMessage">
-    <label>carregando mensagem...</label>
+  <div class="last-answer spinner" *ngIf="loadingLastMessage">
+    <label>aguardando dados da internet...</label>
     <mat-spinner></mat-spinner>
   </div>
 
   <div class="last-answer" *ngIf="!loadingLastMessage">
-    <span class="mat-card-subtitle last-answer">Última mensagem | mock.date | Mock:fulano@email.com</span>
+    <pre><span class="mat-card-subtitle">Última mensagem | {{contactItem.messages[0].creationDate | date:'dd/MM/yyyy - HH:mm' }} | {{contactItem.messages[0].sender}}</span></pre>
     <span class="mat-body-2">
     {{contactItem.messages[0].text}}
   </span>
   </div>
 
   <div class="mat-body-2 answer">
-    <button *ngIf="!viewAnswerFormState" mat-button mat-raised color="primary"
-            (click)="changeViewAnswerFormState()">MENSAGEM
-    </button>
+    <span class="answer-btn">
+       <button class="answer-btn" *ngIf="!viewAnswerFormState" mat-button mat-raised color="primary"
+               (click)="changeViewAnswerFormState()">MENSAGEM
+       </button>
+    </span>
+
 
     <form class="answer-form" *ngIf="viewAnswerFormState" [formGroup]="answerForm" (ngSubmit)="onSubmit()">
       <otus-input-text-area title="Escreva uma nova mensagem" class="answer-input"
