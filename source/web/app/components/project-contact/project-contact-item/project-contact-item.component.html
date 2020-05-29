@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: .1fr .1fr 1fr .1fr;
-    grid-template-areas: "info" "mainMessage" "lastAnswer" "answer"
+    grid-template-areas: "info" "mainMessage" "lastMessage" "message"
   }
 
   .main-message {
@@ -16,39 +16,38 @@
     justify-content: space-between;
   }
 
-  .last-answer-spinner {
-    grid-area: lastAnswer;
+  .last-message-spinner {
+    grid-area: lastMessage;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
   }
 
-  .last-answer {
-    grid-area: lastAnswer;
+  .last-message {
+    grid-area: lastMessage;
     display: flex;
     flex-direction: column;
     margin: 20px 0px;
 
   }
 
-  .answer {
-    grid-area: answer;
-
+  .message {
+    grid-area: message;
   }
 
-  .answer-btn {
+  .message-btn {
     display: flex;
     flex-direction: row-reverse;
   }
 
-  .answer-form {
+  .message-form {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
 
-  .btn-answer-form {
+  .btn-message-form {
     display: flex;
     flex-direction: row-reverse;
   }
@@ -71,37 +70,36 @@
   </span>
   <div>
     <mat-divider></mat-divider>
-    <div class="last-answer-spinner" *ngIf="loadingLastMessage">
+    <div class="last-message-spinner" *ngIf="loadingLastMessage">
       <span class="mat-card-subtitle">aguardando dados da internet...</span>
       <mat-spinner></mat-spinner>
     </div>
 
-    <div class="last-answer" *ngIf="!loadingLastMessage">
+    <div class="last-message" *ngIf="!loadingLastMessage">
     <span class="mat-card-subtitle">Última mensagem |
-      {{contactItem.messages[0].creationDate | date:'dd/MM/yyyy - HH:mm' }} |
-      {{contactItem.messages[0].sender}}
+      {{contactItem.messages[contactItem.messages.length-1].creationDate | date:'dd/MM/yyyy - HH:mm' }} |
+      {{contactItem.messages[contactItem.messages.length-1].sender}}
     </span>
-      <span align="justify" class="mat-body-2">{{contactItem.messages[0].text}}</span>
+      <span align="justify" class="mat-body-2">{{contactItem.messages[contactItem.messages.length-1].text}}</span>
     </div>
   </div>
 
 
-  <div class="mat-body-2 answer">
-    <span class="answer-btn">
-       <button class="answer-btn" *ngIf="!viewAnswerFormState" mat-button mat-raised color="primary"
-               (click)="changeViewAnswerFormState()">MENSAGEM
+  <div class="mat-body-2 message">
+    <span class="message-btn">
+       <button class="message-btn" *ngIf="!viewMessageFormState" mat-button mat-raised color="primary"
+               (click)="changeViewMessageFormState()">MENSAGEM
        </button>
     </span>
 
-
-    <form class="answer-form" *ngIf="viewAnswerFormState" [formGroup]="answerForm" (ngSubmit)="onSubmit()">
-      <otus-input-text-area title="Escreva uma nova mensagem" class="answer-input"
-                            controlName="answer"
-                            [formGroup]="answerForm"
+    <form class="message-form" *ngIf="viewMessageFormState" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <otus-input-text-area title="Escreva uma nova mensagem" class="message-input"
+                            controlName="text"
+                            [formGroup]="messageForm"
                             rows=3
                             placeholder="Ex. Não funcionou o procedimento, preciso de mais detalhes">
       </otus-input-text-area>
-      <div class="btn-answer-form">
+      <div class="btn-message-form">
         <button mat-icon-button type="submit" mat-button color="primary">
           <mat-icon>save</mat-icon>
         </button>
@@ -110,7 +108,7 @@
           <mat-icon>clear</mat-icon>
         </button>
 
-        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewAnswerFormState()">
+        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewMessageFormState()">
           <mat-icon>undo</mat-icon>
         </button>
       </div>

@@ -132,7 +132,7 @@
   <div class="historic">
     <mat-card-subtitle class="history-subtitle">Histórico</mat-card-subtitle>
     <mat-accordion *ngFor="let contact of projectContacts">
-      <mat-expansion-panel class="contactItem" (opened)="ProjectContactItem.openPanel(contact)">
+      <mat-expansion-panel class="contactItem" (opened)="ProjectContactItem.loadContactItemContent(contact)">
         <mat-expansion-panel-header>
           <mat-panel-title class="historic-panel-title">
             <mat-chip-list aria-label="status" class="chip">
@@ -142,7 +142,10 @@
             <span class="mat-card-subtitle">{{contact.title}}</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <otus-project-contact-item #ProjectContactItem [contactItem]="contact"></otus-project-contact-item>
+        <otus-project-contact-item #ProjectContactItem
+                                   [contactItem]="contact">
+
+        </otus-project-contact-item>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

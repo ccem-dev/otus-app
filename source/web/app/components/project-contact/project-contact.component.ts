@@ -67,8 +67,8 @@ export class ProjectContactComponent implements OnInit {
       .subscribe(() => [
           this.getProjectContacts(),
           this.changeViewCallFormState(),
-          this.otusToasterService.showMessage('comunicação OK: Chamado gravado')
+          this.otusToasterService.showMessage('comunicação OK: Chamado criado')
         ],
-        () => this.otusToasterService.showMessage('Falha na comunicação: Chamado não gravado', true));
+        () => this.otusToasterService.showMessage('Falha na comunicação: Chamado não criado', true));
   }
 }

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ProjectContact} from '../../model/contact/project-contact';
 import {HttpClient} from '@angular/common/http';
+import {Message} from '../../model/contact/message/message';
 
 const url = 'http://localhost:3077/project-contact/';
 
@@ -21,30 +22,27 @@ export class ProjectContactService {
     return this.http.post<ProjectContact>(url, projectContact);
   }
 
-  createAnswer(answerItem: any) {
-    console.log(answerItem);
+  createMessage(message: Message): Observable<any> {
+    return this.http.post<Message>('http://localhost:3077/messages', message);
   }
-
 
   getLastMessage(contact: ProjectContact): Observable<any> {
-    return this.http.get<any>("http://localhost:3077/lastMessage");
+    return this.http.get<any>('http://localhost:3077/messages');
   }
 
-  getProjectContactMessages() : Observable<any>{
-    return this.http.get<any>("http://localhost:3077/messages");
+  getProjectContactMessages(): Observable<any> {
+    return this.http.get<any>('http://localhost:3077/messages');
   }
 
-  // createProjectContactMessage(ProjectContactMessage:any): Observable<any> {
-  //   return null;
-  // }
-
-
-  addContactMessages(contact: ProjectContact, message: any) : void {
-    contact.messages = []
-    contact.messages.push(message)
+  addContactMessages(contact: ProjectContact, messages: any): void {
+    if(!contact.messages) contact.messages = [];
+    contact.messages.push(...messages);
   }
 
-
+  buildMessage(messageText, contact: ProjectContact) {
+    let message = new Message(messageText, contact);
+    return message;
+  }
 }
 
 

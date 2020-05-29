@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
+import {ProjectContactComponent} from '../project-contact.component';
+import {OtusToasterService} from '../../../shared/services/otus-toaster.service';
 
 @Component({
   selector: 'otus-project-contact-item',
@@ -12,53 +14,34 @@ import {ProjectContact} from '../../../model/contact/project-contact';
 export class ProjectContactItemComponent implements OnInit {
 
   @Input() public contactItem: any;
-  answerForm: FormGroup;
+  messageForm: FormGroup;
 
-  private viewAnswerFormState: boolean = false;
+  private viewMessageFormState: boolean = false;
   private loadingLastMessage: boolean;
 
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private projectContactService: ProjectContactService) {}
-
+    private projectContactService: ProjectContactService,
+    private otusToasterService: OtusToasterService) {}
 
   ngOnInit() {
-    this.answerForm = this.fb.group({
-      answer:['', [Validators.required, Validators.maxLength(500)]]
+    this.messageForm = this.fb.group({
+      text:['', [Validators.required, Validators.maxLength(500)]]
     })
     this.loadingLastMessage = true;
   }
 
   onSubmit(){
-    this.answerForm.markAllAsTouched();
-    if(this.answerForm.invalid){
+    this.messageForm.markAllAsTouched();
+    if(this.messageForm.invalid){
       return
     }
-    this._createAnswer(this.answerForm.getRawValue());
+    this._createMessage(this.messageForm.getRawValue(), this.contactItem);
   }
 
-  private _createAnswer(answerItem){
-    this.projectContactService.createAnswer(answerItem);
-
-  }
-
-  onReset() {
-
-  }
-
-  changeViewAnswerFormState() {
-    this.viewAnswerFormState = !this.viewAnswerFormState;
-    this.onReset();
-
-  }
-
-  goToMessages(contactItem: any) {
-    this.router.navigate([`/project-contact/${contactItem.id}/messages/`], {state: contactItem});
-  }
-
-  openPanel(contact: ProjectContact) {
+  loadContactItemContent(contact: ProjectContact) {
     if(!contact.messages)
       this.projectContactService.getLastMessage(contact)
         .subscribe( message => [
@@ -66,4 +49,30 @@ export class ProjectContactItemComponent implements OnInit {
           this.loadingLastMessage = false
         ])
   }
+
+  private _createMessage(messageForm, contact){
+    let message = this.projectContactService.buildMessage(messageForm.text, contact);
+    this.projectContactService.createMessage(message)
+      .subscribe(() => [
+        this.contactItem.messages.push(message),
+        this.otusToasterService.showMessage('comunicação OK: Mensagem enviada'),
+        this.changeViewMessageFormState()
+        ],
+        () => this.otusToasterService.showMessage('Falha na comunicação: Mensagem não enviada', true));
+  }
+
+  onReset() {
+    this.messageForm.reset();
+  }
+
+  changeViewMessageFormState() {
+    this.viewMessageFormState = !this.viewMessageFormState;
+    this.onReset();
+  }
+
+  goToMessages(contactItem: any) {
+    this.router.navigate([`/project-contact/${contactItem.id}/messages/`], {state: contactItem});
+  }
+
+
 }
