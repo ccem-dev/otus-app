@@ -1,1 +1,61 @@
-<p>{{contact.message}}</p>
+<style>
+  .ml-layout {
+    background-color: #f3f3f3;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit, 1fr) 1fr;
+    grid-template-areas: "header""message"
+  }
+
+  .header {
+    margin: 1vh 1vw;
+  }
+
+  .info-contact {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between
+  }
+
+  .message {
+    height: 90vh;
+    grid-area: message;
+    /*display: flex;*/
+    /*flex-direction: row;*/
+
+  }
+  .message-card {
+    margin: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+</style>
+
+<section class="ml-layout">
+  <div class="header mat-h3">
+    <div class="info-contact">
+      <mat-chip-list aria-label="status" class="chip">
+        <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
+        <mat-chip color="none" selected *ngIf="contact.status !== 'OPEN'">Fechado</mat-chip>
+      </mat-chip-list>
+      <span class="mat-card-subtitle">{{contact.creationDate | date:'dd/MM/yyyy - HH:mm' }}</span>
+      <mat-chip-list aria-label="more info" class="more-info">
+        <mat-chip><a routerLink="/project-contact">ver -</a></mat-chip>
+      </mat-chip-list>
+
+    </div>
+    <span class="mat-h4">{{contact.title}}</span>
+    <span class="mat-card-subtitle"><em>{{contact.message}}</em></span>
+  </div>
+
+  <div class="message">
+      <mat-card class="message-card" *ngFor="let message of messages">
+        <mat-card-subtitle>{{message}}</mat-card-subtitle>
+        <mat-card-content></mat-card-content>
+      </mat-card>
+    </div>
+</section>

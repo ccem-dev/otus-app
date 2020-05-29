@@ -43,6 +43,8 @@ export class ProjectContactService {
     contact.messages = []
     contact.messages.push(message)
   }
+
+
 }
 
 

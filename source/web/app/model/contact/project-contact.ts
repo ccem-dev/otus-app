@@ -8,7 +8,6 @@ export class ProjectContact {
   status: string;
   messages?: any
 
-
   constructor(form: any, sender: string) {
     this.id = form.id || "";
     this.objectType = 'Issue'
@@ -18,17 +17,6 @@ export class ProjectContact {
     this.creationDate = new Date();
     this.status = "OPEN";
     this.messages = new Array();
-  }
-
-  public fromJSON(contactJson){
-    this.id = contactJson.id;
-    this.objectType = contactJson.objectType;
-    this.sender = contactJson.sender;
-    this.title = contactJson.title;
-    this.message= contactJson.message;
-    this.creationDate= contactJson.creationDate;
-    this.status = contactJson.status;
-    // this.messages = [];
   }
 
   public toJSON() {

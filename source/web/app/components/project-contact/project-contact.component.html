@@ -137,7 +137,7 @@
       <mat-expansion-panel class="contactItem" (opened)="ProjectContactItem.openPanel(contact)">
         <mat-expansion-panel-header>
           <mat-panel-title class="historic-panel-title">
-            <mat-chip-list aria-label="status contact" class="chip">
+            <mat-chip-list aria-label="status" class="chip">
               <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
               <mat-chip color="none" selected *ngIf="contact.status !== 'OPEN'">Fechado</mat-chip>
             </mat-chip-list>
