@@ -54,8 +54,13 @@
 
   <div class="message">
       <mat-card class="message-card" *ngFor="let message of messages">
-        <mat-card-subtitle>{{message}}</mat-card-subtitle>
-        <mat-card-content></mat-card-content>
+        <mat-card-subtitle>
+          <span>{{message.sender}} | </span>
+          <span>{{message.creationDate| date:'dd/MM/yyyy - HH:mm' }}</span>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <span>{{message.text}}</span>
+        </mat-card-content>
       </mat-card>
     </div>
 </section>

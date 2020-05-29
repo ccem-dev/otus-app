@@ -33,12 +33,10 @@ export class MessagesComponent implements OnInit {
     }
     else this.contact = navigation.extras.state as ProjectContact;
     this.getMessages();
-    console.log(this.contact)
   }
 
   ngOnInit() {
     this.messages = [];
-
   }
 
   ngOnDestroy(){
