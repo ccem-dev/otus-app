@@ -33,11 +33,13 @@ const routes: Routes = [
   {
     path: 'project-contact',
     component: ProjectContactComponent,
+    canActivate: [AuthGuard]
   },
 
   {
     path: 'project-contact/:id/messages',
-    component:MessagesComponent
+    component:MessagesComponent,
+    canActivate: [AuthGuard]
   },
 
 
