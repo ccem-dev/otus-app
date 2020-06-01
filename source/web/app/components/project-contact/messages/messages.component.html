@@ -18,7 +18,7 @@
   }
 
   .message {
-    height: 90vh;
+    height: 79vh;
     grid-area: message;
   }
   .message-card {
@@ -47,6 +47,10 @@
     </div>
     <span align="justify" class="mat-h4">{{contact.title}}</span>
     <span align="justify" class="mat-card-subtitle"><em>{{contact.message}}</em></span>
+  </div>
+
+  <div class="message" *ngIf="networkLoading">
+    <otus-spinner></otus-spinner>
   </div>
 
   <div class="message">

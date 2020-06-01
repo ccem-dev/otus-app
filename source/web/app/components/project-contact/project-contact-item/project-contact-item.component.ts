@@ -14,12 +14,10 @@ import {OtusToasterService} from '../../../shared/services/otus-toaster.service'
 export class ProjectContactItemComponent implements OnInit {
 
   @Input() public contactItem: any;
-  messageForm: FormGroup;
-
+  private messageForm: FormGroup;
   private viewMessageFormState: boolean = false;
   private networkLoading: boolean;
   private isEmptyMessages: boolean
-
 
   constructor(
     private fb: FormBuilder,

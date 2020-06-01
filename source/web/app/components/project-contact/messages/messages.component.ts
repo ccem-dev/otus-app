@@ -9,8 +9,9 @@ import {ProjectContactService} from '../../../providers/project-contact/project-
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-  contact: ProjectContact;
-  messages: any[];
+  public contact: ProjectContact;
+  private messages: any[];
+  private networkLoading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class MessagesComponent implements OnInit {
         _id: "1",
         objectType: "Issue",
         sender: "fulano@email.com",
-        title: "Não consigo preencher a atividade TCLEC",
+        title: "Mock!!! Não consigo preencher a atividade TCLEC",
         message: "Quando tento responder uma pergunta, não consigo inserir a resposta",
         creationDate: "2020-04-10T15:30:07.533Z",
         status: "OPEN"
@@ -45,7 +46,10 @@ export class MessagesComponent implements OnInit {
 
   getMessages(): void {
     this.projectContactService.getProjectContactMessages()
-      .subscribe((messages: any[]) => this.messages = messages);
+      .subscribe((messages: any[]) => [
+        this.messages = messages,
+        this.networkLoading = false
+      ]);
   }
 
 }
