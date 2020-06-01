@@ -17,7 +17,8 @@ export class ProjectContactItemComponent implements OnInit {
   messageForm: FormGroup;
 
   private viewMessageFormState: boolean = false;
-  private loadingLastMessage: boolean;
+  private networkLoading: boolean;
+  private isEmptyMessages: boolean
 
 
   constructor(
@@ -27,10 +28,11 @@ export class ProjectContactItemComponent implements OnInit {
     private otusToasterService: OtusToasterService) {}
 
   ngOnInit() {
+    this.isEmptyMessages = true;
     this.messageForm = this.fb.group({
       text:['', [Validators.required, Validators.maxLength(500)]]
     })
-    this.loadingLastMessage = true;
+    this.networkLoading = true;
   }
 
   onSubmit(){
@@ -44,9 +46,10 @@ export class ProjectContactItemComponent implements OnInit {
   loadContactItemContent(contact: ProjectContact) {
     if(!contact.messages)
       this.projectContactService.getLastMessage(contact)
-        .subscribe( message => [
-          this.projectContactService.addContactMessages(contact, message),
-          this.loadingLastMessage = false
+        .subscribe( messages => [
+          this.verifyMessages(messages),
+          this.projectContactService.addContactMessages(contact, messages),
+          this.networkLoading = false
         ])
   }
 
@@ -72,6 +75,11 @@ export class ProjectContactItemComponent implements OnInit {
 
   goToMessages(contactItem: any) {
     this.router.navigate([`/project-contact/${contactItem.id}/messages/`], {state: contactItem});
+  }
+
+  private verifyMessages(messages): void{
+    if(messages.length === 0) this.isEmptyMessages = true;
+    else this.isEmptyMessages = false;
   }
 
 

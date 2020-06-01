@@ -14,21 +14,20 @@ import {User} from '../../model';
   styleUrls: ['./project-contact.component.css']
 })
 export class ProjectContactComponent implements OnInit {
-  projectContactForm: FormGroup;
-  projectContacts: ProjectContact[] = [];
-  panelOpenState: boolean;
-  viewCallFormState: boolean;
-  user: User;
-  networkLoading: boolean;
-  isEmptyProjectContacts: boolean;
+  private projectContactForm: FormGroup;
+  private projectContacts: ProjectContact[] = [];
+  private user: User;
+  private panelOpenState: boolean;
+  private viewCallFormState: boolean;
+  private networkLoading: boolean;
+  private isEmptyProjectContacts: boolean;
 
   constructor(
     private fb: FormBuilder,
     private projectContactService: ProjectContactService,
     private otusToasterService: OtusToasterService,
     private authenticationService: AuthenticationService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.networkLoading = true;
@@ -83,6 +82,6 @@ export class ProjectContactComponent implements OnInit {
 
   private verifyProjectContacts(projectContacts): void{
     if(projectContacts.length === 0) this.isEmptyProjectContacts = true;
-
+    else this.isEmptyProjectContacts = false;
   }
 }
