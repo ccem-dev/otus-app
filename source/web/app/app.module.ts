@@ -39,6 +39,7 @@ import { InputTextComponent } from './shared/components/fields/input-text/input-
 import { InputTextAreaComponent } from './shared/components/fields/input-text-area/input-text-area.component';
 import { ProjectContactItemComponent } from './components/project-contact/project-contact-item/project-contact-item.component';
 import { MessagesComponent } from './components/project-contact/messages/messages.component';
+import { OtusSpinnerComponent } from './shared/components/spinner/otus-spinner/otus-spinner.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { MessagesComponent } from './components/project-contact/messages/message
     InputTextComponent,
     InputTextAreaComponent,
     ProjectContactItemComponent,
-    MessagesComponent
+    MessagesComponent,
+    OtusSpinnerComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent

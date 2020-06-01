@@ -71,16 +71,15 @@
   <div>
     <mat-divider></mat-divider>
     <div class="last-message-spinner" *ngIf="loadingLastMessage">
-      <span class="mat-card-subtitle">aguardando dados da internet...</span>
-      <mat-spinner></mat-spinner>
+      <otus-spinner></otus-spinner>
     </div>
 
     <div class="last-message" *ngIf="!loadingLastMessage">
     <span class="mat-card-subtitle">Última mensagem |
-      {{contactItem.messages[contactItem.messages.length-1].creationDate | date:'dd/MM/yyyy - HH:mm' }} |
-      {{contactItem.messages[contactItem.messages.length-1].sender}}
+      {{contactItem.messages[contactItem.messages.length - 1].creationDate | date:'dd/MM/yyyy - HH:mm' }} |
+      {{contactItem.messages[contactItem.messages.length - 1].sender}}
     </span>
-      <span align="justify" class="mat-body-2">{{contactItem.messages[contactItem.messages.length-1].text}}</span>
+      <span align="justify" class="mat-body-2">{{contactItem.messages[contactItem.messages.length - 1].text}}</span>
     </div>
   </div>
 
@@ -114,7 +113,6 @@
       </div>
     </form>
   </div>
-
 </section>
 
 

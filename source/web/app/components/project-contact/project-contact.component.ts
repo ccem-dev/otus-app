@@ -6,6 +6,7 @@ import {create} from 'domain';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material';
 import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 import {AuthenticationService} from '../../providers';
+import {User} from '../../model';
 
 @Component({
   selector: 'source-project-contact',
@@ -17,7 +18,9 @@ export class ProjectContactComponent implements OnInit {
   projectContacts: ProjectContact[] = [];
   panelOpenState: boolean;
   viewCallFormState: boolean;
-  user: any
+  user: User;
+  networkLoading: boolean;
+  isEmptyProjectContacts: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +31,8 @@ export class ProjectContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.networkLoading = true;
+    this.isEmptyProjectContacts = false;
     this.getProjectContacts();
     this.projectContactForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(120)]],
@@ -59,7 +64,11 @@ export class ProjectContactComponent implements OnInit {
 
   getProjectContacts(): void {
     this.projectContactService.getProjectContacts()
-      .subscribe((projectContacts: ProjectContact[]) => this.projectContacts = projectContacts);
+      .subscribe((projectContacts: ProjectContact[]) => [
+        this.projectContacts = projectContacts,
+        this.verifyProjectContacts(this.projectContacts),
+        this.networkLoading = false
+      ]);
   }
 
   private create(projectContact: ProjectContact): void {
@@ -70,5 +79,10 @@ export class ProjectContactComponent implements OnInit {
           this.otusToasterService.showMessage('comunicação OK: Chamado criado')
         ],
         () => this.otusToasterService.showMessage('Falha na comunicação: Chamado não criado', true));
+  }
+
+  private verifyProjectContacts(projectContacts): void{
+    if(projectContacts.length === 0) this.isEmptyProjectContacts = true;
+
   }
 }
