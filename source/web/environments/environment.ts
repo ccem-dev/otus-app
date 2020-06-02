@@ -11,5 +11,6 @@ export const environment = {
   getEvents: '/participantEvent/listAll',
   accomplishEvent: '/participantEvent/accomplished',
   requiredMessage: 'Este campo é <strong>obrigatório</strong>',
-  resetPassword: '/participants/password-reset'
+  resetPassword: '/participants/password-reset',
+  projectComunication: '/project-communication/issue'
 };
