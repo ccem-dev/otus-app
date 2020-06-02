@@ -4,7 +4,7 @@ import {ProjectContact} from '../../model/contact/project-contact';
 import {HttpClient} from '@angular/common/http';
 import {Message} from '../../model/contact/message/message';
 
-const url = 'http://localhost:3077/project-contact/';
+const url = 'http://localhost:3077/issue/';
 
 @Injectable({providedIn: 'root'})
 export class ProjectContactService {
@@ -23,15 +23,15 @@ export class ProjectContactService {
   }
 
   createMessage(message: Message): Observable<any> {
-    return this.http.post<Message>('http://localhost:3077/messages', message);
+    return this.http.post<Message>('http://localhost:3077/message', message);
   }
 
   getLastMessage(contact: ProjectContact): Observable<any> {
-    return this.http.get<any>('http://localhost:3077/messages');
+    return this.http.get<any>('http://localhost:3077/message');
   }
 
   getProjectContactMessages(): Observable<any> {
-    return this.http.get<any>('http://localhost:3077/messages');
+    return this.http.get<any>('http://localhost:3077/message');
   }
 
   addContactMessages(contact: ProjectContact, messages: any): void {

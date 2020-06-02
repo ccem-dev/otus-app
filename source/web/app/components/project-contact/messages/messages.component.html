@@ -37,7 +37,9 @@
     <div class="info-contact">
       <mat-chip-list aria-label="status" class="chip">
         <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
-        <mat-chip color="none" selected *ngIf="contact.status !== 'OPEN'">Fechado</mat-chip>
+        <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">Fechado</mat-chip>
+        <mat-chip color="warn" selected *ngIf="contact.status === 'FINALIZED'">Finalizado</mat-chip>
+
       </mat-chip-list>
       <span class="mat-card-subtitle">{{contact.creationDate | date:'dd/MM/yyyy - HH:mm' }}</span>
       <mat-chip-list aria-label="more info" class="more-info">
