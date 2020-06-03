@@ -1,9 +1,8 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
-import {ProjectContactComponent} from '../project-contact.component';
 import {OtusToasterService} from '../../../shared/services/otus-toaster.service';
 
 @Component({

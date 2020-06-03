@@ -35,11 +35,9 @@ export class ProjectContactService {
       .getLastMessage(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}/1`);
   }
 
-
   createMessage(message: Message): Observable<any> {
     return this.http.post<Message>('http://localhost:3077/messages', message);
   }
-
 
   addLastMessage(contact: ProjectContact, lastMessage: any): void {
     if (!contact.messages) {
