@@ -4,7 +4,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../../environments/environment';
 import {ProjectContact} from '../../model/contact/project-contact';
 
-const mockUrl = 'http://localhost:3077/issue/';
+const mockUrl = 'http://localhost:3077';
 
 @Injectable({
   providedIn: 'root'
@@ -21,26 +21,26 @@ export class ProjectContactClientService {
     } else {
       this.baseUrl = environment.baseUrl + environment.projectComunication;
     }
+    this.baseUrl = mockUrl
   }
 
-  getIssues () {
-    return this.http.get<ProjectContact[]>(mockUrl);
-//     return this.http.get<any>(`${this.baseUrl}/${this.issues}`)
+  getIssues(resource) {
+    return this.http.get<ProjectContact[]>(`${this.baseUrl}/${resource}`);
   }
 
-  getMessages (){
-
+  createIssue(resource, projectContact) {
+    return this.http.post<ProjectContact>(`${this.baseUrl}/${resource}`, projectContact);
   }
 
-  getLastMessage(){
-
-  }
-
-  createIssue (){
+  getMessages() {
 
   }
 
-  createMessage (){
+  getLastMessage() {
+
+  }
+
+  createMessage() {
 
   }
 
