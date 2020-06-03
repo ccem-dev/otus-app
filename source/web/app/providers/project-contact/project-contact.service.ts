@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {ProjectContact} from '../../model/contact/project-contact';
 import {HttpClient} from '@angular/common/http';
 import {Message} from '../../model/contact/message/message';
+import {ProjectContactClientService} from '../rest/project-contact-client.service';
 
 const url = 'http://localhost:3077/issue/';
 
@@ -10,12 +11,14 @@ const url = 'http://localhost:3077/issue/';
 export class ProjectContactService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private projectContactClientService: ProjectContactClientService
   ) {
   };
 
   getProjectContacts(): Observable<ProjectContact[]> {
-    return this.http.get<ProjectContact[]>(url);
+    return this.projectContactClientService.getIssues()
+    // return this.http.get<ProjectContact[]>(url);
   }
 
   createProjectContact(projectContact: ProjectContact): Observable<ProjectContact> {
