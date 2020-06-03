@@ -32,12 +32,12 @@ export class ProjectContactClientService {
     return this.http.post<ProjectContact>(`${this.baseUrl}/${resource}`, projectContact);
   }
 
-  getMessages() {
-
+  getMessages(resource) {
+    return this.http.get<any>(`${this.baseUrl}/${resource}`);
   }
 
-  getLastMessage() {
-
+  getLastMessage(resource) {
+    return this.http.get<any>(`${this.baseUrl}/${resource}`);
   }
 
   createMessage() {

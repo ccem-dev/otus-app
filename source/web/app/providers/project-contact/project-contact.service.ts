@@ -6,8 +6,6 @@ import {Message} from '../../model/contact/message/message';
 import {ProjectContactClientService} from '../rest/project-contact-client.service';
 import {projectContactValues} from '../../components/project-contact/project-contact-values';
 
-const url = 'http://localhost:3077/issues/';
-
 @Injectable({providedIn: 'root'})
 export class ProjectContactService {
 
@@ -24,24 +22,30 @@ export class ProjectContactService {
 
   createProjectContact(projectContact: ProjectContact): Observable<ProjectContact> {
     return this.projectContactClientService
-      .createIssue(projectContactValues.resources.issues, projectContact );
+      .createIssue(projectContactValues.resources.issues, projectContact);
   }
+
+  getProjectContactMessages(projectContactId): Observable<any> {
+    return this.projectContactClientService
+      .getMessages( `${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}`);
+  }
+
+  getLastMessage(projectContactId): Observable<any> {
+    return this.projectContactClientService
+      .getLastMessage(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}/1`);
+  }
+
 
   createMessage(message: Message): Observable<any> {
     return this.http.post<Message>('http://localhost:3077/messages', message);
   }
 
-  getLastMessage(contact: ProjectContact): Observable<any> {
-    return this.http.get<any>('http://localhost:3077/messages');
-  }
 
-  getProjectContactMessages(): Observable<any> {
-    return this.http.get<any>('http://localhost:3077/messages');
-  }
-
-  addContactMessages(contact: ProjectContact, messages: any): void {
-    if(!contact.messages) contact.messages = [];
-    contact.messages.push(...messages);
+  addLastMessage(contact: ProjectContact, lastMessage: any): void {
+    if (!contact.messages) {
+      contact.messages = [];
+    }
+    contact.messages.push(...lastMessage);
   }
 
   buildMessage(messageText, contact: ProjectContact) {

@@ -43,10 +43,10 @@ export class ProjectContactItemComponent implements OnInit {
 
   loadContactItemContent(contact: ProjectContact) {
     if(!contact.messages)
-      this.projectContactService.getLastMessage(contact)
-        .subscribe( messages => [
-          this.verifyMessages(messages),
-          this.projectContactService.addContactMessages(contact, messages),
+      this.projectContactService.getLastMessage(contact.id)
+        .subscribe( lastMessage => [
+          this.verifyMessages(lastMessage),
+          this.projectContactService.addLastMessage(contact, lastMessage),
           this.networkLoading = false
         ])
   }
