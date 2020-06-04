@@ -30,6 +30,9 @@
     color: #000;
   }
 
+  span.mat-card-subtitle{
+    margin-bottom: 0px;
+  }
 </style>
 
 <section class="ml-layout">
@@ -50,7 +53,7 @@
       <span align="justify" class="mat-h4">{{contact.title}}</span>
       <span align="justify" class="mat-card-subtitle"><em>{{contact.message}}</em></span>
     </div>
-    <otus-create-message-form [contactItem]="contact"></otus-create-message-form>
+    <otus-create-message-form [contactItem]="contact" (notifyNewMessage)="getMessages()"></otus-create-message-form>
   </div>
 
   <div class="message" *ngIf="networkLoading">
