@@ -11,8 +11,7 @@ export class ProjectContactService {
 
   constructor(
     private http: HttpClient,
-    private projectContactClientService: ProjectContactClientService
-  ) {
+    private projectContactClientService: ProjectContactClientService) {
   };
 
   getProjectContacts(): Observable<ProjectContact[]> {
@@ -35,15 +34,15 @@ export class ProjectContactService {
       .getLastMessage(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}/1`);
   }
 
-  createMessage(message: Message): Observable<any> {
-    return this.http.post<Message>('http://localhost:3077/messages', message);
+  createMessage(projectContactId, message: Message): Observable<any> {
+    return this.projectContactClientService.createMessage(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}`, message);
   }
 
   addLastMessage(contact: ProjectContact, lastMessage: any): void {
     if (!contact.messages) {
       contact.messages = [];
     }
-    contact.messages.push(...lastMessage);
+   contact.messages.push(...lastMessage);
   }
 
   buildMessage(messageText, contact: ProjectContact) {
@@ -51,7 +50,3 @@ export class ProjectContactService {
     return message;
   }
 }
-
-
-
-

@@ -6,7 +6,7 @@ export class Message {
   text: string;
   sender: string;
   creationDate: Date;
-  contactId: string;
+  issueId: string;
 
   constructor(text: string, contact:ProjectContact) {
     this.id = '';
@@ -14,7 +14,7 @@ export class Message {
     this.text = text;
     this.sender = contact.sender;
     this.creationDate = new Date();
-    this.contactId = contact.id;
+    this.issueId = contact.id;
   }
 
   toJSON() {
@@ -24,7 +24,7 @@ export class Message {
       text: this.text,
       sender: this.sender,
       creationDate: this.creationDate,
-      contactId: this.contactId
+      issueId: this.issueId
     }
   }
 }

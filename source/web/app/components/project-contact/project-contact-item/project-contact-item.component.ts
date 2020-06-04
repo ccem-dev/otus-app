@@ -40,6 +40,18 @@ export class ProjectContactItemComponent implements OnInit {
     this._createMessage(this.messageForm.getRawValue(), this.contactItem);
   }
 
+  private _createMessage(messageForm, contactItem){
+    let message = this.projectContactService.buildMessage(messageForm.text, contactItem);
+    this.projectContactService.createMessage(contactItem.id, message)
+      .subscribe(() => [
+        this.otusToasterService.showMessage('comunicação OK: Mensagem enviada'),
+        this.changeViewMessageFormState(),
+        contactItem.messages[0] = message,
+        this.isEmptyMessages = false
+        ],
+        () => this.otusToasterService.showMessage('Falha na comunicação: Mensagem não enviada', true));
+  }
+
   loadContactItemContent(contact: ProjectContact) {
     if(!contact.messages)
       this.projectContactService.getLastMessage(contact.id)
@@ -48,17 +60,6 @@ export class ProjectContactItemComponent implements OnInit {
           this.projectContactService.addLastMessage(contact, lastMessage),
           this.networkLoading = false
         ])
-  }
-
-  private _createMessage(messageForm, contact){
-    let message = this.projectContactService.buildMessage(messageForm.text, contact);
-    this.projectContactService.createMessage(message)
-      .subscribe(() => [
-        this.contactItem.messages.push(message),
-        this.otusToasterService.showMessage('comunicação OK: Mensagem enviada'),
-        this.changeViewMessageFormState()
-        ],
-        () => this.otusToasterService.showMessage('Falha na comunicação: Mensagem não enviada', true));
   }
 
   onReset() {

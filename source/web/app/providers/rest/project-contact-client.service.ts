@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../../environments/environment';
 import {ProjectContact} from '../../model/contact/project-contact';
+import {Message} from '../../model/contact/message/message';
 
 const mockUrl = 'http://localhost:3077';
 
@@ -40,8 +41,7 @@ export class ProjectContactClientService {
     return this.http.get<any>(`${this.baseUrl}/${resource}`);
   }
 
-  createMessage() {
-
+  createMessage(resource, message) {
+    return this.http.post<Message>(`${this.baseUrl}/${resource}`, message);
   }
-
 }
