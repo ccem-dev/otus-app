@@ -26,7 +26,7 @@ export class ProjectContactService {
 
   getProjectContactMessages(projectContactId): Observable<any> {
     return this.projectContactClientService
-      .getMessages( `${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}`);
+      .getMessages(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}`);
   }
 
   getLastMessage(projectContactId): Observable<any> {
@@ -39,14 +39,11 @@ export class ProjectContactService {
   }
 
   addLastMessage(contact: ProjectContact, lastMessage: any): void {
-    if (!contact.messages) {
-      contact.messages = [];
-    }
-   contact.messages.push(...lastMessage);
+    if (!contact.messages) contact.messages = [];
+    contact.messages.push(...lastMessage);
   }
 
   buildMessage(messageText, contact: ProjectContact) {
-    let message = new Message(messageText, contact);
-    return message;
+    return new Message(messageText, contact);
   }
 }

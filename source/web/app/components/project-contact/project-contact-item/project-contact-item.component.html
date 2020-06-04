@@ -40,21 +40,21 @@
     grid-area: message;
   }
 
-  .message-btn {
-    display: flex;
-    flex-direction: row-reverse;
-  }
+  /*.message-btn {*/
+  /*  display: flex;*/
+  /*  flex-direction: row-reverse;*/
+  /*}*/
 
-  .message-form {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
+  /*.message-form {*/
+  /*  display: flex;*/
+  /*  flex-direction: column;*/
+  /*  flex-grow: 1;*/
+  /*}*/
 
-  .btn-message-form {
-    display: flex;
-    flex-direction: row-reverse;
-  }
+  /*.btn-message-form {*/
+  /*  display: flex;*/
+  /*  flex-direction: row-reverse;*/
+  /*}*/
 
   .mat-icon-button {
     margin-left: 20px;
@@ -91,35 +91,10 @@
     </div>
   </div>
 
-
   <div class="mat-body-2 message">
-    <span class="message-btn">
-       <button class="message-btn" *ngIf="!viewMessageFormState" mat-button mat-raised color="primary"
-               (click)="changeViewMessageFormState()">MENSAGEM
-       </button>
-    </span>
-
-    <form class="message-form" *ngIf="viewMessageFormState" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-      <otus-input-text-area title="Escreva uma nova mensagem" class="message-input"
-                            controlName="text"
-                            [formGroup]="messageForm"
-                            rows=3
-                            placeholder="Ex. Não funcionou o procedimento, preciso de mais detalhes">
-      </otus-input-text-area>
-      <div class="btn-message-form">
-        <button mat-icon-button type="submit" mat-button color="primary">
-          <mat-icon>save</mat-icon>
-        </button>
-
-        <button mat-icon-button type="reset" mat-button color="primary" (click)="onReset()">
-          <mat-icon>clear</mat-icon>
-        </button>
-
-        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewMessageFormState()">
-          <mat-icon>undo</mat-icon>
-        </button>
-      </div>
-    </form>
+    <otus-create-message-form [contactItem]="contactItem"
+                              (notifyNewMessage)="updateLastMessage($event)">
+    </otus-create-message-form>
   </div>
 </section>
 

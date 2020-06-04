@@ -45,10 +45,12 @@
       <mat-chip-list aria-label="more info" class="more-info">
         <mat-chip><a routerLink="/project-contact">ver -</a></mat-chip>
       </mat-chip-list>
-
     </div>
-    <span align="justify" class="mat-h4">{{contact.title}}</span>
-    <span align="justify" class="mat-card-subtitle"><em>{{contact.message}}</em></span>
+    <div>
+      <span align="justify" class="mat-h4">{{contact.title}}</span>
+      <span align="justify" class="mat-card-subtitle"><em>{{contact.message}}</em></span>
+    </div>
+    <otus-create-message-form [contactItem]="contact"></otus-create-message-form>
   </div>
 
   <div class="message" *ngIf="networkLoading">

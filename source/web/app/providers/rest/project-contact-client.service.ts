@@ -5,8 +5,6 @@ import {environment} from '../../../environments/environment';
 import {ProjectContact} from '../../model/contact/project-contact';
 import {Message} from '../../model/contact/message/message';
 
-const mockUrl = 'http://localhost:3077';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +20,8 @@ export class ProjectContactClientService {
     } else {
       this.baseUrl = environment.baseUrl + environment.projectComunication;
     }
-    this.baseUrl = mockUrl
+    //TODO:here mocked api for json-server
+    this.baseUrl = 'http://localhost:3077'
   }
 
   getIssues(resource) {

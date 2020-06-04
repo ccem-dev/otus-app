@@ -1,9 +1,7 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
 import {ProjectContact} from '../../model/contact/project-contact';
-import {create} from 'domain';
-import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material';
 import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 import {AuthenticationService} from '../../providers';
 import {User} from '../../model';
@@ -22,6 +20,7 @@ export class ProjectContactComponent implements OnInit {
   private viewCallFormState: boolean;
   private networkLoading: boolean;
   private isEmptyProjectContacts: boolean;
+
 
   constructor(
     private fb: FormBuilder,
