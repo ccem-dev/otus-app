@@ -22,13 +22,11 @@ export class ProjectContactComponent implements OnInit {
   private isEmptyProjectContacts: boolean;
   private projectContactValues;
 
-
   constructor(
     private fb: FormBuilder,
     private projectContactService: ProjectContactService,
     private otusToasterService: OtusToasterService,
-    private authenticationService: AuthenticationService,
-  ) {
+    private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -45,13 +43,11 @@ export class ProjectContactComponent implements OnInit {
     this.projectContactValues = ProjectContactValues;
   }
 
-
   onSubmit() {
     this.projectContactForm.markAllAsTouched();
     if (this.projectContactForm.invalid) {
       return;
     }
-
     this.create(new ProjectContact(this.projectContactForm.getRawValue(), this.user.email));
   }
 
@@ -80,7 +76,8 @@ export class ProjectContactComponent implements OnInit {
           this.changeViewCallFormState(),
           this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createSuccess)
         ],
-        () => this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createFail, true));
+        () => this.otusToasterService
+          .showMessage(this.projectContactValues.toaster.issue.createFail, true));
   }
 
   private verifyProjectContacts(projectContacts): void {

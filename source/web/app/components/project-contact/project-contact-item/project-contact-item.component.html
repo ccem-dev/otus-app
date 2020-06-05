@@ -31,7 +31,7 @@
     margin: 20px 0px;
   }
 
-  .msg-empty-message {
+  .empty-message {
     text-align: center;
     padding: 10px;
   }
@@ -50,7 +50,7 @@
   <div class="info">
     <span class="mat-body-2 creation-date">{{contactItem.creationDate | date: 'dd/MM/yyyy - HH:mm'}}</span>
     <mat-chip-list aria-label="more info" class="more-info">
-      <mat-chip *ngIf="!isEmptyMessages" (click)="goToMessages(contactItem)">ver +</mat-chip>
+      <mat-chip *ngIf="!isEmptyMessages" (click)="goToMessages(contactItem)">{{projectContactValues.tooltip.viewMore}}</mat-chip>
     </mat-chip-list>
   </div>
   <span class="mat-h4 main-message">{{contactItem.message}}
@@ -62,12 +62,12 @@
       <otus-spinner></otus-spinner>
     </div>
 
-    <div class="contactItem msg-empty-message" *ngIf="!networkLoading && isEmptyMessages">
-      Em breve responderemos o seu contato.
+    <div class="contactItem empty-message" *ngIf="!networkLoading && isEmptyMessages">
+      {{projectContactValues.title.withoutMessage}}
     </div>
 
     <div class="last-message" *ngIf="!networkLoading && !isEmptyMessages">
-    <span class="mat-card-subtitle">Última mensagem |
+    <span class="mat-card-subtitle">{{projectContactValues.title.lastMessage}}
       {{contactItem.messages[contactItem.messages.length - 1].creationDate | date:'dd/MM/yyyy - HH:mm' }} |
       {{contactItem.messages[contactItem.messages.length - 1].sender}}
     </span>

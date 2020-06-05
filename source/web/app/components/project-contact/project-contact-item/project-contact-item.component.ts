@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
+import {ProjectContactValues} from '../project-contact-values';
 
 @Component({
   selector: 'otus-project-contact-item',
@@ -13,6 +14,7 @@ export class ProjectContactItemComponent implements OnInit {
   @Input() public contactItem: any;
   private networkLoading: boolean;
   private isEmptyMessages: boolean
+  private projectContactValues;
 
   constructor(
     private router: Router,
@@ -21,6 +23,7 @@ export class ProjectContactItemComponent implements OnInit {
   ngOnInit() {
     this.isEmptyMessages = true;
     this.networkLoading = true;
+    this.projectContactValues = ProjectContactValues;
   }
 
   loadContactItemContent(contact: ProjectContact) {
@@ -38,7 +41,7 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   updateLastMessage(message){
-    this.contactItem.messages[this.contactItem.messages.length-1] = message,
+    this.contactItem.messages[this.contactItem.messages.length-1] = message
     this.isEmptyMessages = false;
   }
 

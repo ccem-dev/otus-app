@@ -15,6 +15,7 @@ export class CreateMessageFormComponent implements OnInit {
   @Output() public notifyNewMessage = new EventEmitter<Message>();
   private messageForm: FormGroup;
   private viewMessageFormState: boolean = false;
+  private projectContactValues;
 
   constructor(
     private fb: FormBuilder,
@@ -26,6 +27,7 @@ export class CreateMessageFormComponent implements OnInit {
     this.messageForm = this.fb.group({
       text:['', [Validators.required, Validators.maxLength(500)]]
     })
+    this.projectContactValues = ProjectContactValues
   }
 
   onSubmit(){

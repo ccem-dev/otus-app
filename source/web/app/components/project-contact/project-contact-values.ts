@@ -23,6 +23,9 @@ export const ProjectContactValues = {
       inputText: 'Ex. Atividades não aparecem',
       inputTextArea: 'Ex. Quando entro no sistema via 3g não estou conseguindo visualizar atividades'
     },
+    message: {
+      inputTextArea: 'Ex. Não funcionou o procedimento, preciso de mais detalhes'
+    }
   },
   title: {
     contactProject: 'Contato com o Projeto',
@@ -30,14 +33,20 @@ export const ProjectContactValues = {
     historic: 'Histórico',
     instructionsForUse: 'Instruções de Uso',
     btnOpenIssue: 'ABRIR CHAMADO',
+    btnAnswer: 'RESPONDER',
     issueInputText: 'Titulo',
     issueInputTextArea: 'Descreva a situação',
-    withoutContacts: 'Nenhum contato encontrado'
+    messageInputTextArea: 'Escreva uma nova mensagem',
+    withoutContacts: 'Nenhum contato encontrado',
+    withoutMessage: 'Em breve responderemos o seu contato.',
+    lastMessage: 'Última mensagem |'
+
   },
   tooltip: {
     save: 'salvar',
     reset: 'resetar',
-    return: 'voltar'
+    return: 'voltar',
+    viewMore: 'ver +'
   },
   context: {
     cardFormContact: {
