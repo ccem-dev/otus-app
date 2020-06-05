@@ -1,10 +1,11 @@
 <style>
   .ml-layout {
+    height: 92vh;
     background-color: #f3f3f3;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fit, 1fr) 1fr;
-    grid-template-areas: "header""message"
+    grid-template-rows: 1fr 10.5fr 1.5fr;
+    grid-template-areas: "header""message""answer"
   }
 
   .header {
@@ -18,11 +19,19 @@
   }
 
   .message {
-    height: 79vh;
     grid-area: message;
   }
   .message-card {
-    margin: 10px;
+    margin: 0px 10px 10px 10px;
+  }
+
+  .issue-info {
+    margin: 10px 5px;
+  }
+
+  .answer {
+    grid-area: answer;
+    margin: 20px 10px;
   }
 
   a {
@@ -39,27 +48,21 @@
   <div class="header mat-h3">
     <div class="info-contact">
       <mat-chip-list aria-label="status" class="chip">
-        <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
-        <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">Fechado</mat-chip>
-        <mat-chip color="warn" selected *ngIf="contact.status === 'FINALIZED'">Finalizado</mat-chip>
+        <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">{{projectContactValues.openStatus}}</mat-chip>
+        <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">{{projectContactValues.closeStatus}}</mat-chip>
+        <mat-chip style="background-color: #006600" selected *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.finalizedStatus}}</mat-chip>
 
       </mat-chip-list>
       <span class="mat-card-subtitle">{{contact.creationDate | date:'dd/MM/yyyy - HH:mm' }}</span>
-      <mat-chip-list aria-label="more info" class="more-info">
-        <mat-chip><a routerLink="/project-contact">ver -</a></mat-chip>
-      </mat-chip-list>
+      <a routerLink="/project-contact"><mat-icon color="primary">undo</mat-icon></a>
     </div>
-    <div>
+    <div class="issue-info">
       <span align="justify" class="mat-h4">{{contact.title}}</span>
       <span align="justify" class="mat-card-subtitle"><em>{{contact.message}}</em></span>
     </div>
-    <otus-create-message-form [contactItem]="contact" (notifyNewMessage)="getMessages()"></otus-create-message-form>
   </div>
 
-  <div class="message" *ngIf="networkLoading">
-    <otus-spinner></otus-spinner>
-  </div>
-
+  <div class="message" *ngIf="networkLoading"><otus-spinner></otus-spinner></div>
   <div class="message">
       <mat-card class="message-card" *ngFor="let message of messages">
         <mat-card-subtitle>
@@ -71,4 +74,5 @@
         </mat-card-content>
       </mat-card>
     </div>
+  <otus-create-message-form class="answer" [contactItem]="contact" (notifyNewMessage)="getMessages()"></otus-create-message-form>
 </section>

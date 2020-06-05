@@ -4,7 +4,7 @@ import {ProjectContact} from '../../model/contact/project-contact';
 import {HttpClient} from '@angular/common/http';
 import {Message} from '../../model/contact/message/message';
 import {ProjectContactClientService} from '../rest/project-contact-client.service';
-import {projectContactValues} from '../../components/project-contact/project-contact-values';
+import {ProjectContactValues} from '../../components/project-contact/project-contact-values';
 
 @Injectable({providedIn: 'root'})
 export class ProjectContactService {
@@ -16,26 +16,26 @@ export class ProjectContactService {
 
   getProjectContacts(): Observable<ProjectContact[]> {
     return this.projectContactClientService
-      .getIssues(projectContactValues.resources.issues);
+      .getIssues(ProjectContactValues.resources.issues);
   }
 
   createProjectContact(projectContact: ProjectContact): Observable<ProjectContact> {
     return this.projectContactClientService
-      .createIssue(projectContactValues.resources.issues, projectContact);
+      .createIssue(ProjectContactValues.resources.issues, projectContact);
   }
 
   getProjectContactMessages(projectContactId): Observable<any> {
     return this.projectContactClientService
-      .getMessages(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}`);
+      .getMessages(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}`);
   }
 
   getLastMessage(projectContactId): Observable<any> {
     return this.projectContactClientService
-      .getLastMessage(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}/1`);
+      .getLastMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}/1`);
   }
 
   createMessage(projectContactId, message: Message): Observable<any> {
-    return this.projectContactClientService.createMessage(`${projectContactValues.resources.issues}/${projectContactId}/${projectContactValues.resources.messages}`, message);
+    return this.projectContactClientService.createMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}`, message);
   }
 
   addLastMessage(contact: ProjectContact, lastMessage: any): void {

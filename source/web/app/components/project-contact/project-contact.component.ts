@@ -5,7 +5,7 @@ import {ProjectContact} from '../../model/contact/project-contact';
 import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 import {AuthenticationService} from '../../providers';
 import {User} from '../../model';
-import {projectContactValues} from './project-contact-values';
+import {ProjectContactValues} from './project-contact-values';
 
 @Component({
   selector: 'source-project-contact',
@@ -20,6 +20,7 @@ export class ProjectContactComponent implements OnInit {
   private viewCallFormState: boolean;
   private networkLoading: boolean;
   private isEmptyProjectContacts: boolean;
+  private projectContactValues;
 
 
   constructor(
@@ -41,6 +42,7 @@ export class ProjectContactComponent implements OnInit {
     this.panelOpenState = false;
     this.viewCallFormState = false;
     this.authenticationService.CurrentUser.subscribe(user => this.user = user);
+    this.projectContactValues = ProjectContactValues;
   }
 
 
@@ -76,9 +78,9 @@ export class ProjectContactComponent implements OnInit {
       .subscribe(() => [
           this.getProjectContacts(),
           this.changeViewCallFormState(),
-          this.otusToasterService.showMessage(projectContactValues.issueCreateSuccess)
+          this.otusToasterService.showMessage(this.projectContactValues.issueCreateSuccess)
         ],
-        () => this.otusToasterService.showMessage(projectContactValues.issueCreateFail, true));
+        () => this.otusToasterService.showMessage(this.projectContactValues.issueCreateFail, true));
   }
 
   private verifyProjectContacts(projectContacts): void {

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {projectContactValues} from '../../project-contact-values';
+import {ProjectContactValues} from '../../project-contact-values';
 import {ProjectContactService} from '../../../../providers/project-contact/project-contact.service';
 import {OtusToasterService} from '../../../../shared/services/otus-toaster.service';
 import {Message} from '../../../../model/contact/message/message';
@@ -40,11 +40,11 @@ export class CreateMessageFormComponent implements OnInit {
     let message = this.projectContactService.buildMessage(messageForm.text, contactItem);
     this.projectContactService.createMessage(contactItem.id, message)
       .subscribe(() => [
-          this.otusToasterService.showMessage(projectContactValues.messageCreateSucess),
+          this.otusToasterService.showMessage(ProjectContactValues.messageCreateSucess),
           this.changeViewMessageFormState(),
           this.notifyNewMessage.emit(message)
         ],
-        () => this.otusToasterService.showMessage(projectContactValues.messageCreateFail, true));
+        () => this.otusToasterService.showMessage(ProjectContactValues.messageCreateFail, true));
   }
 
   onReset() {

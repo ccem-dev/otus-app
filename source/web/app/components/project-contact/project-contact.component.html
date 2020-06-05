@@ -81,7 +81,7 @@
 
 <section class="cp-layout">
   <mat-toolbar class="title">
-    <span>Contato com o Projeto</span>
+    <span>{{projectContactValues.titles.contactProject}}</span>
   </mat-toolbar>
   <span class="mat-card-subtitle solicitation-subtitle">Solicitação</span>
   <mat-card class="card-form-contact" *ngIf="!viewCallFormState">
@@ -108,14 +108,14 @@
       <otus-input-text title="Titulo"
                        controlName="title"
                        [formGroup]="projectContactForm"
-                       placeholder="Ex. Atividades não aparecem">
+                       placeholder="{{projectContactValues.issueInputText}}">
       </otus-input-text>
 
       <otus-input-text-area title="Descreva a situação"
                             controlName="message"
                             [formGroup]="projectContactForm"
                             rows=3
-                            placeholder="Ex. Quando entro no sistema via 3g não estou conseguindo visualizar atividades">
+                            placeholder="{{projectContactValues.placeholder.issueInputTextArea}}">
       </otus-input-text-area>
       <div class="btn-form-row">
         <button mat-icon-button type="submit" mat-button color="primary">
@@ -147,9 +147,9 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="historic-panel-title">
             <mat-chip-list aria-label="status" class="chip">
-              <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">Aberto</mat-chip>
-              <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">Fechado</mat-chip>
-              <mat-chip color="warn" selected *ngIf="contact.status === 'FINALIZED'">Finalizado</mat-chip>
+              <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">{{projectContactValues.openStatus}}</mat-chip>
+              <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">{{projectContactValues.closeStatus}}</mat-chip>
+              <mat-chip style="background-color: #006600" selected *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.finalizedStatus}}</mat-chip>
             </mat-chip-list>
             <span class="mat-card-subtitle">{{contact.title}}</span>
           </mat-panel-title>

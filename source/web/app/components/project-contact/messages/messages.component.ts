@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
+import {ProjectContactValues} from '../project-contact-values';
 
 @Component({
   selector: 'source-messages',
@@ -12,6 +13,7 @@ export class MessagesComponent implements OnInit {
   public contact: ProjectContact;
   private messages: any[];
   private networkLoading = true;
+  private projectContactValues;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,17 +22,7 @@ export class MessagesComponent implements OnInit {
 
     const navigation = this.router.getCurrentNavigation();
     if(navigation.extras.state === undefined) {
-
-      let contactSave: any = {
-        _id: "1",
-        objectType: "Issue",
-        sender: "fulano@email.com",
-        title: "Mock!!! Precisamos tratar f5. estou no l.28 messages.component",
-        message: "Quando tento responder uma pergunta, não consigo inserir a resposta",
-        creationDate: "2020-04-10T15:30:07.533Z",
-        status: "OPEN"
-      }
-      this.contact = contactSave as ProjectContact;
+      this.router.navigate([`/project-contact/`])
     }
     else this.contact = navigation.extras.state as ProjectContact;
     this.getMessages();
@@ -38,6 +30,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.messages = [];
+    this.projectContactValues = ProjectContactValues
   }
 
   ngOnDestroy(){
