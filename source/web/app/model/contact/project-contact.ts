@@ -2,8 +2,9 @@ export class ProjectContact {
   id?: string;
   objectType: string;
   sender: string;
+  group?: string;
   title: string;
-  message: string;
+  text: string;
   creationDate: Date;
   status: string;
   messages?: any
@@ -13,7 +14,7 @@ export class ProjectContact {
     this.objectType = 'Issue'
     this.sender = sender;
     this.title = form.title;
-    this.message = form.message;
+    this.text = form.text;
     this.creationDate = new Date();
     this.status = "OPEN";
     this.messages = new Array();
@@ -25,7 +26,7 @@ export class ProjectContact {
       objectType: this.objectType,
       sender: this.sender,
       title: this.title,
-      message: this.message,
+      message: this.text,
       creationDate: this.creationDate,
       status: this.status
     };

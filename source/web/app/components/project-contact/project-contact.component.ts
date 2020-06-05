@@ -35,7 +35,7 @@ export class ProjectContactComponent implements OnInit {
     this.getProjectContacts();
     this.projectContactForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(120)]],
-      message: ['', [Validators.required, Validators.maxLength(500)]],
+      text: ['', [Validators.required, Validators.maxLength(500)]],
     });
     this.panelOpenState = false;
     this.viewCallFormState = false;

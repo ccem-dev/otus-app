@@ -4,5 +4,4 @@ export const SharedComponentValues = {
     minLength: 'valor mínimo de caracteres:',
     maxlength: 'valor máximo de caracteres:'
   }
-
 }
