@@ -48,13 +48,16 @@
   <div class="header mat-h3">
     <div class="info-contact">
       <mat-chip-list aria-label="status" class="chip">
-        <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">{{projectContactValues.openStatus}}</mat-chip>
-        <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">{{projectContactValues.closeStatus}}</mat-chip>
-        <mat-chip style="background-color: #006600" selected *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.finalizedStatus}}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">{{projectContactValues.status.open}}</mat-chip>
+        <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">{{projectContactValues.status.close}}</mat-chip>
+        <mat-chip style="background-color: #006600" selected *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.status.finalized}}</mat-chip>
 
       </mat-chip-list>
       <span class="mat-card-subtitle">{{contact.creationDate | date:'dd/MM/yyyy - HH:mm' }}</span>
-      <a routerLink="/project-contact"><mat-icon color="primary">undo</mat-icon></a>
+      <a routerLink="/project-contact">
+        <mat-icon color="primary" matTooltip="{{projectContactValues.tooltip.return}}"
+                  matTooltipPosition="below">undo
+      </mat-icon></a>
     </div>
     <div class="issue-info">
       <span align="justify" class="mat-h4">{{contact.title}}</span>

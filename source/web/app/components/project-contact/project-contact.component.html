@@ -81,52 +81,50 @@
 
 <section class="cp-layout">
   <mat-toolbar class="title">
-    <span>{{projectContactValues.titles.contactProject}}</span>
+    <span>{{projectContactValues.title.contactProject}}</span>
   </mat-toolbar>
-  <span class="mat-card-subtitle solicitation-subtitle">Solicitação</span>
+  <span class="mat-card-subtitle solicitation-subtitle">{{projectContactValues.title.solicitation}}</span>
   <mat-card class="card-form-contact" *ngIf="!viewCallFormState">
-    <mat-card-subtitle>Instruções de Uso</mat-card-subtitle>
+    <mat-card-subtitle>{{projectContactValues.title.instructionsForUse}}</mat-card-subtitle>
     <mat-card-content>
-      <p align="justify"><i>Caso esteja acessando este módulo pela primeira vez, e precise contactar-se com o projeto para informar
-        alguma anomalia do sistema ou simplesmente tentar solucionar uma dúvida,
-        clique no botão "criar chamado" para acessar o formulário de solicitação.
-      </i></p>
-
-      <p align="justify"><i>Caso queira somente ver a respostas dos especialistas em relação aos chamados criados, vá para
-        a seção de histórico e expanda um ou mais titulos.</i></p>
-        <p align="justify">Se necessário tirar mais dúvidas sobre a solução enviada, crie uma nova mensagem com mais detalhes ou sugestões.
-        Em "ver +" atualize-se sobre a conversa com todas as mensagens do mesmo chamado.</p>
-
+      <p align="justify"><i>{{projectContactValues.context.cardFormContact.p1}}</i></p>
+      <p align="justify"><i>{{projectContactValues.context.cardFormContact.p2}}</i></p>
+      <p align="justify"><i>{{projectContactValues.context.cardFormContact.p3}}</i></p>
     </mat-card-content>
     <mat-card-actions class="btn-form-row">
-      <button mat-button mat-raised-button color="primary" (click)="changeViewCallFormState()">ABRIR CHAMADO</button>
+      <button mat-button mat-raised-button color="primary" (click)="changeViewCallFormState()">
+        {{projectContactValues.title.btnOpenIssue}}
+      </button>
     </mat-card-actions>
   </mat-card>
 
   <mat-card class="card-form-contact" *ngIf="viewCallFormState">
     <form class="form-contact" [formGroup]="projectContactForm" (ngSubmit)="onSubmit()">
-      <otus-input-text title="Titulo"
+      <otus-input-text title="{{projectContactValues.title.issueInputText}}"
                        controlName="title"
                        [formGroup]="projectContactForm"
-                       placeholder="{{projectContactValues.issueInputText}}">
+                       placeholder="{{projectContactValues.placeholder.issue.inputText}}">
       </otus-input-text>
 
-      <otus-input-text-area title="Descreva a situação"
+      <otus-input-text-area title="{{projectContactValues.title.issueInputTextArea}}"
                             controlName="message"
                             [formGroup]="projectContactForm"
                             rows=3
-                            placeholder="{{projectContactValues.placeholder.issueInputTextArea}}">
+                            placeholder="{{projectContactValues.placeholder.issue.inputTextArea}}">
       </otus-input-text-area>
       <div class="btn-form-row">
-        <button mat-icon-button type="submit" mat-button color="primary">
+        <button mat-icon-button type="submit" mat-button color="primary"
+                matTooltip="{{projectContactValues.tooltip.save}}" matTooltipPosition="above">
           <mat-icon>save</mat-icon>
         </button>
 
-        <button mat-icon-button type="reset" mat-button color="primary" (click)="onReset()">
+        <button mat-icon-button type="reset" mat-button color="primary" (click)="onReset()"
+                matTooltip="{{projectContactValues.tooltip.reset}}" matTooltipPosition="above">
           <mat-icon>clear</mat-icon>
         </button>
 
-        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewCallFormState()">
+        <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewCallFormState()"
+                matTooltip="{{projectContactValues.tooltip.return}}" matTooltipPosition="above">
           <mat-icon>undo</mat-icon>
         </button>
       </div>
@@ -134,30 +132,33 @@
 
   </mat-card>
   <div class="historic">
-    <mat-card-subtitle class="history-subtitle">Histórico</mat-card-subtitle>
+    <mat-card-subtitle class="history-subtitle">{{projectContactValues.title.historic}}</mat-card-subtitle>
     <div class="contactItem" *ngIf="networkLoading">
       <otus-spinner></otus-spinner>
     </div>
     <div class="contactItem msg-empty-contacts" *ngIf="!networkLoading && isEmptyProjectContacts">
-      Nenhum contato encontrado
+      {{projectContactValues.title.withoutContacts}}
     </div>
-    <div  *ngIf="!networkLoading && !isEmptyProjectContacts">
-    <mat-accordion  *ngFor="let contact of projectContacts">
-      <mat-expansion-panel class="contactItem" (opened)="ProjectContactItem.loadContactItemContent(contact)">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="historic-panel-title">
-            <mat-chip-list aria-label="status" class="chip">
-              <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">{{projectContactValues.openStatus}}</mat-chip>
-              <mat-chip color="none" selected *ngIf="contact.status === 'CLOSE'">{{projectContactValues.closeStatus}}</mat-chip>
-              <mat-chip style="background-color: #006600" selected *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.finalizedStatus}}</mat-chip>
-            </mat-chip-list>
-            <span class="mat-card-subtitle">{{contact.title}}</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <otus-project-contact-item #ProjectContactItem [contactItem]="contact">
-        </otus-project-contact-item>
-      </mat-expansion-panel>
-    </mat-accordion>
+    <div *ngIf="!networkLoading && !isEmptyProjectContacts">
+      <mat-accordion *ngFor="let contact of projectContacts">
+        <mat-expansion-panel class="contactItem" (opened)="ProjectContactItem.loadContactItemContent(contact)">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="historic-panel-title">
+              <mat-chip-list aria-label="status" class="chip">
+                <mat-chip color="primary" selected
+                          *ngIf="contact.status === 'OPEN'">{{projectContactValues.status.open}}</mat-chip>
+                <mat-chip color="none" selected
+                          *ngIf="contact.status === 'CLOSE'">{{projectContactValues.status.close}}</mat-chip>
+                <mat-chip style="background-color: #006600" selected
+                          *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.status.finalized}}</mat-chip>
+              </mat-chip-list>
+              <span class="mat-card-subtitle">{{contact.title}}</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <otus-project-contact-item #ProjectContactItem [contactItem]="contact">
+          </otus-project-contact-item>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </div>
 </section>

@@ -40,11 +40,11 @@ export class CreateMessageFormComponent implements OnInit {
     let message = this.projectContactService.buildMessage(messageForm.text, contactItem);
     this.projectContactService.createMessage(contactItem.id, message)
       .subscribe(() => [
-          this.otusToasterService.showMessage(ProjectContactValues.messageCreateSucess),
+          this.otusToasterService.showMessage(ProjectContactValues.toaster.message.createSucess),
           this.changeViewMessageFormState(),
           this.notifyNewMessage.emit(message)
         ],
-        () => this.otusToasterService.showMessage(ProjectContactValues.messageCreateFail, true));
+        () => this.otusToasterService.showMessage(ProjectContactValues.toaster.message.createFail, true));
   }
 
   onReset() {

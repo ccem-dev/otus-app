@@ -78,9 +78,9 @@ export class ProjectContactComponent implements OnInit {
       .subscribe(() => [
           this.getProjectContacts(),
           this.changeViewCallFormState(),
-          this.otusToasterService.showMessage(this.projectContactValues.issueCreateSuccess)
+          this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createSuccess)
         ],
-        () => this.otusToasterService.showMessage(this.projectContactValues.issueCreateFail, true));
+        () => this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createFail, true));
   }
 
   private verifyProjectContacts(projectContacts): void {
