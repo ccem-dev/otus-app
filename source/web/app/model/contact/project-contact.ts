@@ -1,3 +1,5 @@
+import {Form} from '@angular/forms';
+
 export class ProjectContact {
   id?: string;
   objectType: string;
@@ -9,10 +11,10 @@ export class ProjectContact {
   status: string;
   messages?: any
 
-  constructor(form: any, senderId: string) {
+  constructor(form) {
     this.id = form.id || "";
     this.objectType = 'Issue'
-    this.sender = senderId;
+    this.sender = "";
     this.group = "";
     this.title = form.title;
     this.text = form.text;

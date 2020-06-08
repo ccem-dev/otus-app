@@ -48,7 +48,7 @@ export class ProjectContactComponent implements OnInit {
     if (this.projectContactForm.invalid) {
       return;
     }
-    this.create(new ProjectContact(this.projectContactForm.getRawValue(), this.user.email));
+    this.create(new ProjectContact(this.projectContactForm.getRawValue()));
   }
 
   onReset() {

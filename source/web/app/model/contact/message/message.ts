@@ -25,7 +25,8 @@ export class Message {
       text: this.text,
       sender: this.sender,
       creationDate: this.creationDate,
-      issueId: this.issueId
+      issueId: this.issueId,
+
     }
   }
 }
