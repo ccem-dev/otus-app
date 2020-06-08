@@ -20,8 +20,6 @@ export class InputTextComponent {
     this.sharedComponentValues = SharedComponentValues;
   }
 
-
-
   get formControl(): AbstractControl {
     return this.formGroup.controls[this.controlName];
   }

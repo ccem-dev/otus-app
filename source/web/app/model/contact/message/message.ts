@@ -7,6 +7,7 @@ export class Message {
   sender: string;
   creationDate: Date;
   issueId: string;
+  senderInfo?: any;
 
   constructor(text: string, contact:ProjectContact) {
     this.id = '';

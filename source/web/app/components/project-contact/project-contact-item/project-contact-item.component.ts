@@ -13,12 +13,13 @@ export class ProjectContactItemComponent implements OnInit {
 
   @Input() public contactItem: any;
   private networkLoading: boolean;
-  private isEmptyMessages: boolean
+  private isEmptyMessages: boolean;
   private projectContactValues;
 
   constructor(
     private router: Router,
-    private projectContactService: ProjectContactService) {}
+    private projectContactService: ProjectContactService) {
+  }
 
   ngOnInit() {
     this.isEmptyMessages = true;
@@ -27,26 +28,31 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   loadContactItemContent(contact: ProjectContact) {
-    if(!contact.messages)
+    if (!contact.messages) {
       this.projectContactService.getLastMessage(contact.id)
-        .subscribe( lastMessage => [
+        .subscribe(lastMessage => [
           this.verifyMessages(lastMessage),
+          lastMessage.length > 0 ? this.projectContactService.getSender(lastMessage[0]) : null,
           this.projectContactService.addLastMessage(contact, lastMessage),
           this.networkLoading = false
-        ])
+        ]);
+    }
   }
 
   goToMessages(contactItem: any) {
     this.router.navigate([`/project-contact/${contactItem.id}/messages/`], {state: contactItem});
   }
 
-  updateLastMessage(message){
-    this.contactItem.messages[this.contactItem.messages.length-1] = message
+  updateLastMessage(message) {
+    this.contactItem.messages[this.contactItem.messages.length - 1] = message;
     this.isEmptyMessages = false;
   }
 
-  private verifyMessages(messages): void{
-    if(messages.length === 0) this.isEmptyMessages = true;
-    else this.isEmptyMessages = false;
+  private verifyMessages(messages): void {
+    if (messages.length === 0) {
+      this.isEmptyMessages = true;
+    } else {
+      this.isEmptyMessages = false;
+    }
   }
 }

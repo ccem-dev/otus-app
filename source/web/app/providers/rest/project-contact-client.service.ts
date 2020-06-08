@@ -43,4 +43,8 @@ export class ProjectContactClientService {
   createMessage(resource, message) {
     return this.http.post<Message>(`${this.baseUrl}/${resource}`, message);
   }
+
+  getSender(resource) {
+    return this.http.get<any>(`${this.baseUrl}/${resource}`);
+  }
 }

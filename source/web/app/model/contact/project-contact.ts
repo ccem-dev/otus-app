@@ -9,10 +9,11 @@ export class ProjectContact {
   status: string;
   messages?: any
 
-  constructor(form: any, sender: string) {
+  constructor(form: any, senderId: string) {
     this.id = form.id || "";
     this.objectType = 'Issue'
-    this.sender = sender;
+    this.sender = senderId;
+    this.group = "";
     this.title = form.title;
     this.text = form.text;
     this.creationDate = new Date();
@@ -25,13 +26,11 @@ export class ProjectContact {
       id: this.id,
       objectType: this.objectType,
       sender: this.sender,
+      group: this.group,
       title: this.title,
-      message: this.text,
+      text: this.text,
       creationDate: this.creationDate,
       status: this.status
     };
   }
-
-
-
 }

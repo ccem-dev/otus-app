@@ -11,12 +11,13 @@ export const ProjectContactValues = {
   },
   status: {
     open: 'Aberto',
-    close: 'Fechado',
+    closed: 'Fechado',
     finalized: 'Finalizado'
   },
   resources: {
-    issues: 'project-communication/issue',
-    messages: `message`
+    issues: 'project-communication/issues',
+    messages: 'messages',
+    senders: 'senders'
   },
   placeholder: {
     issue: {

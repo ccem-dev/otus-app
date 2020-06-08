@@ -46,4 +46,14 @@ export class ProjectContactService {
   buildMessage(messageText, contact: ProjectContact) {
     return new Message(messageText, contact);
   }
+
+  getSender(message: Message) {
+    this.projectContactClientService.getSender(`${ProjectContactValues.resources.senders}/${message.sender}`)
+      .subscribe((sender) => {
+        message.senderInfo = {};
+        message.senderInfo.objectType = sender.objectType;
+        message.senderInfo.name = sender.name;
+      })
+
+  }
 }
