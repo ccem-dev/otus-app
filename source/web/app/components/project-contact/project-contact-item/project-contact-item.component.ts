@@ -33,7 +33,7 @@ export class ProjectContactItemComponent implements OnInit {
         .subscribe(messages => [
           this.verifyMessages(messages),
           messages.length > 0 ? this.projectContactService.getSender(messages) : null,
-          this.projectContactService.addLastMessage(projectContact, messages[messages.length-1]),         
+          this.projectContactService.addLastMessage(projectContact, messages[messages.length-1]),
           this.networkLoading = false
         ]);
     }

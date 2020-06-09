@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ProjectContact} from '../../model/contact/project-contact';
-import {HttpClient} from '@angular/common/http';
 import {Message} from '../../model/contact/message/message';
 import {ProjectContactClientService} from '../rest/project-contact-client.service';
 import {ProjectContactValues} from '../../components/project-contact/project-contact-values';
@@ -10,7 +9,6 @@ import {ProjectContactValues} from '../../components/project-contact/project-con
 export class ProjectContactService {
 
   constructor(
-    private http: HttpClient,
     private projectContactClientService: ProjectContactClientService) {
   };
 
@@ -48,13 +46,13 @@ export class ProjectContactService {
   }
 
   getSender(messages: Message[]) {
-    messages.forEach((message)=> {
+    messages.forEach((message) => {
       this.projectContactClientService.getSender(`${ProjectContactValues.resources.senders}/${message.sender}`)
         .subscribe((sender) => {
           message.senderInfo = {};
           message.senderInfo.objectType = sender.objectType;
           message.senderInfo.name = sender.name;
-        })
+        });
     });
   }
 }

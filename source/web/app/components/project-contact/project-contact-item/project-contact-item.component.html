@@ -68,8 +68,8 @@
 
     <div class="last-message" *ngIf="!networkLoading && !isEmptyMessages">
     <span class="mat-card-subtitle">{{projectContactValues.title.lastMessage}}
-      {{contactItem.messages[contactItem.messages.length - 1].creationDate | date:'dd/MM/yyyy - HH:mm'}}
-      {{"| " +contactItem.messages[contactItem.messages.length - 1].senderInfo?.name}}
+      {{contactItem.messages[contactItem.messages.length - 1].creationDate | date:'dd/MM/yyyy - HH:mm'}} |
+      {{contactItem.messages[contactItem.messages.length - 1].senderInfo?.name}}
     </span>
       <span align="justify" class="mat-body-2">{{contactItem.messages[contactItem.messages.length - 1].text}}</span>
     </div>

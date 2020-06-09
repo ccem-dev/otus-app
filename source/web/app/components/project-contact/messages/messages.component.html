@@ -1,12 +1,10 @@
 <style>
-  .ml-layout {
-    height: 92vh;
-    background-color: #f3f3f3;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 10.5fr 1.5fr;
-    grid-template-areas: "header""message""answer"
-  }
+    .ml-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: .1fr auto 1fr;
+      grid-template-areas: "header""message""answer";
+    }
 
   .header {
     margin: 1vh 1vw;
@@ -21,6 +19,7 @@
   .message {
     grid-area: message;
   }
+
   .message-card {
     margin: 0px 10px 10px 10px;
   }
@@ -39,25 +38,28 @@
     color: #000;
   }
 
-  span.mat-card-subtitle{
+  span.mat-card-subtitle {
     margin-bottom: 0px;
   }
 </style>
-
 <section class="ml-layout">
   <div class="header mat-h3">
     <div class="info-contact">
       <mat-chip-list aria-label="status" class="chip">
-        <mat-chip color="primary" selected *ngIf="contact.status === 'OPEN'">{{projectContactValues.status.open}}</mat-chip>
-        <mat-chip color="none" selected *ngIf="contact.status === 'CLOSED'">{{projectContactValues.status.closed}}</mat-chip>
-        <mat-chip style="background-color: #006600" selected *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.status.finalized}}</mat-chip>
+        <mat-chip color="primary" selected
+                  *ngIf="contact.status === 'OPEN'">{{projectContactValues.status.open}}</mat-chip>
+        <mat-chip color="none" selected
+                  *ngIf="contact.status === 'CLOSED'">{{projectContactValues.status.closed}}</mat-chip>
+        <mat-chip style="background-color: #006600" selected
+                  *ngIf="contact.status === 'FINALIZED'">{{projectContactValues.status.finalized}}</mat-chip>
 
       </mat-chip-list>
       <span class="mat-card-subtitle">{{contact.creationDate | date:'dd/MM/yyyy - HH:mm' }}</span>
       <a routerLink="/project-contact">
         <mat-icon color="primary" matTooltip="{{projectContactValues.tooltip.return}}"
                   matTooltipPosition="below">undo
-      </mat-icon></a>
+        </mat-icon>
+      </a>
     </div>
     <div class="issue-info">
       <span align="justify" class="mat-h4">{{contact.title}}</span>
@@ -65,17 +67,21 @@
     </div>
   </div>
 
-  <div class="message" *ngIf="networkLoading"><otus-spinner></otus-spinner></div>
+  <div class="message" *ngIf="networkLoading">
+    <otus-spinner></otus-spinner>
+  </div>
   <div class="message">
-      <mat-card class="message-card" *ngFor="let message of messages">
-        <mat-card-subtitle>
-          <span>{{message.creationDate| date:'dd/MM/yyyy - HH:mm' }} | </span>
-          <span>{{message.senderInfo?.name}}</span>
-        </mat-card-subtitle>
-        <mat-card-content>
-          <span align="justify">{{message.text}}</span>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  <otus-create-message-form class="answer" [contactItem]="contact" (notifyNewMessage)="getMessages()"></otus-create-message-form>
+    <mat-card class="message-card" *ngFor="let message of messages">
+      <mat-card-subtitle>
+        <span>{{message.creationDate| date:'dd/MM/yyyy - HH:mm' }} | </span>
+        <span>{{message.senderInfo?.name}}</span>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <span align="justify">{{message.text}}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <otus-create-message-form class="answer" [contactItem]="contact"
+                            (notifyNewMessage)="getMessages()"></otus-create-message-form>
 </section>
+
