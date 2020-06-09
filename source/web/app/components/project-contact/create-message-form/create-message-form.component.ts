@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ProjectContactValues} from '../../project-contact-values';
-import {ProjectContactService} from '../../../../providers/project-contact/project-contact.service';
-import {OtusToasterService} from '../../../../shared/services/otus-toaster.service';
-import {Message} from '../../../../model/contact/message/message';
+import {ProjectContactValues} from '../project-contact-values';
+import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
+import {OtusToasterService} from '../../../shared/services/otus-toaster.service';
+import {Message} from '../../../model/contact/message/message';
 
 @Component({
   selector: 'otus-create-message-form',

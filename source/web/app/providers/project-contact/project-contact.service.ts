@@ -38,22 +38,23 @@ export class ProjectContactService {
     return this.projectContactClientService.createMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}`, message);
   }
 
-  addLastMessage(contact: ProjectContact, lastMessage: any): void {
-    if (!contact.messages) contact.messages = [];
-    contact.messages.push(...lastMessage);
+  addLastMessage(projectContact: ProjectContact, lastMessage: Message): void {
+    projectContact.messages = [];
+    projectContact.messages.push(lastMessage);
   }
 
   buildMessage(messageText, contact: ProjectContact) {
     return new Message(messageText, contact);
   }
 
-  getSender(message: Message) {
-    this.projectContactClientService.getSender(`${ProjectContactValues.resources.senders}/${message.sender}`)
-      .subscribe((sender) => {
-        message.senderInfo = {};
-        message.senderInfo.objectType = sender.objectType;
-        message.senderInfo.name = sender.name;
-      })
-
+  getSender(messages: Message[]) {
+    messages.forEach((message)=> {
+      this.projectContactClientService.getSender(`${ProjectContactValues.resources.senders}/${message.sender}`)
+        .subscribe((sender) => {
+          message.senderInfo = {};
+          message.senderInfo.objectType = sender.objectType;
+          message.senderInfo.name = sender.name;
+        })
+    });
   }
 }

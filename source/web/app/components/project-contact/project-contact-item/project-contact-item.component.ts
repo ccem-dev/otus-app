@@ -27,13 +27,13 @@ export class ProjectContactItemComponent implements OnInit {
     this.projectContactValues = ProjectContactValues;
   }
 
-  loadContactItemContent(contact: ProjectContact) {
-    if (!contact.messages) {
-      this.projectContactService.getLastMessage(contact.id)
-        .subscribe(lastMessage => [
-          this.verifyMessages(lastMessage),
-          lastMessage.length > 0 ? this.projectContactService.getSender(lastMessage[0]) : null,
-          this.projectContactService.addLastMessage(contact, lastMessage),
+  loadContactItemContent(projectContact: ProjectContact) {
+    if (!projectContact.messages) {
+      this.projectContactService.getLastMessage(projectContact.id)
+        .subscribe(messages => [
+          this.verifyMessages(messages),
+          messages.length > 0 ? this.projectContactService.getSender(messages) : null,
+          this.projectContactService.addLastMessage(projectContact, messages[messages.length-1]),         
           this.networkLoading = false
         ]);
     }
@@ -44,6 +44,7 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   updateLastMessage(message) {
+    this.projectContactService.getSender(Array.of(message))
     this.contactItem.messages[this.contactItem.messages.length - 1] = message;
     this.isEmptyMessages = false;
   }

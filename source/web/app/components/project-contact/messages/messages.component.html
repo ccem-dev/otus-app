@@ -70,7 +70,7 @@
       <mat-card class="message-card" *ngFor="let message of messages">
         <mat-card-subtitle>
           <span>{{message.creationDate| date:'dd/MM/yyyy - HH:mm' }} | </span>
-          <span>{{message.sender}}</span>
+          <span>{{message.senderInfo?.name}}</span>
         </mat-card-subtitle>
         <mat-card-content>
           <span align="justify">{{message.text}}</span>
