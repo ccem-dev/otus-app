@@ -29,7 +29,7 @@ export class ProjectContactItemComponent implements OnInit {
 
   loadContactItemContent(projectContact: ProjectContact) {
     if (!projectContact.messages) {
-      this.projectContactService.getLastMessage(projectContact.id)
+      this.projectContactService.getLastMessage(projectContact._id)
         .subscribe(messages => [
           this.verifyMessages(messages),
           messages.length > 0 ? this.projectContactService.getSender(messages) : null,
@@ -40,7 +40,7 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   goToMessages(contactItem: any) {
-    this.router.navigate([`/project-contact/${contactItem.id}/messages/`], {state: contactItem});
+    this.router.navigate([`/project-contact/${contactItem._id}/messages/`], {state: contactItem});
   }
 
   updateLastMessage(message) {

@@ -1,7 +1,7 @@
 import {Form} from '@angular/forms';
 
 export class ProjectContact {
-  id?: string;
+  _id?: string;
   objectType: string;
   sender: string;
   group?: string;
@@ -12,7 +12,7 @@ export class ProjectContact {
   messages?: any
 
   constructor(form) {
-    this.id = form.id || "";
+    this._id = "";
     this.objectType = 'Issue'
     this.sender = "";
     this.group = "";
@@ -25,7 +25,7 @@ export class ProjectContact {
 
   public toJSON() {
     return {
-      id: this.id,
+      _id: this._id,
       objectType: this.objectType,
       sender: this.sender,
       group: this.group,

@@ -1,7 +1,7 @@
 import {ProjectContact} from '../project-contact';
 
 export class Message {
-  id?: string;
+  _id?: string;
   objectType: string;
   text: string;
   sender: string;
@@ -10,17 +10,17 @@ export class Message {
   senderInfo?: any;
 
   constructor(text: string, contact:ProjectContact) {
-    this.id = '';
+    this._id = '';
     this.objectType = 'IssueMessage';
     this.text = text;
     this.sender = contact.sender;
     this.creationDate = new Date();
-    this.issueId = contact.id;
+    this.issueId = contact._id;
   }
 
   toJSON() {
     return {
-      id: this.id,
+      _id: this._id,
       objectType: this.objectType,
       text: this.text,
       sender: this.sender,

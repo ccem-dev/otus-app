@@ -37,7 +37,7 @@ export class MessagesComponent implements OnInit {
   }
 
   getMessages(): void {
-    this.getMessagesObservable = this.projectContactService.getProjectContactMessages(this.contact.id)
+    this.getMessagesObservable = this.projectContactService.getProjectContactMessages(this.contact._id)
       .subscribe((messages: any[]) => [
         this.projectContactService.getSender(messages),
         this.messages = messages,
