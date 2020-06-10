@@ -8,6 +8,21 @@
     grid-template-areas: "title solicitation" "formContact formContact" "historic historic"
   }
 
+  @media screen and (min-width: 100px) {
+    .chip {
+      display: flex;
+      width: 100px;
+      margin-top: 10px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .chip {
+      display: flex;
+      width: 100px;
+      margin-top: 0px;
+    }
+  }
+
   .title {
     grid-area: title;
     display: flex;
@@ -70,10 +85,7 @@
     margin-left: 20px;
   }
 
-  .chip {
-    display: flex;
-    width: 100px;
-  }
+
 
 
 </style>
