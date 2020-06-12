@@ -4,33 +4,30 @@ import {MessagesComponent} from './messages.component';
 import {MatChipsModule, MatIconModule} from '@angular/material';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
-import {ActivatedRoute, ExtraOptions, Navigation, Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
-import {Location} from '@angular/common';
-import {ProjectContact} from '../../../model/contact/project-contact';
 
 
 describe('MessagesComponent', () => {
   let component: MessagesComponent;
   let fixture: ComponentFixture<MessagesComponent>;
   let projectContactService: ProjectContactService;
-  let router: RouterTestingModule;
-  let location: Location;
-
+  let router: Router;
 
   beforeEach(async(() => {
     projectContactService = jasmine.createSpyObj(jasmine.any(ProjectContactService))
-    router = jasmine.createSpyObj<RouterTestingModule>( ['getCurrentNavigation'])
-    //console.log(router)
-    spyOn(router, 'getCurrentNavigation').and.returnValue({extras: {state:jasmine.any(ProjectContact)}});
+    router = jasmine.createSpyObj(Router, ['getCurrentNavigation', 'navigate'])
+    // @ts-ignore
+    router.getCurrentNavigation.and.returnValue({extras:{}})
+
+    console.log(router)
 
     TestBed.configureTestingModule({
       declarations: [MessagesComponent],
-      imports: [MatChipsModule, MatIconModule],
+      imports: [MatChipsModule, MatIconModule, RouterTestingModule],
       providers: [
         {provide: ProjectContactService, useValue: projectContactService},
-        // {provide: Router, useValue: router}
-        {provide: Router, useClass: RouterTestingModule}
+        {provide: Router, useValue: router}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -38,8 +35,6 @@ describe('MessagesComponent', () => {
   }));
 
   beforeEach(() => {
-    // router = TestBed.get(Router);
-    // location = TestBed.get(Location);
     fixture = TestBed.createComponent(MessagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
