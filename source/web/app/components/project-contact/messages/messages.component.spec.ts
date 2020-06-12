@@ -10,27 +10,27 @@ import {Location} from '@angular/common';
 import {ProjectContact} from '../../../model/contact/project-contact';
 
 
-
 describe('MessagesComponent', () => {
   let component: MessagesComponent;
   let fixture: ComponentFixture<MessagesComponent>;
   let projectContactService: ProjectContactService;
-  let router: Router;
+  let router: RouterTestingModule;
   let location: Location;
 
 
   beforeEach(async(() => {
     projectContactService = jasmine.createSpyObj(jasmine.any(ProjectContactService))
-    // router = jasmine.createSpyObj<Router>( ['getCurrentNavigation'])
+    router = jasmine.createSpyObj<RouterTestingModule>( ['getCurrentNavigation'])
     //console.log(router)
-    // spyOn(router, 'getCurrentNavigation').and.returnValue({extras: {state:jasmine.any(ProjectContact)}});
+    spyOn(router, 'getCurrentNavigation').and.returnValue({extras: {state:jasmine.any(ProjectContact)}});
 
     TestBed.configureTestingModule({
       declarations: [MessagesComponent],
-      imports: [MatChipsModule, MatIconModule, Router],
+      imports: [MatChipsModule, MatIconModule],
       providers: [
         {provide: ProjectContactService, useValue: projectContactService},
-        {provide: Router, useValue: router}
+        // {provide: Router, useValue: router}
+        {provide: Router, useClass: RouterTestingModule}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -38,8 +38,8 @@ describe('MessagesComponent', () => {
   }));
 
   beforeEach(() => {
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    // router = TestBed.get(Router);
+    // location = TestBed.get(Location);
     fixture = TestBed.createComponent(MessagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
