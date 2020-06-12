@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {ProjectContactValues} from '../project-contact-values';
@@ -18,7 +18,6 @@ export class MessagesComponent implements OnInit {
   private getMessagesObservable: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private projectContactService: ProjectContactService) {
 
