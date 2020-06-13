@@ -6,7 +6,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
-
+import {MockValues} from "../../../shared/mocks/mock-values";
 
 describe('MessagesComponent', () => {
   let component: MessagesComponent;
@@ -18,9 +18,13 @@ describe('MessagesComponent', () => {
     projectContactService = jasmine.createSpyObj(jasmine.any(ProjectContactService))
     router = jasmine.createSpyObj(Router, ['getCurrentNavigation', 'navigate'])
     // @ts-ignore
-    router.getCurrentNavigation.and.returnValue({extras:{}})
+    router.getCurrentNavigation.and.returnValue({
+      extras:{
+        state: MockValues.contactProject.issues[0]
+      }})
 
-    console.log(router)
+    // console.log(router)
+    console.log(MockValues.contactProject.issues[0]._id);
 
     TestBed.configureTestingModule({
       declarations: [MessagesComponent],
