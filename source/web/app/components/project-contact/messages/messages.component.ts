@@ -16,23 +16,22 @@ export class MessagesComponent implements OnInit {
   private networkLoading = true;
   private projectContactValues;
   private getMessagesObservable: Subscription;
+  private navigation = this.router.getCurrentNavigation();
 
   constructor(
     private router: Router,
     private projectContactService: ProjectContactService) {
-
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation.extras.state === undefined) {
-      this.router.navigate([`/project-contact/`]);
-    } else {
-      this.contact = navigation.extras.state as ProjectContact;
-    }
-    this.getMessages();
   }
 
   ngOnInit() {
     this.messages = [];
     this.projectContactValues = ProjectContactValues;
+    if (this.navigation.extras.state === undefined) {
+      this.router.navigate([`/project-contact/`]);
+    } else {
+      this.contact = this.navigation.extras.state as ProjectContact;
+    }
+    this.getMessages();
   }
 
   getMessages(): void {
@@ -42,9 +41,5 @@ export class MessagesComponent implements OnInit {
         this.messages = messages,
         this.networkLoading = false
       ]);
-  }
-
-  ngOnDestroy() {
-    this.getMessagesObservable.unsubscribe();
   }
 }

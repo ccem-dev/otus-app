@@ -10,7 +10,7 @@ describe('ProjectContactItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ProjectContactItemComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

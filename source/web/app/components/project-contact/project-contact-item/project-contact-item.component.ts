@@ -25,6 +25,7 @@ export class ProjectContactItemComponent implements OnInit {
     this.isEmptyMessages = true;
     this.networkLoading = true;
     this.projectContactValues = ProjectContactValues;
+
   }
 
   loadContactItemContent(projectContact: ProjectContact) {
