@@ -8,6 +8,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {CookieService} from 'ngx-cookie-service';
 import {MockValues} from '../../../shared/mocks/mock-values';
 import {Router} from '@angular/router';
+import {of, Subject} from 'rxjs';
 
 
 describe('MessagesComponent', () => {
@@ -33,14 +34,20 @@ describe('MessagesComponent', () => {
     fixture = TestBed.createComponent(MessagesComponent);
     component = fixture.componentInstance;
     projectContactService = fixture.debugElement.injector.get(ProjectContactService);
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    console.log(component.contact);
-    console.log(projectContactService);
     expect(component).toBeTruthy();
   });
+
+  it('getMessages should bring list of messages through observer', () =>{
+    spyOn(projectContactService, 'getProjectContactMessages').and.returnValue(new Subject())
+    component.getMessages();
+    expect(projectContactService.getProjectContactMessages).toHaveBeenCalledTimes(1);
+  });
+
 });
 
 class RouterStub {
