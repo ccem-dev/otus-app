@@ -6,45 +6,46 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
-import {MockValues} from "../../../shared/mocks/mock-values";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {CookieService} from 'ngx-cookie-service';
 
 describe('MessagesComponent', () => {
   let component: MessagesComponent;
   let fixture: ComponentFixture<MessagesComponent>;
   let projectContactService: ProjectContactService;
   let router: Router;
+  let Mock;
 
-  beforeEach(async(() => {
-    projectContactService = jasmine.createSpyObj(jasmine.any(ProjectContactService))
-    router = jasmine.createSpyObj(Router, ['getCurrentNavigation', 'navigate'])
-    // @ts-ignore
-    router.getCurrentNavigation.and.returnValue({
-      extras:{
-        state: MockValues.contactProject.issues[0]
-      }})
+    //console.log(projectContactService);
 
-    // console.log(router)
-    console.log(MockValues.contactProject.issues[0]._id);
+    beforeEach(async(() => {
 
-    TestBed.configureTestingModule({
-      declarations: [MessagesComponent],
-      imports: [MatChipsModule, MatIconModule, RouterTestingModule],
-      providers: [
-        {provide: ProjectContactService, useValue: projectContactService},
-        {provide: Router, useValue: router}
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      TestBed.configureTestingModule({
+        declarations: [MessagesComponent],
+        imports: [MatChipsModule, MatIconModule,
+          RouterTestingModule.withRoutes([]),
+          HttpClientTestingModule],
+        providers: [
+          ProjectContactService,
+          CookieService
+        ],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      })
+        .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MessagesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+      router = TestBed.get(Router);
+      router.initialNavigation();
+      fixture = TestBed.createComponent(MessagesComponent);
+      projectContactService = fixture.debugElement.injector.get(ProjectContactService);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    it('should create', () => {
+      // spyOn(projectContactService, "getProjectContactMessages").and.returnValue({})
+      console.log(component)
+      expect(component).toBeTruthy();
+    });
+  })
