@@ -20,17 +20,18 @@ export class MessagesComponent implements OnInit {
   constructor(
     private router: Router,
     private projectContactService: ProjectContactService) {
-  }
-
-  ngOnInit() {
-    this.messages = [];
-    this.projectContactValues = ProjectContactValues;
     const navigation = this.router.getCurrentNavigation();
     if (navigation.extras.state === undefined) {
       this.router.navigate([`/project-contact/`]);
     } else {
       this.contact = navigation.extras.state as ProjectContact;
     }
+  }
+
+  ngOnInit() {
+    this.messages = [];
+    this.projectContactValues = ProjectContactValues;
+
     this.getMessages();
   }
 
