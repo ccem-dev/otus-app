@@ -1,28 +1,26 @@
-import {async, ComponentFixture, getTestBed, inject, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MessagesComponent} from './messages.component';
-import {ProjectContactService} from "../../../providers/project-contact/project-contact.service";
-import {RouterTestingModule} from "@angular/router/testing";
-import {MatChipsModule} from "@angular/material/chips";
-import {MatIconModule} from "@angular/material/icon";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {Router} from "@angular/router";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {CookieService} from 'ngx-cookie-service'
+import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
+import {RouterTestingModule} from '@angular/router/testing';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {CookieService} from 'ngx-cookie-service';
+import {MockValues} from '../../../shared/mocks/mock-values';
+import {Router} from '@angular/router';
 
 
 describe('MessagesComponent', () => {
   let component: MessagesComponent;
   let fixture: ComponentFixture<MessagesComponent>;
   let router: Router;
-  let projectContactService: ProjectContactService
+  let projectContactService: ProjectContactService;
 
   beforeEach(async(() => {
-
     TestBed.configureTestingModule({
       declarations: [MessagesComponent],
-      imports: [MatChipsModule, MatIconModule,
-        RouterTestingModule.withRoutes([]),
-        HttpClientTestingModule],
+      imports: [MatChipsModule, MatIconModule,RouterTestingModule, HttpClientTestingModule],
       providers: [
         ProjectContactService,
         CookieService
@@ -33,17 +31,25 @@ describe('MessagesComponent', () => {
   }));
 
   beforeEach(() => {
-    router = TestBed.get(Router);
-    router.initialNavigation();
     fixture = TestBed.createComponent(MessagesComponent);
-    projectContactService = fixture.debugElement.injector.get(ProjectContactService);
     component = fixture.componentInstance;
+    projectContactService = fixture.debugElement.injector.get(ProjectContactService);
+    router = fixture.debugElement.injector.get(Router);
+
+    //@ts-ignore
+    spyOn(router, 'getCurrentNavigation').and.returnValue({
+      extras: {
+        state: MockValues.contactProject.issues[0]
+      }
+    });
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    // spyOn(projectContactService, "getProjectContactMessages").and.returnValue({})
     expect(component).toBeTruthy();
+    console.log(component);
+    console.log(projectContactService);
+    console.log(router);
   });
 });
 
@@ -67,31 +73,31 @@ describe('MessagesComponent', () => {
 //   let projectContactService: ProjectContactService;
 //   let router: Router;
 
-  // beforeEach(async(() => {
-  //   projectContactService = jasmine.createSpyObj(ProjectContactService, ['getProjectContactMessages'])
-  //   router = jasmine.createSpyObj(Router, ['getCurrentNavigation', 'navigate'])
+// beforeEach(async(() => {
+//   projectContactService = jasmine.createSpyObj(ProjectContactService, ['getProjectContactMessages'])
+//   router = jasmine.createSpyObj(Router, ['getCurrentNavigation', 'navigate'])
 
-    // @ts-ignore
-    // router.getCurrentNavigation.and.returnValue({
-      // extras:{
-      //   state: MockValues.contactProject.issues[0]
-      // }})
-    // @ts-ignore
-    // projectContactService.getProjectContactMessages.and.returnValue(messagelistSubject);
-    // console.log(projectContactService)
+// @ts-ignore
+// router.getCurrentNavigation.and.returnValue({
+// extras:{
+//   state: MockValues.contactProject.issues[0]
+// }})
+// @ts-ignore
+// projectContactService.getProjectContactMessages.and.returnValue(messagelistSubject);
+// console.log(projectContactService)
 
 
-  //   TestBed.configureTestingModule({
-  //     declarations: [MessagesComponent],
-  //     imports: [MatChipsModule, MatIconModule, RouterTestingModule],
-  //     providers: [
-  //       {provide: ProjectContactService, useValue: projectContactService},
-  //       {provide: Router, useValue: router },
-  //     ],
-  //     schemas: [CUSTOM_ELEMENTS_SCHEMA]
-  //   })
-  //     .compileComponents();
-  // }));
+//   TestBed.configureTestingModule({
+//     declarations: [MessagesComponent],
+//     imports: [MatChipsModule, MatIconModule, RouterTestingModule],
+//     providers: [
+//       {provide: ProjectContactService, useValue: projectContactService},
+//       {provide: Router, useValue: router },
+//     ],
+//     schemas: [CUSTOM_ELEMENTS_SCHEMA]
+//   })
+//     .compileComponents();
+// }));
 
 //   beforeEach(() => {
 //     fixture = TestBed.createComponent(MessagesComponent);

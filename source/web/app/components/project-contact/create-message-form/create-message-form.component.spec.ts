@@ -37,6 +37,5 @@ describe('CreateMessageFormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    console.log(component)
   });
 });
