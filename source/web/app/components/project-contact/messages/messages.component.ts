@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {ProjectContactValues} from '../project-contact-values';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'source-messages',
@@ -15,27 +14,26 @@ export class MessagesComponent implements OnInit {
   private messages: any[];
   private networkLoading = true;
   private projectContactValues;
-  private getMessagesObservable: Subscription;
-  private navigation = this.router.getCurrentNavigation();
 
   constructor(
     private router: Router,
     private projectContactService: ProjectContactService) {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation.extras.state === undefined) {
+      this.router.navigate([`/project-contact/`]);
+    } else {
+      this.contact = navigation.extras.state as ProjectContact;
+    }
   }
 
   ngOnInit() {
     this.messages = [];
     this.projectContactValues = ProjectContactValues;
-    if (this.navigation.extras.state === undefined) {
-      this.router.navigate([`/project-contact/`]);
-    } else {
-      this.contact = this.navigation.extras.state as ProjectContact;
-    }
     this.getMessages();
   }
 
   getMessages(): void {
-    this.getMessagesObservable = this.projectContactService.getProjectContactMessages(this.contact._id)
+    this.projectContactService.getProjectContactMessages(this.contact._id)
       .subscribe((messages: any[]) => [
         this.projectContactService.getSender(messages),
         this.messages = messages,
