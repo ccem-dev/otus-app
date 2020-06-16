@@ -60,7 +60,11 @@ describe('ProjectContactService', () => {
     const spy = spyOn(projectContactClientService, "getMessages").and.returnValue(Mock.pcs.returnGetMessages[0]);
     projectContactService.getProjectContactMessages("1")
     expect(spy).toHaveBeenCalled()
+<<<<<<< HEAD
     expect(projectContactService.getProjectContactMessages("1")).toEqual(Mock.pcs.returnGetMessages[0])
+=======
+    // expect(projectContactService.getProjectContactMessages("1")).toEqual(MockValues.contactProject.issues[0])
+>>>>>>> cf79b513c2b1800d1f0b751e347201ad91f23ae7
   })
 
   it("should getLastMessage", ()=>{
