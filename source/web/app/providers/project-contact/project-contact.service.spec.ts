@@ -11,11 +11,14 @@ import {Router} from "@angular/router";
 import {ProjectContact} from "../../model/contact/project-contact";
 import {ProjectContactClientService} from "../rest/project-contact-client.service";
 import {Message} from "../../model/contact/message/message";
-import {of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
+import {MockValues} from "../../shared/mocks/mock-values";
+
 describe('ProjectContactService', () => {
   let projectContactService: ProjectContactService;
   let projectContactClientService: ProjectContactClientService
   let router: Router;
+  let Mock: {pcs}
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MatChipsModule, MatIconModule,RouterTestingModule, HttpClientTestingModule],
@@ -32,6 +35,7 @@ describe('ProjectContactService', () => {
   beforeEach(() => {
     projectContactService = TestBed.get(ProjectContactService)
     projectContactClientService = TestBed.get(ProjectContactClientService)
+    initializeMocks();
   });
 
   it('should create', () => {
@@ -39,27 +43,24 @@ describe('ProjectContactService', () => {
   });
 
   it('should getProjectContacts', () => {
-    const spy = spyOn(projectContactClientService, "getIssues").and.returnValue(null);
+    const spy = spyOn(projectContactClientService, "getIssues").and.returnValue(Mock.pcs.returnGetIssues);
     projectContactService.getProjectContacts()
     expect(spy).toHaveBeenCalled()
-    expect(projectContactService.getProjectContacts()).toEqual(null)
+    expect(projectContactService.getProjectContacts()).toEqual(Mock.pcs.returnGetIssues)
   });
 
   it("should createProjectContact", ()=>{
-    const mock = {
-
-    } as ProjectContact
-    const spy = spyOn(projectContactClientService, "createIssue").and.returnValue(null);
-    projectContactService.createProjectContact(mock);
+    const spy = spyOn(projectContactClientService, "createIssue").and.returnValue(Mock.pcs.returnGetIssues);
+    projectContactService.createProjectContact(Mock.pcs.returnGetIssues);
     expect(spy).toHaveBeenCalled()
-    expect(projectContactService.createProjectContact(mock)).toEqual(null)
+    expect(projectContactService.createProjectContact(Mock.pcs.returnGetIssues)).toEqual(Mock.pcs.returnGetIssues)
   })
 
   it("should getProjectContactMessages", ()=>{
-    const spy = spyOn(projectContactClientService, "getMessages").and.returnValue(null);
+    const spy = spyOn(projectContactClientService, "getMessages").and.returnValue(Mock.pcs.returnGetMessages[0]);
     projectContactService.getProjectContactMessages("1")
     expect(spy).toHaveBeenCalled()
-    expect(projectContactService.getProjectContactMessages("1")).toEqual(null)
+    expect(projectContactService.getProjectContactMessages("1")).toEqual(Mock.pcs.returnGetMessages[0])
   })
 
   it("should getLastMessage", ()=>{
@@ -90,4 +91,9 @@ describe('ProjectContactService', () => {
     expect(projectContactService.getSender([])).toEqual(undefined);
 
   })
+
+  function initializeMocks() {
+    Mock = {pcs: {returnGetMessages: new BehaviorSubject([MockValues.contactProject.messages])
+        ,returnGetIssues: new BehaviorSubject([MockValues.contactProject.issues])}};
+  }
 });
