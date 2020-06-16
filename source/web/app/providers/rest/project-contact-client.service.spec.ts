@@ -64,7 +64,7 @@ describe('projectContactClientService', () => {
       expect(response).toEqual(Mock.pcs.returnGetMessages)
     })
   })
-  it("getSender should have been called and return a Object", () => {
+  it("getSender should have been called and return Object", () => {
     projectContactClientService.getSender(Mock.pcs.returnGetMessages).subscribe(response =>{
       expect(response).toEqual(Mock.pcs.returnGetMessages)
     })
