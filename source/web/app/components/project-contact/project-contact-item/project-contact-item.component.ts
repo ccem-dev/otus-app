@@ -11,7 +11,7 @@ import {ProjectContactValues} from '../project-contact-values';
 })
 export class ProjectContactItemComponent implements OnInit {
 
-  @Input() public contactItem: any;
+  @Input() public contactItem: ProjectContact;
   private networkLoading: boolean;
   private isEmptyMessages: boolean;
   private projectContactValues;
@@ -25,7 +25,6 @@ export class ProjectContactItemComponent implements OnInit {
     this.isEmptyMessages = true;
     this.networkLoading = true;
     this.projectContactValues = ProjectContactValues;
-
   }
 
   loadContactItemContent(projectContact: ProjectContact) {
@@ -40,7 +39,7 @@ export class ProjectContactItemComponent implements OnInit {
     }
   }
 
-  goToMessages(contactItem: any) {
+  goToMessages(contactItem: ProjectContact) {
     this.router.navigate([`/project-contact/${contactItem._id}/messages/`], {state: contactItem});
   }
 

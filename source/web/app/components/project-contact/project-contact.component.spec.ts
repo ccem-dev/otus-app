@@ -10,6 +10,8 @@ import {CookieService} from "ngx-cookie-service";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {Router} from "@angular/router";
 import {MockValues} from "../../shared/mocks/mock-values";
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatSnackBar, MatTooltipModule} from '@angular/material';
 
 describe('ProjectContactItemComponent', () => {
   let component: ProjectContactComponent;
@@ -20,10 +22,17 @@ describe('ProjectContactItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ProjectContactComponent],
-      imports: [MatChipsModule, MatIconModule,RouterTestingModule, HttpClientTestingModule],
+      imports: [
+        MatChipsModule,
+        MatIconModule, RouterTestingModule,
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        MatTooltipModule
+      ],
       providers: [
         ProjectContactService,
-        CookieService
+        CookieService,
+        MatSnackBar
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -36,12 +45,12 @@ describe('ProjectContactItemComponent', () => {
     projectContactService = fixture.debugElement.injector.get(ProjectContactService);
     router = fixture.debugElement.injector.get(Router);
 
-    //@ts-ignore
-    //spyOn(router, 'getCurrentNavigation').and.returnValue({
-    //  extras: {
-    //    state: MockValues.contactProject.issues[0]
-    //  }
-    //});
+   // @ts-ignore
+    spyOn(router, 'getCurrentNavigation').and.returnValue({
+     extras: {
+       state: MockValues.contactProject.issues[0]
+     }
+    });
     fixture.detectChanges();
   });
 
