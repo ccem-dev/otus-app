@@ -38,60 +38,56 @@ describe('ProjectContactService', () => {
     initializeMocks();
   });
 
-  it('should create', () => {
+  it("component should mount", () => {
     expect(ProjectContactService).toBeTruthy();
   });
 
-  it('should getProjectContacts', () => {
+  it('getProjectContacts should call getIssues from projectContactClientService and return Observable', () => {
     const spy = spyOn(projectContactClientService, "getIssues").and.returnValue(Mock.pcs.returnGetIssues);
     projectContactService.getProjectContacts()
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(projectContactService.getProjectContacts()).toEqual(Mock.pcs.returnGetIssues)
   });
 
-  it("should createProjectContact", ()=>{
+  it("createProjectContact call createIssue from projectContactClientService and return Observable", ()=>{
     const spy = spyOn(projectContactClientService, "createIssue").and.returnValue(Mock.pcs.returnGetIssues);
     projectContactService.createProjectContact(Mock.pcs.returnGetIssues);
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(projectContactService.createProjectContact(Mock.pcs.returnGetIssues)).toEqual(Mock.pcs.returnGetIssues)
   })
 
-  it("should getProjectContactMessages", ()=>{
+  it("getProjectContactMessages should call getMessages from projectContactClientService and return Observable", ()=>{
     const spy = spyOn(projectContactClientService, "getMessages").and.returnValue(Mock.pcs.returnGetMessages[0]);
     projectContactService.getProjectContactMessages("1")
-    expect(spy).toHaveBeenCalled()
-<<<<<<< HEAD
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(projectContactService.getProjectContactMessages("1")).toEqual(Mock.pcs.returnGetMessages[0])
-=======
-    // expect(projectContactService.getProjectContactMessages("1")).toEqual(MockValues.contactProject.issues[0])
->>>>>>> cf79b513c2b1800d1f0b751e347201ad91f23ae7
   })
 
-  it("should getLastMessage", ()=>{
-    const spy = spyOn(projectContactClientService, "getLastMessage").and.returnValue(null);
+  it("getLastMessage method should call getLastMessage from projectContactClientService and return value", ()=>{
+    const spy = spyOn(projectContactClientService, "getLastMessage").and.returnValue(Mock.pcs.returnGetMessages[5]);
     projectContactService.getLastMessage("1")
-    expect(spy).toHaveBeenCalled()
-    expect(projectContactService.getLastMessage("1")).toEqual(null)
+    expect(spy).toHaveBeenCalledTimes(1)
+    expect(projectContactService.getLastMessage("1")).toEqual(Mock.pcs.returnGetMessages[5])
   })
-  it("should createMessage", ()=>{
-    const spy = spyOn(projectContactClientService, "createMessage").and.returnValue(null);
+  it("createMessage should call createMessage from projectClientService and return value", ()=>{
+    const spy = spyOn(projectContactClientService, "createMessage").and.returnValue(Mock.pcs.returnGetMessages[0]);
     projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))
-    expect(spy).toHaveBeenCalled()
-    expect(projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))).toEqual(null)
+    expect(spy).toHaveBeenCalledTimes(1)
+    expect(projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))).toEqual(Mock.pcs.returnGetMessages[0])
   })
-  it("should addLastMessage", ()=>{
+  it("should call addLastMessage", ()=>{
     projectContactService.addLastMessage({messages: []} as ProjectContact, new Message("ok", {} as ProjectContact));
     expect(projectContactService.addLastMessage({messages: []} as ProjectContact, new Message("ok", {} as ProjectContact)))
       .toEqual(undefined);
   })
-  it("should buildMessage", ()=>{
+  it("buildMessage should return new Message", ()=>{
     projectContactService.buildMessage("iss", {} as ProjectContact)
     expect(projectContactService.buildMessage("iss", {} as ProjectContact)).toEqual(new Message("iss", {} as ProjectContact))
   })
-  it("should getSender", ()=>{
+  it("getSender method should call getSender from projectClientService and return new message", ()=>{
     const spy = spyOn(projectContactClientService, "getSender").and.returnValue(of(new Message("text", {} as ProjectContact)))
     projectContactService.getSender([new Message("text", {} as ProjectContact)])
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(projectContactService.getSender([])).toEqual(undefined);
 
   })
