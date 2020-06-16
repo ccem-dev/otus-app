@@ -82,7 +82,7 @@ describe('ProjectContactItemComponent', () => {
     let lastMessage = MockValues.contactProject.messages[MockValues.contactProject.messages.length - 1];
     component.updateLastMessage(lastMessage);
     expect(component.contactItem.messages[0].objectType).toBe('IssueMessage');
-    //messages not isolate: reset for others tests 
+    //messages not isolate: reset for others tests
     component.contactItem.messages = undefined;
   });
 
