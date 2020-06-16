@@ -8,12 +8,10 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {CookieService} from "ngx-cookie-service";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {Router} from "@angular/router";
-import {MockValues} from "../../shared/mocks/mock-values";
 import {ProjectContact} from "../../model/contact/project-contact";
-import {Mock} from "protractor/built/driverProviders";
-import {Observable, of} from "rxjs";
 import {ProjectContactClientService} from "../rest/project-contact-client.service";
-
+import {Message} from "../../model/contact/message/message";
+import {of} from "rxjs";
 describe('ProjectContactService', () => {
   let projectContactService: ProjectContactService;
   let projectContactClientService: ProjectContactClientService
@@ -58,23 +56,38 @@ describe('ProjectContactService', () => {
   })
 
   it("should getProjectContactMessages", ()=>{
-    const spy = spyOn(projectContactClientService, "getMessages").and.returnValue(of(MockValues.contactProject.issues[0]));
+    const spy = spyOn(projectContactClientService, "getMessages").and.returnValue(null);
     projectContactService.getProjectContactMessages("1")
     expect(spy).toHaveBeenCalled()
-    expect(projectContactService.getProjectContactMessages("1")).toEqual(MockValues.contactProject.issues[0])
+    expect(projectContactService.getProjectContactMessages("1")).toEqual(null)
   })
 
   it("should getLastMessage", ()=>{
     const spy = spyOn(projectContactClientService, "getLastMessage").and.returnValue(null);
     projectContactService.getLastMessage("1")
     expect(spy).toHaveBeenCalled()
-    expect(projectContactService.getProjectContactMessages("1")).toEqual(null)
+    expect(projectContactService.getLastMessage("1")).toEqual(null)
   })
   it("should createMessage", ()=>{
-    const spy = spyOn(projectContactClientService, "getLastMessage").and.returnValue(null);
-    projectContactService.getLastMessage("1")
+    const spy = spyOn(projectContactClientService, "createMessage").and.returnValue(null);
+    projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))
     expect(spy).toHaveBeenCalled()
-    expect(projectContactService.getProjectContactMessages("1")).toEqual(null)
+    expect(projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))).toEqual(null)
   })
+  it("should addLastMessage", ()=>{
+    projectContactService.addLastMessage({messages: []} as ProjectContact, new Message("ok", {} as ProjectContact));
+    expect(projectContactService.addLastMessage({messages: []} as ProjectContact, new Message("ok", {} as ProjectContact)))
+      .toEqual(undefined);
+  })
+  it("should buildMessage", ()=>{
+    projectContactService.buildMessage("iss", {} as ProjectContact)
+    expect(projectContactService.buildMessage("iss", {} as ProjectContact)).toEqual(new Message("iss", {} as ProjectContact))
+  })
+  it("should getSender", ()=>{
+    const spy = spyOn(projectContactClientService, "getSender").and.returnValue(of(new Message("text", {} as ProjectContact)))
+    projectContactService.getSender([new Message("text", {} as ProjectContact)])
+    expect(spy).toHaveBeenCalled()
+    expect(projectContactService.getSender([])).toEqual(undefined);
 
+  })
 });
