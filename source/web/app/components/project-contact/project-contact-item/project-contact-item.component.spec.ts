@@ -10,17 +10,14 @@ import {ProjectContact} from '../../../model/contact/project-contact';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
-import {MatTooltipModule} from '@angular/material';
-import {MatChipsModule} from '@angular/material/chips';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('ProjectContactItemComponent', () => {
   let component: ProjectContactItemComponent;
   let fixture: ComponentFixture<ProjectContactItemComponent>;
   let projectContactService: ProjectContactService;
   let router: Router;
-  let Mock : any = {}
+  let Mock: any = {};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -73,26 +70,29 @@ describe('ProjectContactItemComponent', () => {
   });
 
   it('goToMessages method should evoke navigate by Router ', function () {
-    spyOn(router, 'navigate')
+    spyOn(router, 'navigate');
     component.goToMessages(component.contactItem);
     expect(router.navigate).toHaveBeenCalledTimes(1);
   });
 
   it('updateLastMessage method should ', function () {
-    component.contactItem.messages = [];
-    spyOn(projectContactService, 'getSender')
-    let lastMessage = MockValues.contactProject.messages[MockValues.contactProject.messages.length-1];
-    console.log(lastMessage)
-    component.updateLastMessage(lastMessage)
-    console.log(component.contactItem.messages)
+    component.contactItem.messages = [{}];
+    spyOn(projectContactService, 'getSender').and.callFake(() => {
+    });
+    let lastMessage = MockValues.contactProject.messages[MockValues.contactProject.messages.length - 1];
+    component.updateLastMessage(lastMessage);
+    expect(component.contactItem.messages[0].objectType).toBe('IssueMessage');
+    //messages not isolate: reset for others tests 
+    component.contactItem.messages = undefined;
   });
 
   function initializeMocks() {
-    Mock = { pcs:
+    Mock = {
+      pcs:
         {
           returnGetLastMessage: new BehaviorSubject([MockValues.contactProject.messages[-1]]),
           returnGetLastMessageNotFound: new BehaviorSubject([])
         }
-    }
+    };
   }
 });
