@@ -19,7 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import {SanitizeHtmlPipe} from './utils/sanitize-html/sanitize-html.pipe';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
+
 import {CreateAccountComponent} from './components/account/create-account/create-account.component';
 import {EventService} from './providers';
 import {EventsComponent} from './components/dashboard/tasks/events/events.component';
@@ -41,7 +41,7 @@ import { ProjectContactItemComponent } from './components/project-contact/projec
 import { MessagesComponent } from './components/project-contact/messages/messages.component';
 import { OtusSpinnerComponent } from './shared/components/spinner/otus-spinner/otus-spinner.component';
 import { CreateMessageFormComponent } from './components/project-contact/create-message-form/create-message-form.component';
-
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -106,6 +106,7 @@ import { CreateMessageFormComponent } from './components/project-contact/create-
     ActivityEventService,
     EventClientService,
     ActivityClientService,
+    HttpClientModule,
     CookieService
   ],
   bootstrap: [AppComponent]
