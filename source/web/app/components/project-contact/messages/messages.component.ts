@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {ProjectContactValues} from '../project-contact-values';
+import {Message} from '../../../model/contact/message/message';
 
 @Component({
   selector: 'source-messages',
@@ -11,7 +12,7 @@ import {ProjectContactValues} from '../project-contact-values';
 })
 export class MessagesComponent implements OnInit {
   public contact: ProjectContact;
-  private messages: any[];
+  private messages: Message[];
   private networkLoading = true;
   private projectContactValues;
 
@@ -34,7 +35,7 @@ export class MessagesComponent implements OnInit {
 
   getMessages(): void {
     this.projectContactService.getProjectContactMessages(this.contact._id)
-      .subscribe((messages: any[]) => [
+      .subscribe((messages: Message[]) => [
         this.projectContactService.getSender(messages),
         this.messages = messages,
         this.networkLoading = false
