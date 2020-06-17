@@ -20,8 +20,6 @@ export class ProjectContactClientService {
     } else {
       this.baseUrl = environment.baseUrl + environment.projectComunication;
     }
-    //TODO:here mocked api for json-server
-    this.baseUrl = 'http://localhost:3077'
   }
 
   getIssues(resource) {
