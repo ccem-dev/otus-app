@@ -48,7 +48,7 @@ export class RecoveryPasswordComponent implements OnInit {
       .toPromise()
       .then(() => this.alertService.success('Solicitação enviada por email'))
       .then(() => this.loading = false)
-      .then(() => setInterval(() => this.redirectToLogin(), 3000))
+      .then(() => this.redirectToLogin())
       .catch((error) => {
         this.alertService.error(error);
         this.loading = false;
