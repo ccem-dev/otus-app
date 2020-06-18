@@ -31,14 +31,14 @@ export class AccountClientService {
   }
 
   public register(token: String, password: String): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}${environment.registerPasswordUrl}`, {token, password})
+    return this.http.post<any>(`${this.baseUrl.getBaseUrl()}${environment.registerPasswordUrl}`, {token, password})
       .pipe(map(result => {
         return result;
       }));
   }
 
   public resetPassword(email: String): Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}${environment.resetPassword}`, {userEmail: email})
+    return this.http.post<any>(`${this.baseUrl.getBaseUrl()}${environment.resetPassword}`, {userEmail: email})
       .pipe(map(result => result));
   }
 }
