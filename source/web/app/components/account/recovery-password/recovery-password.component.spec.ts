@@ -1,7 +1,7 @@
 import {async, ComponentFixture, discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, TestBed, tick} from '@angular/core/testing';
 
 import {RecoveryPasswordComponent} from './recovery-password.component';
-import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -31,6 +31,7 @@ describe('RecoveryPasswordComponent', () => {
       imports: [
         MatCardModule,
         MatFormFieldModule,
+        MatSnackBarModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterTestingModule,
@@ -84,7 +85,6 @@ describe('RecoveryPasswordComponent', () => {
     tick( 3000);
     expect(authenticationService.recoveryPassword).toHaveBeenCalledTimes(1);
     expect(component.loading).toBeFalse();
-    expect(alertService.success).toHaveBeenCalledTimes(1);
     expect(router.navigate).toHaveBeenCalledTimes(1);
 
     discardPeriodicTasks();
