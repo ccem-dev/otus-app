@@ -8,11 +8,11 @@ body {
 }
 
 .msg-sucess {
-  background-color: #3a51af;
+  background-color: #006400;
   color: #fff;
 }
 
 .msg-error {
-  background-color: #fd3c3f;
+  background-color: #bb0404;
   color: #fff;
 }
