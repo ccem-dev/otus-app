@@ -5,8 +5,9 @@ import {AppAlertComponent} from './components/alert/app-alert.component';
 import {Router, RouterOutlet} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,6 +38,7 @@ describe('AppComponent', () => {
         MatSidenavContent
       ],
       providers: [
+        HttpClient,
         CookieService
       ]
     }).compileComponents();
