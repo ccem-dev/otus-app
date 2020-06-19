@@ -1,7 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {CookieService} from "ngx-cookie-service";
-import {ActivityClientService} from "./activity-client.service";
 import {Observable, Subscriber} from "rxjs";
 import {EventClientService} from "./event-client.service";
 
@@ -14,7 +13,7 @@ describe('EventClientService', () => {
       imports: [HttpClientTestingModule],
       providers: [
         CookieService,
-        ActivityClientService
+        EventClientService
       ]
     }).compileComponents();
   }));
