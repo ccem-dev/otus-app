@@ -24,7 +24,7 @@ module.exports = function (config) {
     reporters: ['coverage-istanbul', 'progress'],
     port: 9876,
     client: {
-      captureConsole: false
+      captureConsole: true
     },
     combineBrowserReports: true,
     colors: true,
