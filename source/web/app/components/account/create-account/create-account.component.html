@@ -8,18 +8,14 @@
           <p>
             <mat-form-field fxFlex>
               <input type="password" matInput placeholder="Senha" formControlName="password">
-              <mat-hint>A senha deve conter no mínimo 8 caracteres com pelo menos uma letra maiúscula, uma minúscula e
-                um caractere especial
-              </mat-hint>
               <mat-error *ngIf="f.password.hasError('required')">
                 <span [innerHTML]="requiredMessage | sanitizeHtml"></span>
               </mat-error>
               <mat-error *ngIf="f.password.hasError('confirm')">
                 Senhas diferentes
               </mat-error>
-              <mat-error *ngIf="f.password.hasError('pattern')">
-                A senha deve conter no mínimo 8 caracteres com pelo menos uma letra maiúscula, uma minúscula e um
-                caractere especial
+              <mat-error *ngIf="f.password.hasError('minlength')">
+                A senha deve conter no mínimo 4 caracteres
               </mat-error>
             </mat-form-field>
           </p>
