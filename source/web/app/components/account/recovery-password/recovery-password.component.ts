@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {Router} from '@angular/router';
 import {AlertService, AuthenticationService} from '../../../providers';
+import {OtusToasterService} from '../../../shared/services/otus-toaster.service';
 
 
 const {required, email} = Validators;
@@ -23,7 +24,8 @@ export class RecoveryPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private otusToasterService: OtusToasterService
   ) {
   }
 
@@ -46,9 +48,9 @@ export class RecoveryPasswordComponent implements OnInit {
 
     this.authenticationService.recoveryPassword(informedEmail)
       .toPromise()
-      .then(() => this.alertService.success('Solicitação enviada por email'))
       .then(() => this.loading = false)
-      .then(() => setInterval(() => this.redirectToLogin(), 3000))
+      .then(() => this.redirectToLogin())
+      .then(() => this.otusToasterService.showMessage('Solicitação enviada por email'))
       .catch((error) => {
         this.alertService.error(error);
         this.loading = false;
