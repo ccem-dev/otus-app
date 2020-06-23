@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
@@ -12,9 +12,9 @@ import {ProjectContactValues} from '../project-contact-values';
 export class ProjectContactItemComponent implements OnInit {
 
   @Input() public contactItem: ProjectContact;
-  private networkLoading: boolean;
-  private isEmptyMessages: boolean;
-  private projectContactValues;
+  @Output() networkLoading: boolean;
+  @Output() isEmptyMessages: boolean;
+  @Output() projectContactValues;
 
   constructor(
     private router: Router,

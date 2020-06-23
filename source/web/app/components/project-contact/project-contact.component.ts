@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
 import {ProjectContact} from '../../model/contact/project-contact';
@@ -17,10 +17,10 @@ export class ProjectContactComponent implements OnInit {
   private projectContacts: ProjectContact[] = [];
   private user: User;
   private panelOpenState: boolean;
-  private viewCallFormState: boolean;
-  private networkLoading: boolean;
-  private isEmptyProjectContacts: boolean;
-  private projectContactValues;
+  @Output() viewCallFormState: boolean;
+  @Output() networkLoading: boolean;
+  @Output() isEmptyProjectContacts: boolean;
+  @Output() projectContactValues;
 
   constructor(
     private fb: FormBuilder,

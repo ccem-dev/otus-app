@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
@@ -12,9 +12,9 @@ import {Message} from '../../../model/contact/message/message';
 })
 export class MessagesComponent implements OnInit {
   public contact: ProjectContact;
-  private messages: Message[];
-  private networkLoading = true;
-  private projectContactValues;
+  @Output() messages: Message[];
+  @Output() networkLoading = true;
+  @Output() projectContactValues;
 
   constructor(
     private router: Router,
