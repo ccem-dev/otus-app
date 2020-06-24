@@ -13,6 +13,6 @@ export class ActivityClientService {
   }
 
   getActivity(ActivityId: String) {
-    return this.http.get<any>(`${this.baseUrl.getBaseUrl()}${environment.activityBasePath}$/${ActivityId}`);
+    return this.http.get<any>(`${this.baseUrl.getBaseUrl()}${environment.activityBasePath}/${ActivityId}`);
   }
 }
