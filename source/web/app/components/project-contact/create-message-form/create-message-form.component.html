@@ -1,0 +1,32 @@
+<div class="mat-body-2">
+    <span class="message-btn">
+       <button class="message-btn" *ngIf="!viewMessageFormState" mat-button mat-raised color="primary"
+               (click)="changeViewMessageFormState()">{{projectContactValues.title.btnAnswer}}
+       </button>
+    </span>
+
+  <form class="message-form" *ngIf="viewMessageFormState" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <otus-input-text-area title="{{projectContactValues.title.messageInputTextArea}}" class="message-input"
+                          controlName="text"
+                          [formGroup]="messageForm"
+                          rows=3
+                          placeholder="{{projectContactValues.placeholder.message.inputTextArea}}">
+    </otus-input-text-area>
+    <div class="btn-message-form">
+      <button mat-icon-button type="submit" mat-button color="primary"
+              matTooltip="{{projectContactValues.tooltip.save}}" matTooltipPosition="above">
+        <mat-icon>save</mat-icon>
+      </button>
+
+      <button mat-icon-button type="reset" mat-button color="primary" (click)="onReset()"
+              matTooltip="{{projectContactValues.tooltip.reset}}" matTooltipPosition="above">
+        <mat-icon>clear</mat-icon>
+      </button>
+
+      <button mat-icon-button type="button" mat-button color="primary" (click)="changeViewMessageFormState()"
+              matTooltip="{{projectContactValues.tooltip.return}}" matTooltipPosition="above">
+        <mat-icon>undo</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

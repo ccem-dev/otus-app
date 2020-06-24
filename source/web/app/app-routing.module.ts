@@ -8,6 +8,8 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {TasksComponent} from './components/dashboard/tasks/tasks.component';
 import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {RecoveryPasswordComponent} from "./components/account/recovery-password/recovery-password.component";
+import {ProjectContactComponent} from './components/project-contact/project-contact.component';
+import {MessagesComponent} from './components/project-contact/messages/messages.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,19 @@ const routes: Routes = [
     path: 'recovery-password',
     component: RecoveryPasswordComponent
   },
+
+  {
+    path: 'project-contact',
+    component: ProjectContactComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'project-contact/:id/messages',
+    component:MessagesComponent,
+    canActivate: [AuthGuard]
+  },
+
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -38,6 +53,7 @@ const routes: Routes = [
       }
     ]
   },
+
   {
     path: '**',
     component: ErrorPageComponent

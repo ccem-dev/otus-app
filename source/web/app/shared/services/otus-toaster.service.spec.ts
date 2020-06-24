@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { OtusToasterService } from './otus-toaster.service';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material';
+import {ProjectContactValues} from '../../components/project-contact/project-contact-values';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('OtusToasterService', () => {
