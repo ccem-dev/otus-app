@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatDatepickerModule,
+  MatButtonModule, MatCardModule, MatChipsModule, MatDatepickerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatSidenavModule,
+  MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatRadioModule, MatSidenavModule, MatSnackBarModule,
   MatToolbarModule, MatTooltipModule,
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import {SanitizeHtmlPipe} from './utils/sanitize-html/sanitize-html.pipe';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
+
 import {CreateAccountComponent} from './components/account/create-account/create-account.component';
 import {EventService} from './providers';
 import {EventsComponent} from './components/dashboard/tasks/events/events.component';
@@ -34,7 +34,7 @@ import {ErrorInterceptor, JwtInterceptor} from "./utils";
 import {ActivityClientService} from "./providers/rest/activity-client.service";
 import {ActivityEventService} from "./providers/activity-event.service";
 import { RecoveryPasswordComponent } from './components/account/recovery-password/recovery-password.component';
-
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -76,7 +76,12 @@ import { RecoveryPasswordComponent } from './components/account/recovery-passwor
     MatDatepickerModule,
     MatRadioModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatChipsModule,
+    MatSnackBarModule
+  ],
+  exports: [
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -85,6 +90,7 @@ import { RecoveryPasswordComponent } from './components/account/recovery-passwor
     ActivityEventService,
     EventClientService,
     ActivityClientService,
+    HttpClientModule,
     CookieService
   ],
   bootstrap: [AppComponent]
