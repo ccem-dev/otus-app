@@ -1,0 +1,44 @@
+.pci-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: .1fr .1fr .5fr .1fr;
+  grid-template-areas: "info" "mainMessage" "lastMessage" "message"
+}
+
+.main-message {
+  grid-area: mainMessage;
+}
+
+.info {
+  grid-area: info;
+  display: flex;
+  justify-content: space-between;
+}
+
+.last-message-spinner {
+  grid-area: lastMessage;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.last-message {
+  grid-area: lastMessage;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 10px;
+}
+
+.message {
+  grid-area: message;
+}
+
+.mat-icon-button {
+  margin-left: 20px;
+}

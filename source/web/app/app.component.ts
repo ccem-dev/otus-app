@@ -64,4 +64,7 @@ export class AppComponent implements OnInit {
     return !!this.authenticationService.currentUserValue;
   }
 
+  redirectToProjectContact() {
+    this.router.navigate(['/project-contact']);
+  }
 }

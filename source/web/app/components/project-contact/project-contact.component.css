@@ -1,0 +1,85 @@
+.cp-layout {
+  display: grid;
+  height: 100vh;
+  background-color: #f3f3f3;
+  grid-template-columns: 9.5fr .5fr;
+  grid-template-rows: 1fr .1fr 3fr 3fr 3fr;
+  grid-template-areas: "title solicitation" "formContact formContact" "historic historic"
+}
+
+@media screen and (min-width: 100px) {
+  .chip {
+    display: flex;
+    width: 100px;
+    margin-top: 10px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .chip {
+    display: flex;
+    width: 100px;
+    margin-top: 0px;
+  }
+}
+
+.title {
+  grid-area: title;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-form-contact {
+  grid-area: formContact;
+  margin: 10px;
+}
+
+.form-contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.historic {
+  grid-area: historic;
+  margin: 8px;
+}
+
+.solicitation-subtitle {
+  display: flex;
+  flex-direction: column-reverse;
+  grid-area: solicitation;
+  margin: 20px;
+}
+
+.contactItem {
+  display: flex;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.msg-empty-contacts {
+  text-align: center;
+}
+
+.btn-form-row {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.historic-panel-title {
+  display: flex;
+  align-items: baseline;
+  margin-top: 1vh;
+}
+
+.history-subtitle {
+  display: flex;
+  flex-direction: row-reverse;
+  grid-area: subtitle;
+  margin-right: 20px;
+}
+
+.mat-icon-button {
+  margin-left: 20px;
+}

@@ -34,6 +34,13 @@ import {ErrorInterceptor, JwtInterceptor} from "./utils";
 import {ActivityClientService} from "./providers/rest/activity-client.service";
 import {ActivityEventService} from "./providers/activity-event.service";
 import { RecoveryPasswordComponent } from './components/account/recovery-password/recovery-password.component';
+import { ProjectContactComponent } from './components/project-contact/project-contact.component';
+import { InputTextComponent } from './shared/components/fields/input-text/input-text.component';
+import { InputTextAreaComponent } from './shared/components/fields/input-text-area/input-text-area.component';
+import { ProjectContactItemComponent } from './components/project-contact/project-contact-item/project-contact-item.component';
+import { MessagesComponent } from './components/project-contact/messages/messages.component';
+import { OtusSpinnerComponent } from './shared/components/spinner/otus-spinner/otus-spinner.component';
+import { CreateMessageFormComponent } from './components/project-contact/create-message-form/create-message-form.component';
 import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
@@ -48,7 +55,14 @@ import {CookieService} from "ngx-cookie-service";
     SanitizeHtmlPipe,
     CreateAccountComponent,
     TasksComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    ProjectContactComponent,
+    InputTextComponent,
+    InputTextAreaComponent,
+    ProjectContactItemComponent,
+    MessagesComponent,
+    OtusSpinnerComponent,
+    CreateMessageFormComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent
@@ -82,6 +96,8 @@ import {CookieService} from "ngx-cookie-service";
     MatSnackBarModule
   ],
   exports: [
+    InputTextComponent,
+    InputTextAreaComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
