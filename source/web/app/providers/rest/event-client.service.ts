@@ -17,6 +17,6 @@ export class EventClientService {
   }
 
   accomplishEvent(EventId: String) {
-    return this.http.put<any>(`${this.baseUrl.getBaseUrl()}${environment.accomplishEvent}/${EventId}`,{});
+    return this.http.put<any>(`${this.baseUrl.getBaseUrl()}${environment.followUpBasePath}${environment.accomplishEvent}/${EventId}`,{});
   }
 }
