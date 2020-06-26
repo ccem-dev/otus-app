@@ -1,8 +1,10 @@
-﻿import {Component, OnInit, OnDestroy, NgZone} from '@angular/core';
-import {AlertService} from '../../../providers';
-import {EventService} from '../../../providers/event.service';
+﻿import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {EventService} from '../../../providers/event/event.service';
 import {Router} from '@angular/router';
-import {events} from "./events/events";
+import {events} from './events/events';
+import {OwnerService} from '../../../shared/owner/owner.service';
+// @ts-ignore
+import {AlertService} from '../../../providers';
 
 @Component({
   selector: 'tasks',
@@ -12,18 +14,17 @@ import {events} from "./events/events";
 
 export class TasksComponent implements OnInit, OnDestroy {
   participantEvents = [];
-  private eventList: Object;
   isLoading = false;
-  private projects: any;
   eventListNotFound = false;
+  private eventList: Object;
+  private projects: any;
 
-
-  constructor(private alertService: AlertService, private eventService: EventService, private router: Router, private ngZone: NgZone) {
+  constructor(private ownerService: OwnerService, private alertService: AlertService, private eventService: EventService, private router: Router, private ngZone: NgZone) {
     this.eventList = events;
   }
 
   ngOnInit() {
-    const ownerId = this.eventService.getOwner();
+    const ownerId = this.ownerService.getOwner();
     if (ownerId) {
       this.isLoading = true;
       this.eventService.getParticipantEvents(ownerId).subscribe(response => {

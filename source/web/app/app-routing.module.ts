@@ -11,6 +11,11 @@ import {RecoveryPasswordComponent} from "./components/account/recovery-password/
 import {ProjectContactComponent} from './components/project-contact/project-contact.component';
 import {MessagesComponent} from './components/project-contact/messages/messages.component';
 
+import {ExamResultsComponent} from './components/exam-results/exam-results.component'
+import {ExamReportComponent} from "./components/exam-results/exam-report/exam-report.component";
+
+
+
 const routes: Routes = [
   {
     path: '',
@@ -35,6 +40,17 @@ const routes: Routes = [
     component: ProjectContactComponent,
     canActivate: [AuthGuard]
   },
+
+ {
+    path: 'exam-results',
+    component: ExamResultsComponent
+  },
+
+{
+    path: 'exam-report',
+    component: ExamReportComponent
+  }
+  ,
 
   {
     path: 'project-contact/:id/messages',

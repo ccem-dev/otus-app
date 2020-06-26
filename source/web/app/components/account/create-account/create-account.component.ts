@@ -1,7 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AccountClientService, AlertService, AuthenticationService} from '../../../providers';
+import {AuthenticationService} from '../../../providers/account/authentication/authentication.service';
+import {AccountClientService} from '../../../providers/rest/account/account-client.service'
+import {AlertService} from '../../../providers/alert/alert.service'
 import {first} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
 import {MustMatch} from '../../../utils';

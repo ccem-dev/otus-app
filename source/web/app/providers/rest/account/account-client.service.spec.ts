@@ -2,8 +2,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {CookieService} from "ngx-cookie-service";
 import {Observable, Subscriber} from "rxjs";
-import {AccountClientService} from './account/account-client.service';
-
+import {AccountClientService} from "./account-client.service";
 
 describe('AccountClientService', () => {
   let service: AccountClientService;

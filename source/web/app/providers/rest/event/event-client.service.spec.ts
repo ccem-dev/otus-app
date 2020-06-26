@@ -2,10 +2,10 @@ import {async, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {CookieService} from 'ngx-cookie-service';
 import {Subscriber} from 'rxjs';
-import {ActivityClientService} from './activity/activity-client.service';
+import {EventClientService} from './event-client.service';
 
-describe('ActivityClientService', () => {
-  let service: ActivityClientService;
+describe('EventClientService', () => {
+  let service: EventClientService;
   let httpMock: HttpTestingController;
 
   beforeEach(async(() => {
@@ -13,13 +13,13 @@ describe('ActivityClientService', () => {
       imports: [HttpClientTestingModule],
       providers: [
         CookieService,
-        ActivityClientService
+        EventClientService
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    service = TestBed.get(ActivityClientService);
+    service = TestBed.get(EventClientService);
     httpMock = TestBed.get(HttpTestingController);
   });
 
@@ -27,8 +27,13 @@ describe('ActivityClientService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should getActivity', () => {
-    service.getActivity('1').subscribe(response => {
+  it('should getEvents and return a subscriber', () => {
+    service.getEvents('13125').subscribe(response => {
+      expect(response).toEqual(Subscriber);
+    });
+  });
+  it('should accomplishEvent and return a subscriber', () => {
+    service.accomplishEvent('32152351').subscribe(response => {
       expect(response).toEqual(Subscriber);
     });
   });
