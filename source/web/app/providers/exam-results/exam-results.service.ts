@@ -15,8 +15,8 @@ export class ExamResultsService {
     return this.examClientService.getReportByParticipant(ownerRn)
       .pipe(
         // tap(ver1 => console.log(ver1)),
-        concatMap(response => response['data']),
-        mergeMap(report => {
+        mergeMap(response => response['data']),
+        concatMap(report => {
           console.log(report['label']);
           if ((report['label']) !== 'Retinografia') {
             return this.examClientService.getFullReport(ownerRn, report['_id']);
