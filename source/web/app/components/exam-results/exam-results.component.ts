@@ -2,7 +2,7 @@ import {Component, OnInit, Output} from '@angular/core';
 import {ExamResultsService} from '../../providers/exam-results/exam-results.service';
 import {OwnerService} from '../../shared/owner/owner.service';
 import {Report} from '../../model/exam-results/report';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 @Component({
@@ -12,10 +12,10 @@ import {tap} from 'rxjs/operators';
 })
 export class ExamResultsComponent implements OnInit {
 
-  @Output() reports: Report[] = [];
+  // @Output() reports: Report[] = [];
+  @Output() reports$: Observable<Report[]>;
   @Output() owner;
   @Output() loading: boolean = false;
-  private examResults$: Subscription;
 
   constructor(private examResultsService: ExamResultsService,
               private ownerService: OwnerService) {
@@ -23,7 +23,7 @@ export class ExamResultsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getReportByParticipant(this.owner);
+    this.reports$ = this.getReportByParticipant(this.owner);
   }
 
   createPDF() {
@@ -33,17 +33,17 @@ export class ExamResultsComponent implements OnInit {
     // doc.save()
   }
 
-  ngOnDestroy() {
-    this.examResults$.unsubscribe();
-  }
+  // private getReportByParticipant(ownerRn: string): void {
+  //   this.examResultsService.getReportByParticipant(ownerRn);
+      // .pipe(tap(result => console.log(result)))
+      // .subscribe(reportFull => [
+      //   this.reports = reportFull,
+      //   this.loading = false],
+      // );
+  // }
 
-  private getReportByParticipant(ownerRn: string): void {
-    this.examResults$ = this.examResultsService.getReportByParticipant(ownerRn)
-      .pipe(tap(result => console.log(result)))
-      .subscribe(reportFull => [
-        this.reports = reportFull,
-        this.loading = false],
-      );
+  private getReportByParticipant(ownerRn: string): Observable<Report[]>{
+   return this.examResultsService.getReportByParticipant(ownerRn);
   }
 
   private goToReport(report: Report): void {
