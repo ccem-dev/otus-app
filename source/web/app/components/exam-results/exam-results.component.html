@@ -16,7 +16,7 @@
             <span><i class="material-icons md-14 red600">fiber_manual_record</i> Pendentes</span>
           </div>
           <mat-divider></mat-divider>
-          <mat-list class="datasources-list" *ngFor="let dataSources of report.dataSources">
+          <mat-list class="datasources-list"  *ngFor="let dataSources of report.dataSources | async">
             <mat-list-item class="datasources-item">
               <i *ngIf="!dataSources.result[0]" class="material-icons md-14 red600">fiber_manual_record</i>
               <i *ngIf="dataSources.result[0]" class="material-icons md-14 green600">fiber_manual_record</i>
