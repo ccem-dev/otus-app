@@ -5,7 +5,6 @@ import {Report} from '../../model/exam-results/report';
 import {Subscription} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
-
 @Component({
   selector: 'source-exam-results',
   templateUrl: './exam-results.component.html',
@@ -14,7 +13,6 @@ import {tap} from 'rxjs/operators';
 export class ExamResultsComponent implements OnInit {
 
   @Output() reports: Report[] = [];
-  //@Output() reports$: Observable<Report[]>;
   @Output() owner;
   @Output() loading: boolean = false;
   private examResults$: Subscription;
@@ -28,7 +26,6 @@ export class ExamResultsComponent implements OnInit {
     this.getReportByParticipant(this.owner);
   }
 
-
   createPDF() {
     // const doc = new jsPDF()
     // const element = document.querySelector('div')
@@ -40,22 +37,12 @@ export class ExamResultsComponent implements OnInit {
     this.examResults$.unsubscribe();
   }
 
-
-  // private getReportByParticipant(ownerRn: string): void {
-  //   // @ts-ignore
-  //   this.examResultsService.getReportByParticipant(ownerRn)
-  //     .toPromise()
-  //     .then((result) => this.reports = result)
-  //     .catch(e => console.log("erro captado: "+ e))
-  // }
-
   private getReportByParticipant(ownerRn: string): void {
     this.examResults$ = this.examResultsService.getReportByParticipant(ownerRn)
       .pipe(tap(result => console.log(result)))
       .subscribe(reportFull => [
-          this.reports = reportFull,
-          this.loading = false],
-        // error => console.log(error)
+        this.reports = reportFull,
+        this.loading = false],
       );
   }
 

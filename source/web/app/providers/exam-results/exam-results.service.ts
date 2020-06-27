@@ -1,27 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Report} from '../../model/exam-results/report';
 import {ExamClientService} from '../rest/exam-results/exam-client.service';
-import {concatMap, map, mergeMap, tap, toArray} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {concatMap, filter, map, mergeMap, toArray} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExamResultsService {
-  // }
-  private invalidResponse: Observable<any>;
-
-  // getReportByParticipant(ownerRn: string) {
-  //   let examList = [];
-  //   let reportFull$ = this.examClientService.getReportByParticipant(ownerRn)
-  //     .pipe(
-  //       concatMap(response => response['data']),
-  //       mergeMap(report => this.examClientService.getFullReport(ownerRn, report['_id'])),
-  //       tap((item) => console.log(item)),
-  //       map(item => examList.push(new Report(item.data))),
-  //       map(() => examList)
-  //     );
-  //   return reportFull$;
 
   constructor(private examClientService: ExamClientService) {
   }
@@ -35,10 +20,13 @@ export class ExamResultsService {
           console.log(report['label']);
           if ((report['label']) !== 'Retinografia') {
             return this.examClientService.getFullReport(ownerRn, report['_id']);
-          } else return [{data: {}}]
+          } else {
+            return [{data: {}}];
+          }
         }),
         //tap((ver2 => console.log(ver2))),
         map(item => this.isValidReport(item.data)),
+        filter(valid => valid !== undefined),
         toArray()
       );
   }
@@ -47,7 +35,8 @@ export class ExamResultsService {
     try {
       return new Report(candidate);
     } catch (e) {
-      console.log('não é reportValido');
+      //throw new Error('Invalid Report')
+      console.log('Invalid Report');
     }
   }
 }
