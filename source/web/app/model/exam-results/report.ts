@@ -26,7 +26,7 @@ export class Report{
     this.dirty = false;
     this.template = report.template;
     //@ts-ignore
-    this.dataSources = report.dataSources
+    this.dataSources = report.dataSources.filter(data => data.key !== "participant");
     this.missingDataSources = [];
     this.fieldsError = false;
     this.compiledTemplate = undefined;

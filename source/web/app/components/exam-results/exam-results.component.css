@@ -6,6 +6,22 @@
   margin: 8px;
 }
 
+.search-form {
+  margin: 20px 100px;
+}
+
+.exam-title-page {
+  margin-top: 30px;
+}
+
+.exam-title-page h1{
+  font-size: 2rem;
+}
+
+.search-field{
+  width: 100%;
+}
+
 .exam-panel-title{
   display: flex;
   align-items: center;
