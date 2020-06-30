@@ -4,6 +4,7 @@ import {OwnerService} from '../../shared/owner/owner.service';
 import {Report} from '../../model/exam-results/report';
 import {interval, Observable, of, Subscription} from 'rxjs';
 import {concatMap, switchMap } from 'rxjs/operators';
+import {getMatAutocompleteMissingPanelError} from "@angular/material/autocomplete";
 
 @Component({
   selector: 'source-exam-results',
@@ -12,12 +13,13 @@ import {concatMap, switchMap } from 'rxjs/operators';
 })
 export class ExamResultsComponent implements OnInit {
 
-  @Output() reports: Report[] = [];
-  // @Output() reports$: Observable<Report[]>;
-  @Output() owner;
-  @Output() loading: boolean = false;
+  reports: Report[] = [];
+  owner: string = "";
 
-  search: string = ""
+  loading: boolean = true;
+
+  currentPage: number = 1;
+  hasMore: boolean = true;
 
   constructor(private examResultsService: ExamResultsService,
               private ownerService: OwnerService) {
@@ -28,27 +30,27 @@ export class ExamResultsComponent implements OnInit {
     this.getReportByParticipant(this.owner);
   }
 
-  private getReportByParticipant(ownerRn: string){
-    this.examResultsService.getReportByParticipant(this.owner).subscribe(res => {
+  private getReportByParticipant(ownerRn: string, page:number=1){
+    this.loading = true
+    this.examResultsService.getReportByParticipant(ownerRn, page).subscribe(response => {
       //@ts-ignore
-      of(res.data).pipe(
-        switchMap(repo => repo),
-        //@ts-ignore
-        concatMap(res => this.examResultsService.getFullReport(ownerRn, res._id)),
-      ).subscribe(response => {
-        //@ts-ignore
-        this.reports = this.reports.concat(new Report(response.data))
-      })
-    })
+      this.reports = this.reports.concat(new Report(response.data))
+    }, error => {
+      console.info(error);
+      this.hasMore = false;
+      this.loading= false;
+      }
+     ,()=> {this.loading = false}
+    )
   }
 
-  // private getReportByParticipant(ownerRn: string): Observable<Report[]>{
-  //  return this.examResultsService.getReportByParticipant(ownerRn);
-  // }
+  loadMore() {
+    this.loading = true
+    this.getReportByParticipant(this.owner, ++this.currentPage)
+  }
 
   private goToReport(report: Report): void {
     // this.examReportService.setReport(report)
     // this.router.navigateByUrl("/exam-report")
   }
-
 }

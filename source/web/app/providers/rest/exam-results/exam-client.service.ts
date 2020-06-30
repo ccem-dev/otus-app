@@ -11,8 +11,8 @@ export class ExamClientService {
 
   constructor(private http: HttpClient, private baseUrl: BaseUrlResolveService) { }
 
-  getReportByParticipant(ownerRn: string){
-    return this.http.get<Report[]>(`${this.baseUrl.getBaseUrl()}${environment.reportBasePath}/participant/list/${ownerRn}`)
+  getReportByParticipant(ownerRn: string, page: number = 1){
+    return this.http.get<Report[]>(`${this.baseUrl.getBaseUrl()}${environment.reportBasePath}/participant/list/app/${ownerRn}?page=${page}`)
   }
   getFullReport(ownerRn: string, reportId: string){
     return this.http.get<any>(`${this.baseUrl.getBaseUrl()}${environment.reportBasePath}/participant/${ownerRn}/${reportId}`)

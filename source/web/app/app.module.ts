@@ -55,7 +55,8 @@ import {ExamReportComponent} from './components/exam-results/exam-report/exam-re
 import {ActivityEventService} from './providers/activity/activity-event.service';
 import {ActivityClientService} from './providers/rest/activity/activity-client.service';
 import {EventClientService} from './providers/rest/event/event-client.service';
-import {MatProgressBarModule} from '@angular/material/typings/progress-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll'
 
 @NgModule({
   declarations: [
@@ -110,6 +111,8 @@ import {MatProgressBarModule} from '@angular/material/typings/progress-bar';
     MatExpansionModule,
     MatChipsModule,
     MatSnackBarModule,
+    MatProgressBarModule,
+    InfiniteScrollModule
   ],
   exports: [
     InputTextComponent,

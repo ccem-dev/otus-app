@@ -13,6 +13,7 @@ export class Report{
   hasError?: boolean;
   hasAllDatasources?: boolean;
   isAvailable?: boolean;
+  isInApp: boolean;
   loading?: boolean;
   status?: {
     color?: string,
@@ -34,6 +35,7 @@ export class Report{
     this.hasAllDatasources = false;
     this.isAvailable = false;
     this.loading = false;
+    this.isInApp = report.isInApp
     this.status = {
       color: "black",
       icon: "load",

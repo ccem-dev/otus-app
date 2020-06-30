@@ -2,15 +2,8 @@
   <div fxLayoutAlign="center center" class="exam-title-page">
     <h1>Resultados de exames</h1>
   </div>
-  <form class="search-form">
-    <mat-form-field class="search-field">
-      <mat-label>procurar exames</mat-label>
-      <input matInput [value]="search">
-      <button mat-button matSuffix><mat-icon matSuffix>search</mat-icon></button>
-    </mat-form-field>
-  </form>
   <div class="exam-results-list"><!--*ngIf="!networkLoading && !isEmptyProjectContacts"-->
-    <mat-accordion *ngFor="let report of reports"><!--*ngFor="let contact of projectContacts"-->
+    <mat-accordion  *ngFor="let report of reports"><!--*ngFor="let contact of projectContacts"-->
       <mat-expansion-panel class="exam-item mat-elevation-z4"><!--(opened)-->
         <mat-expansion-panel-header>
           <mat-panel-title class="exam-panel-title">
@@ -46,5 +39,6 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-<!--  <mat-progress-bar *ngIf="loading" mode="indeterminate" value="40"></mat-progress-bar>-->
+  <mat-progress-bar *ngIf="loading && hasMore" mode="indeterminate" value="40"></mat-progress-bar>
+  <button *ngIf="hasMore" mat-button fxLayoutAlign="center center" (click)="loadMore()">Carregar Mais+</button>
 </div>
