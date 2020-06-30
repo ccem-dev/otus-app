@@ -1,18 +1,24 @@
-<div  fxLayout="column" fxFlexFill >
+<div fxLayout="column" fxFlexFill>
   <mat-toolbar color="primary" *ngIf="currentUser">
     <mat-toolbar-row fxLayoutAlign="start center" fxLayoutGap="10px">
       <button mat-button id="title" routerLink="/dashboard">
-        <mat-icon>home</mat-icon>{{ title }}</button>
+        <mat-icon>home</mat-icon>
+        {{ title }}</button>
       <span fxFlex></span>
       <div fxFlex="" fxLayoutAlign="end center" fxLayoutGap="10px">
-        <a class="mat-body" routerLink="/project-contact">Contato</a>
- <button mat-button routerLink="/exam-results">
-          <mat-icon>description</mat-icon>Exames
-        </button>        
+        <button mat-button routerLink="/project-contact">
+          <mat-icon>comments</mat-icon>
+          Contato
+        </button>
+        <button mat-button routerLink="/exam-results">
+          <mat-icon>description</mat-icon>
+          Exames
+        </button>
 
-<button mat-button [matMenuTriggerFor]="menu">
+        <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon aria-hidden="false" aria-label="user" matBadgeOverlap="false" matBadgeColor="warn"
-                    matBadgePosition="before">account_circle</mat-icon>
+                    matBadgePosition="before">account_circle
+          </mat-icon>
           {{ currentUser.name }}
         </button>
         <mat-menu #menu="matMenu" fxLayout="column">
