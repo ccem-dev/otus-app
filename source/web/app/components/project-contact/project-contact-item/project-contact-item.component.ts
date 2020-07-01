@@ -28,9 +28,11 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   loadContactItemContent(projectContact: ProjectContact) {
+    let messages;
     if (!projectContact.messages) {
       this.projectContactService.getLastMessage(projectContact._id)
-        .subscribe(messages => [
+        .subscribe(response => [
+          messages = response.data,
           this.verifyMessages(messages),
           messages.length > 0 ? this.projectContactService.getSender(messages) : null,
           this.projectContactService.addLastMessage(projectContact, messages[messages.length-1]),
