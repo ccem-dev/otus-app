@@ -18,6 +18,7 @@ export class ProjectContactService {
   }
 
   createProjectContact(projectContact: ProjectContact): Observable<ProjectContact> {
+    delete projectContact['_id'];
     return this.projectContactClientService
       .createIssue(ProjectContactValues.resources.issues, projectContact);
   }
