@@ -12,9 +12,9 @@ import {ProjectContactValues} from '../project-contact-values';
 export class ProjectContactItemComponent implements OnInit {
 
   @Input() public contactItem: ProjectContact;
-  private networkLoading: boolean;
-  private isEmptyMessages: boolean;
-  private projectContactValues;
+  networkLoading: boolean;
+  isEmptyMessages: boolean;
+  projectContactValues;
 
   constructor(
     private router: Router,

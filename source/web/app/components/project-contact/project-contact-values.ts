@@ -15,7 +15,7 @@ export const ProjectContactValues = {
     finalized: 'Finalizado'
   },
   resources: {
-    issues: 'project-communication/issues',
+    issues: 'issues',
     messages: 'messages',
     senders: 'senders'
   },

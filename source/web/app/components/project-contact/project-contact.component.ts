@@ -16,11 +16,11 @@ export class ProjectContactComponent implements OnInit {
   private projectContactForm: FormGroup;
   private projectContacts: ProjectContact[] = [];
   private user: User;
-  private panelOpenState: boolean;
-  private viewCallFormState: boolean;
-  private networkLoading: boolean;
-  private isEmptyProjectContacts: boolean;
-  private projectContactValues;
+  panelOpenState: boolean;
+  viewCallFormState: boolean;
+  networkLoading: boolean;
+  isEmptyProjectContacts: boolean;
+  projectContactValues;
 
   constructor(
     private fb: FormBuilder,
@@ -63,7 +63,7 @@ export class ProjectContactComponent implements OnInit {
   getProjectContacts(): void {
     this.projectContactService.getProjectContacts()
       .subscribe((projectContacts: ProjectContact[]) => [
-        this.projectContacts = projectContacts,
+        this.projectContacts = projectContacts['data'],
         this.verifyProjectContacts(this.projectContacts),
         this.networkLoading = false
       ]);

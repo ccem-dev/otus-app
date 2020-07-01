@@ -12,9 +12,9 @@ import {Message} from '../../../model/contact/message/message';
 })
 export class MessagesComponent implements OnInit {
   public contact: ProjectContact;
-  private messages: Message[];
-  private networkLoading = true;
-  private projectContactValues;
+  messages: Message[];
+  networkLoading = true;
+  projectContactValues;
 
   constructor(
     private router: Router,

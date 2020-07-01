@@ -16,7 +16,7 @@ export class ProjectContactClientService {
     private cookieService: CookieService
   ) {
     if (this.cookieService.get(environment.API_URL)) {
-      this.baseUrl = this.cookieService.get(environment.API_URL) + environment.projectComunication;
+      this.baseUrl = this.cookieService.get(environment.API_URL);
     } else {
       this.baseUrl = environment.baseUrl + environment.projectComunication;
     }
