@@ -6,6 +6,7 @@ import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 import {AuthenticationService} from '../../providers';
 import {User} from '../../model';
 import {ProjectContactValues} from './project-contact-values';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'source-project-contact',
@@ -13,14 +14,14 @@ import {ProjectContactValues} from './project-contact-values';
   styleUrls: ['./project-contact.component.css']
 })
 export class ProjectContactComponent implements OnInit {
-  private projectContactForm: FormGroup;
-  private projectContacts: ProjectContact[] = [];
-  private user: User;
   panelOpenState: boolean;
   viewCallFormState: boolean;
   networkLoading: boolean;
   isEmptyProjectContacts: boolean;
   projectContactValues;
+  private projectContactForm: FormGroup;
+  private projectContacts: ProjectContact[] = [];
+  private user: User;
 
   constructor(
     private fb: FormBuilder,
@@ -60,24 +61,26 @@ export class ProjectContactComponent implements OnInit {
     this.onReset();
   }
 
-  getProjectContacts(): void {
-    this.projectContactService.getProjectContacts()
-      .subscribe((projectContacts: ProjectContact[]) => [
-        this.projectContacts = projectContacts['data'],
-        this.verifyProjectContacts(this.projectContacts),
-        this.networkLoading = false
-      ]);
-  }
-
   private create(projectContact: ProjectContact): void {
     this.projectContactService.createProjectContact(projectContact)
       .subscribe(() => [
-          this.getProjectContacts(),
           this.changeViewCallFormState(),
-          this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createSuccess)
+          this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createSuccess),
+          this.getProjectContacts(),
+
         ],
         () => this.otusToasterService
           .showMessage(this.projectContactValues.toaster.issue.createFail, true));
+  }
+
+  getProjectContacts(): void {
+
+    this.projectContactService.getProjectContacts()
+      .subscribe( ({ data }: any) => [
+        this.projectContacts = data,
+        this.verifyProjectContacts(this.projectContacts),
+        this.networkLoading = false,
+      ])
   }
 
   private verifyProjectContacts(projectContacts): void {

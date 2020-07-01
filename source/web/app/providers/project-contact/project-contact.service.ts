@@ -34,6 +34,7 @@ export class ProjectContactService {
   }
 
   createMessage(projectContactId, message: Message): Observable<any> {
+    delete message['_id'];
     return this.projectContactClientService.createMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}`, message);
   }
 
@@ -51,8 +52,8 @@ export class ProjectContactService {
       this.projectContactClientService.getSender(`${ProjectContactValues.resources.senders}/${message.sender}`)
         .subscribe((sender) => {
           message.senderInfo = {};
-          message.senderInfo.objectType = sender.objectType;
-          message.senderInfo.name = sender.name;
+          message.senderInfo.objectType = sender.data.objectType;
+          message.senderInfo.name = sender.data.name;
         });
     });
   }
