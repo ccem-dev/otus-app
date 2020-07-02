@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
 import {ProjectContact} from '../../model/contact/project-contact';
@@ -6,7 +6,7 @@ import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 import {AuthenticationService} from '../../providers';
 import {User} from '../../model';
 import {ProjectContactValues} from './project-contact-values';
-import {debounceTime} from 'rxjs/operators';
+import {debounceTime, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'source-project-contact',
@@ -20,8 +20,9 @@ export class ProjectContactComponent implements OnInit {
   isEmptyProjectContacts: boolean;
   projectContactValues;
   private projectContactForm: FormGroup;
-  private projectContacts: ProjectContact[] = [];
+  @Output() projectContacts: ProjectContact[] = [];
   private user: User;
+
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +45,7 @@ export class ProjectContactComponent implements OnInit {
     this.projectContactValues = ProjectContactValues;
   }
 
+
   onSubmit() {
     this.projectContactForm.markAllAsTouched();
     if (this.projectContactForm.invalid) {
@@ -61,26 +63,54 @@ export class ProjectContactComponent implements OnInit {
     this.onReset();
   }
 
+  // getProjectContacts(): void {
+  //   this.projectContactService.getProjectContacts()
+  //     .toPromise()
+  //     .then(({data}: any) => [
+  //       this.projectContacts = data,
+  //       this.verifyProjectContacts(this.projectContacts),
+  //       this.networkLoading = false,
+  //     ]);
+  // }
+
+
+  getProjectContacts(): void {
+    this.projectContactService.getProjectContacts()
+      .pipe(
+        tap((data) => {
+          console.log(data);
+        }))
+      .subscribe(({data}: any) => [
+        this.projectContacts = data,
+        this.verifyProjectContacts(this.projectContacts),
+        this.networkLoading = false
+  ]);
+  }
+
+
+  // getProjectContacts(): void {
+  //   this.projectContactService.getProjectContacts()
+  //     .pipe(
+  //       tap((data) => {
+  //         console.log(data);
+  //       }))
+  //     .subscribe(({data}: any) => [
+  //       this.projectContacts = data,
+  //       this.verifyProjectContacts(this.projectContacts),
+  //       this.networkLoading = false,
+  //     ]);
+  // }
+
   private create(projectContact: ProjectContact): void {
     this.projectContactService.createProjectContact(projectContact)
       .subscribe(() => [
           this.changeViewCallFormState(),
           this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createSuccess),
-          this.getProjectContacts(),
-
+          this.getProjectContacts()
         ],
         () => this.otusToasterService
-          .showMessage(this.projectContactValues.toaster.issue.createFail, true));
-  }
+          .showMessage(this.projectContactValues.toaster.issue.createFail, true))
 
-  getProjectContacts(): void {
-
-    this.projectContactService.getProjectContacts()
-      .subscribe( ({ data }: any) => [
-        this.projectContacts = data,
-        this.verifyProjectContacts(this.projectContacts),
-        this.networkLoading = false,
-      ])
   }
 
   private verifyProjectContacts(projectContacts): void {

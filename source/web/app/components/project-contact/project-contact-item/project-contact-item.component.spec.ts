@@ -90,8 +90,8 @@ describe('ProjectContactItemComponent', () => {
     Mock = {
       pcs:
         {
-          returnGetLastMessage: new BehaviorSubject([MockValues.contactProject.messages[-1]]),
-          returnGetLastMessageNotFound: new BehaviorSubject([])
+          returnGetLastMessage: new BehaviorSubject({ data:[MockValues.contactProject.messages[-1]]}),
+          returnGetLastMessageNotFound: new BehaviorSubject({data:[]})
         }
     };
   }

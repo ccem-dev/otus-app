@@ -136,8 +136,8 @@ describe('ProjectContactComponent', () => {
       pcs: {
         returnCreateProjectContact: new BehaviorSubject(true),
         returnFailCreateProjectContact: () => throwError(new Error('Fake error')),
-        returnGetProjectContacts: new BehaviorSubject(MockValues.contactProject.issues),
-        returnGetEmptyProjectContacts: new BehaviorSubject([])
+        returnGetProjectContacts: new BehaviorSubject({ data: MockValues.contactProject.issues}),
+        returnGetEmptyProjectContacts: new BehaviorSubject({ data:[]})
       }
     }
   }

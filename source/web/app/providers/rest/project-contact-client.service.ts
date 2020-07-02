@@ -4,6 +4,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../../environments/environment';
 import {ProjectContact} from '../../model/contact/project-contact';
 import {Message} from '../../model/contact/message/message';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ProjectContactClientService {
     }
   }
 
-  getIssues(resource) {
+  getIssues(resource): Observable<ProjectContact[]> {
     return this.http.get<ProjectContact[]>(`${this.baseUrl}/${resource}`);
   }
 
