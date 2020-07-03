@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import {ProjectContact} from '../../model/contact/project-contact';
 import {Message} from '../../model/contact/message/message';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class ProjectContactClientService {
   }
 
   getIssues(resource): Observable<ProjectContact[]> {
-    return this.http.get<ProjectContact[]>(`${this.baseUrl}/${resource}`);
+    return this.http.get<ProjectContact[]>(`${this.baseUrl}/${resource}`)
+      .pipe(map(({ data }: any) => data));
   }
 
   createIssue(resource, projectContact) {
@@ -32,7 +34,8 @@ export class ProjectContactClientService {
   }
 
   getMessages(resource) {
-    return this.http.get<any>(`${this.baseUrl}/${resource}`);
+    return this.http.get<any>(`${this.baseUrl}/${resource}`)
+      .pipe(map(messages => messages['data']));
   }
 
   getLastMessage(resource) {

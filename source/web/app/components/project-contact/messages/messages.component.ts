@@ -36,8 +36,7 @@ export class MessagesComponent implements OnInit {
   getMessages(): void {
     let messages;
     this.projectContactService.getProjectContactMessages(this.contact._id)
-      .subscribe((response) => [
-        messages = response.data,
+      .subscribe((messages) => [
         this.projectContactService.getSender(messages),
         this.messages = messages,
         this.networkLoading = false

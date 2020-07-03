@@ -6,7 +6,7 @@ import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 import {AuthenticationService} from '../../providers';
 import {User} from '../../model';
 import {ProjectContactValues} from './project-contact-values';
-import {debounceTime, tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'source-project-contact',
@@ -19,8 +19,8 @@ export class ProjectContactComponent implements OnInit {
   networkLoading: boolean;
   isEmptyProjectContacts: boolean;
   projectContactValues;
-  private projectContactForm: FormGroup;
   @Output() projectContacts: ProjectContact[] = [];
+  private projectContactForm: FormGroup;
   private user: User;
 
 
@@ -74,14 +74,27 @@ export class ProjectContactComponent implements OnInit {
   // }
 
 
+  // getProjectContacts(): void {
+  //   this.projectContactService.getProjectContacts()
+  //     .pipe(
+  //       tap((data) => console.log(data)),
+  //       map((issues) => [
+  //         this.verifyProjectContacts(issues),
+  //         this.networkLoading = false,
+  //         this.projectContacts = issues
+  //         ]
+  //       ));
+  // }
+
+
   getProjectContacts(): void {
     this.projectContactService.getProjectContacts()
       .pipe(
         tap((data) => {
           console.log(data);
         }))
-      .subscribe(({data}: any) => [
-        this.projectContacts = data,
+      .subscribe((issues) => [
+        this.projectContacts = issues,
         this.verifyProjectContacts(this.projectContacts),
         this.networkLoading = false
   ]);
@@ -109,7 +122,7 @@ export class ProjectContactComponent implements OnInit {
           this.getProjectContacts()
         ],
         () => this.otusToasterService
-          .showMessage(this.projectContactValues.toaster.issue.createFail, true))
+          .showMessage(this.projectContactValues.toaster.issue.createFail, true));
 
   }
 
