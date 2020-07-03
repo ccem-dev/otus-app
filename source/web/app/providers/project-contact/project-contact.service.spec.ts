@@ -66,14 +66,14 @@ describe('ProjectContactService', () => {
   it("getLastMessage method should call getLastMessage from projectContactClientService and return value", ()=>{
     const spy = spyOn(projectContactClientService, "getLastMessage").and.returnValue(Mock.pcs.returnGetMessages[5]);
     projectContactService.getLastMessage("1")
-    //expect(spy).toHaveBeenCalledTimes(1)
-    //expect(projectContactService.getLastMessage("1")).toEqual(Mock.pcs.returnGetMessages[5])
+    expect(spy).toHaveBeenCalledTimes(1)
+    expect(projectContactService.getLastMessage("1")).toEqual(Mock.pcs.returnGetMessages[5])
   })
   it("createMessage should call createMessage from projectClientService and return value", ()=>{
     const spy = spyOn(projectContactClientService, "createMessage").and.returnValue(Mock.pcs.returnGetMessages[0]);
     projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))
-    //expect(spy).toHaveBeenCalledTimes(1)
-    //expect(projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))).toEqual(Mock.pcs.returnGetMessages[0])
+    expect(spy).toHaveBeenCalledTimes(1)
+    expect(projectContactService.createMessage("1", new Message("ok", {} as ProjectContact))).toEqual(Mock.pcs.returnGetMessages[0])
   })
   it("should call addLastMessage", ()=>{
     projectContactService.addLastMessage({messages: []} as ProjectContact, new Message("ok", {} as ProjectContact));
@@ -82,6 +82,8 @@ describe('ProjectContactService', () => {
   })
   it("buildMessage should return new Message", ()=>{
     projectContactService.buildMessage("iss", {} as ProjectContact)
+
+    // expect(projectContactService.buildMessage("iss", {} as ProjectContact)).toEqual(new Message("iss", {} as ProjectContact))
     expect(projectContactService.buildMessage("iss", {} as ProjectContact)).toEqual(new Message("iss", {} as ProjectContact))
   })
   it("getSender method should call getSender from projectClientService and return new message", ()=>{
@@ -93,7 +95,7 @@ describe('ProjectContactService', () => {
   })
 
   function initializeMocks() {
-    Mock = {pcs: {returnGetMessages: new BehaviorSubject({data:[MockValues.contactProject.messages]})
-        ,returnGetIssues: new BehaviorSubject({data:[MockValues.contactProject.issues]})}};
+    Mock = {pcs: {returnGetMessages: new BehaviorSubject(MockValues.contactProject.messages)
+        ,returnGetIssues: new BehaviorSubject(MockValues.contactProject.issues)}};
   }
 });

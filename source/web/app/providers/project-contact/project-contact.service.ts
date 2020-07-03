@@ -52,8 +52,8 @@ export class ProjectContactService {
       this.projectContactClientService.getSender(`${ProjectContactValues.resources.senders}/${message.sender}`)
         .subscribe((sender) => {
           message.senderInfo = {};
-          message.senderInfo.objectType = sender.data.objectType;
-          message.senderInfo.name = sender.data.name;
+          message.senderInfo.objectType = sender.objectType;
+          message.senderInfo.name = sender.name;
         });
     });
   }

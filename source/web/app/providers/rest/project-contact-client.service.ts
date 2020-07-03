@@ -47,6 +47,7 @@ export class ProjectContactClientService {
   }
 
   getSender(resource) {
-    return this.http.get<any>(`${this.baseUrl}/${resource}`);
+    return this.http.get<any>(`${this.baseUrl}/${resource}`)
+      .pipe(map(({ data }: any) => data));
   }
 }
