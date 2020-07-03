@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ProjectContactComponent} from './project-contact.component';
-import {MatChipsModule} from "@angular/material/chips";
-import {MatIconModule} from "@angular/material/icon";
-import {RouterTestingModule} from "@angular/router/testing";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {ProjectContactService} from "../../providers/project-contact/project-contact.service";
-import {CookieService} from "ngx-cookie-service";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {Router} from "@angular/router";
-import {MockValues} from "../../shared/mocks/mock-values";
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
+import {CookieService} from 'ngx-cookie-service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {Router} from '@angular/router';
+import {MockValues} from '../../shared/mocks/mock-values';
 import {FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBar, MatTooltipModule} from '@angular/material';
-import {OtusToasterService} from "../../shared/services/otus-toaster.service";
-import {BehaviorSubject, throwError} from "rxjs";
-import {AuthenticationService} from "../../providers";
+import {OtusToasterService} from '../../shared/services/otus-toaster.service';
+import {BehaviorSubject, throwError} from 'rxjs';
+import {AuthenticationService} from '../../providers';
 
 describe('ProjectContactComponent', () => {
   let component: ProjectContactComponent;
@@ -70,65 +70,65 @@ describe('ProjectContactComponent', () => {
   });
 
   it('onInit should initialize attributes', function () {
-    spyOn(component, "getProjectContacts");
-    spyOn(authencationService.CurrentUser, "subscribe");
+    spyOn(component, 'getProjectContacts');
+    spyOn(authencationService.CurrentUser, 'subscribe');
     component.ngOnInit();
-    expect(component["networkLoading"]).toBeTrue();
-    expect(component["isEmptyProjectContacts"]).toBeFalse();
-    expect(component["panelOpenState"]).toBeFalse();
-    expect(component["viewCallFormState"]).toBeFalse();
-    expect(component["projectContactForm"]).toBeInstanceOf(FormGroup);
+    expect(component['networkLoading']).toBeTrue();
+    expect(component['isEmptyProjectContacts']).toBeFalse();
+    expect(component['panelOpenState']).toBeFalse();
+    expect(component['viewCallFormState']).toBeFalse();
+    expect(component['projectContactForm']).toBeInstanceOf(FormGroup);
     expect(component.getProjectContacts).toHaveBeenCalledTimes(1);
-    expect(authencationService.CurrentUser.subscribe).toHaveBeenCalledTimes(1)
+    expect(authencationService.CurrentUser.subscribe).toHaveBeenCalledTimes(1);
   });
 
 
   it('onSubmit method with validForm should simulate recording a Issue (ProjectContact)', function () {
-    spyOn(projectContactService, "createProjectContact").and.returnValue(Mock.pcs.returnCreateProjectContact);
-    spyOn(component, 'getProjectContacts')
-    spyOn(component, "changeViewCallFormState").and.callThrough();
-    spyOn(otusToasterService, "showMessage");
-    component["projectContactForm"].patchValue({["title"]: "mockTitle"});
-    component["projectContactForm"].patchValue({["text"]: "MockText"});
-    component.onSubmit()
+    spyOn(projectContactService, 'createProjectContact').and.returnValue(Mock.pcs.returnCreateProjectContact);
+    spyOn(component, 'getProjectContacts');
+    spyOn(component, 'changeViewCallFormState').and.callThrough();
+    spyOn(otusToasterService, 'showMessage');
+    component['projectContactForm'].patchValue({['title']: 'mockTitle'});
+    component['projectContactForm'].patchValue({['text']: 'MockText'});
+    component.onSubmit();
     expect(component.getProjectContacts).toHaveBeenCalledTimes(1);
     expect(component.changeViewCallFormState).toHaveBeenCalledTimes(1);
     expect(otusToasterService.showMessage).toHaveBeenCalledTimes(1);
   });
 
   it('onSubmit method with validForm should simulate error at recording a Issue (ProjectContact)', function () {
-    spyOn(projectContactService, "createProjectContact").and.callFake(Mock.pcs.returnFailCreateProjectContact);
-    spyOn(component, 'getProjectContacts')
-    spyOn(component, "changeViewCallFormState").and.callThrough();
-    spyOn(otusToasterService, "showMessage");
-    component["projectContactForm"].patchValue({["title"]: "mockTitle"});
-    component["projectContactForm"].patchValue({["text"]: "MockText"});
-    component.onSubmit()
+    spyOn(projectContactService, 'createProjectContact').and.callFake(Mock.pcs.returnFailCreateProjectContact);
+    spyOn(component, 'getProjectContacts');
+    spyOn(component, 'changeViewCallFormState').and.callThrough();
+    spyOn(otusToasterService, 'showMessage');
+    component['projectContactForm'].patchValue({['title']: 'mockTitle'});
+    component['projectContactForm'].patchValue({['text']: 'MockText'});
+    component.onSubmit();
     expect(component.getProjectContacts).toHaveBeenCalledTimes(0);
     expect(component.changeViewCallFormState).toHaveBeenCalledTimes(0);
     expect(otusToasterService.showMessage).toHaveBeenCalledTimes(1);
   });
 
   it('onSubmit method with invalidForm should not evoke createProjectContact by ProjectContactService', function () {
-    spyOn(projectContactService, "createProjectContact").and.returnValue(Mock.pcs.returnCreateProjectContact);
+    spyOn(projectContactService, 'createProjectContact').and.returnValue(Mock.pcs.returnCreateProjectContact);
     component.onSubmit();
     expect(projectContactService.createProjectContact).toHaveBeenCalledTimes(0);
   });
 
   it('getProjectContacts method should pop up a list and check the size', function () {
-    spyOn(projectContactService, "getProjectContacts").and.returnValue(Mock.pcs.returnGetProjectContacts)
+    spyOn(projectContactService, 'getProjectContacts').and.returnValue(Mock.pcs.returnGetProjectContacts);
     component.getProjectContacts();
-    expect(component["projectContacts"].length).toBe(4)
-    expect(component["networkLoading"]).toBeFalse();
-    expect(component["isEmptyProjectContacts"]).toBeFalse();
+    expect(component['projectContacts'].length).toBe(4);
+    expect(component['networkLoading']).toBeFalse();
+    expect(component['isEmptyProjectContacts']).toBeFalse();
   });
 
   it('getProjectContacts method should verify empty list', function () {
-    spyOn(projectContactService, "getProjectContacts").and.returnValue(Mock.pcs.returnGetEmptyProjectContacts)
+    spyOn(projectContactService, 'getProjectContacts').and.returnValue(Mock.pcs.returnGetEmptyProjectContacts);
     component.getProjectContacts();
-    expect(component["projectContacts"].length).toBe(0)
-    expect(component["networkLoading"]).toBeFalse();
-    expect(component["isEmptyProjectContacts"]).toBeTrue();
+    expect(component['projectContacts'].length).toBe(0);
+    expect(component['networkLoading']).toBeFalse();
+    expect(component['isEmptyProjectContacts']).toBeTrue();
   });
 
   function initializeMocks() {
@@ -139,7 +139,7 @@ describe('ProjectContactComponent', () => {
         returnGetProjectContacts: new BehaviorSubject(MockValues.contactProject.issues),
         returnGetEmptyProjectContacts: new BehaviorSubject([])
       }
-    }
+    };
   }
 
 });
