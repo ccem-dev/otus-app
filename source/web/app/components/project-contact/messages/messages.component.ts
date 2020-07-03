@@ -33,8 +33,7 @@ export class MessagesComponent implements OnInit {
     this.getMessages();
   }
 
-  getMessages(): void {
-    let messages;
+  getMessages(): void {   
     this.projectContactService.getProjectContactMessages(this.contact._id)
       .subscribe((messages) => [
         this.projectContactService.getSender(messages),
