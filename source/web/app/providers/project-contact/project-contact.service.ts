@@ -18,6 +18,7 @@ export class ProjectContactService {
   }
 
   createProjectContact(projectContact: ProjectContact): Observable<ProjectContact> {
+    delete projectContact['_id'];
     return this.projectContactClientService
       .createIssue(ProjectContactValues.resources.issues, projectContact);
   }
@@ -29,10 +30,11 @@ export class ProjectContactService {
 
   getLastMessage(projectContactId): Observable<any> {
     return this.projectContactClientService
-      .getLastMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}/1`);
+      .getLastMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}/0/1`);
   }
 
   createMessage(projectContactId, message: Message): Observable<any> {
+    delete message['_id'];
     return this.projectContactClientService.createMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}`, message);
   }
 

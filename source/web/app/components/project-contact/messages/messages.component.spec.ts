@@ -9,7 +9,6 @@ import {CookieService} from 'ngx-cookie-service';
 import {MockValues} from '../../../shared/mocks/mock-values';
 import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
-import {ProjectContactValues} from '../project-contact-values';
 
 
 describe('MessagesComponent', () => {

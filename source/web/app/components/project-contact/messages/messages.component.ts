@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
@@ -12,9 +12,9 @@ import {Message} from '../../../model/contact/message/message';
 })
 export class MessagesComponent implements OnInit {
   public contact: ProjectContact;
-  @Output() messages: Message[];
-  @Output() networkLoading = true;
-  @Output() projectContactValues;
+  messages: Message[];
+  networkLoading = true;
+  projectContactValues;
 
   constructor(
     private router: Router,
@@ -33,9 +33,9 @@ export class MessagesComponent implements OnInit {
     this.getMessages();
   }
 
-  getMessages(): void {
+  getMessages(): void {   
     this.projectContactService.getProjectContactMessages(this.contact._id)
-      .subscribe((messages: Message[]) => [
+      .subscribe((messages) => [
         this.projectContactService.getSender(messages),
         this.messages = messages,
         this.networkLoading = false
