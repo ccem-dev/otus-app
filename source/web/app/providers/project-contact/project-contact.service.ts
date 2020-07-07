@@ -30,7 +30,7 @@ export class ProjectContactService {
 
   getLastMessage(projectContactId): Observable<any> {
     return this.projectContactClientService
-      .getLastMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}/0/1`);
+      .getLastMessage(`${ProjectContactValues.resources.issues}/${projectContactId}/${ProjectContactValues.resources.messages}/0/1/?order=desc`);
   }
 
   createMessage(projectContactId, message: Message): Observable<any> {
