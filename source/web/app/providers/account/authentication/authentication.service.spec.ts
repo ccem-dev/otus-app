@@ -1,12 +1,12 @@
 // import {async, TestBed} from '@angular/core/testing';
 //
 // import {HttpClientModule} from '@angular/common/http';
-// import {AuthenticationService} from './authentication.service';
+// import {AuthenticationService} from './authentication.template-service';
 // import {Observable} from 'rxjs';
-// import {CookieService} from 'ngx-cookie-service';
+// import {CookieService} from 'ngx-cookie-template-service';
 //
 // describe('AuthenticationService', () => {
-//   let service;
+//   let template-service;
 //
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
@@ -18,8 +18,8 @@
 //   }));
 //
 //   it('should be created', () => {
-//     service = TestBed.get(AuthenticationService);
-//     expect(service).toBeTruthy();
+//     template-service = TestBed.get(AuthenticationService);
+//     expect(template-service).toBeTruthy();
 //   });
 //
 //   it('should use user from localStorage', () => {
@@ -31,49 +31,49 @@
 //       sex: 'sex',
 //       name: 'name'
 //     }));
-//     service = TestBed.get(AuthenticationService);
-//     expect(service.currentUserValue.recruitmentNumber).toEqual('123');
-//     expect(service.currentUserValue.birthdate).toEqual('birthdate');
-//     expect(service.currentUserValue.surname).toEqual('surname');
-//     expect(service.currentUserValue.email).toEqual('email');
-//     expect(service.currentUserValue.sex).toEqual('sex');
-//     expect(service.currentUserValue.name).toEqual('name');
+//     template-service = TestBed.get(AuthenticationService);
+//     expect(template-service.currentUserValue.recruitmentNumber).toEqual('123');
+//     expect(template-service.currentUserValue.birthdate).toEqual('birthdate');
+//     expect(template-service.currentUserValue.surname).toEqual('surname');
+//     expect(template-service.currentUserValue.email).toEqual('email');
+//     expect(template-service.currentUserValue.sex).toEqual('sex');
+//     expect(template-service.currentUserValue.name).toEqual('name');
 //   });
 //
 //   it('should set null when there is no currentUser on localStorage', () => {
-//     service = TestBed.get(AuthenticationService);
-//     expect(service.currentUserValue).toEqual(null);
+//     template-service = TestBed.get(AuthenticationService);
+//     expect(template-service.currentUserValue).toEqual(null);
 //   });
 //
 //   it('should return Observable', () => {
-//     service = TestBed.get(AuthenticationService);
-//     expect(service.CurrentUser).toEqual(jasmine.any(Observable));
+//     template-service = TestBed.get(AuthenticationService);
+//     expect(template-service.CurrentUser).toEqual(jasmine.any(Observable));
 //   });
 //
 //   it('should call AccountClientService login', () => {
-//     service = TestBed.get(AuthenticationService);
+//     template-service = TestBed.get(AuthenticationService);
 //
-//     const accountClientServiceSpy = spyOn(service.currentUserSubject, 'next');
-//     service.client.login = (email, password, callback) => {
+//     const accountClientServiceSpy = spyOn(template-service.currentUserSubject, 'next');
+//     template-service.client.login = (email, password, callback) => {
 //       const data = {
 //         user: {},
 //         token: 'token'
 //       };
 //       callback(data);
 //     };
-//     service.login('email', 'password');
+//     template-service.login('email', 'password');
 //     expect(accountClientServiceSpy).toHaveBeenCalled();
 //     expect(localStorage.getItem('currentUser')).toEqual('{}');
-//     expect(service.authToken).toEqual('token');
+//     expect(template-service.authToken).toEqual('token');
 //
 //     expect(localStorage.setItem('currentUser', null));
 //     expect(localStorage.setItem('authToken', null));
 //   });
 //
 //   it('should logout', () => {
-//     service = TestBed.get(AuthenticationService);
-//     spyOn(service.client, 'logout').and.callFake((callback => callback()));
-//     service.logout(() => {});
+//     template-service = TestBed.get(AuthenticationService);
+//     spyOn(template-service.client, 'logout').and.callFake((callback => callback()));
+//     template-service.logout(() => {});
 //     expect(localStorage.getItem('currentUser')).toEqual(null);
 //     expect(localStorage.getItem('authToken')).toEqual(null);
 //   });

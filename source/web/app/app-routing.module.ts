@@ -10,9 +10,7 @@ import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {RecoveryPasswordComponent} from "./components/account/recovery-password/recovery-password.component";
 import {ProjectContactComponent} from './components/project-contact/project-contact.component';
 import {MessagesComponent} from './components/project-contact/messages/messages.component';
-
 import {ExamResultsComponent} from './components/exam-results/exam-results.component'
-import {ExamReportComponent} from "./components/exam-results/exam-report/exam-report.component";
 
 
 
@@ -45,13 +43,6 @@ const routes: Routes = [
     path: 'exam-results',
     component: ExamResultsComponent
   },
-
-{
-    path: 'exam-report',
-    component: ExamReportComponent
-  }
-  ,
-
   {
     path: 'project-contact/:id/messages',
     component:MessagesComponent,

@@ -1,10 +1,9 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {ExamResultsService} from '../../providers/exam-results/exam-results.service';
+import {TemplateService} from "./template-service/template.service";
 import {OwnerService} from '../../shared/owner/owner.service';
 import {Report} from '../../model/exam-results/report';
-import {interval, Observable, of, Subscription} from 'rxjs';
-import {concatMap, switchMap } from 'rxjs/operators';
-import {getMatAutocompleteMissingPanelError} from "@angular/material/autocomplete";
+import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 
 @Component({
   selector: 'source-exam-results',
@@ -22,7 +21,8 @@ export class ExamResultsComponent implements OnInit {
   hasMore: boolean = true;
 
   constructor(private examResultsService: ExamResultsService,
-              private ownerService: OwnerService) {
+              private ownerService: OwnerService,
+              private otusToasterService: OtusToasterService) {
     this.owner = this.ownerService.getOwner();
   }
 
@@ -30,27 +30,35 @@ export class ExamResultsComponent implements OnInit {
     this.getReportByParticipant(this.owner);
   }
 
-  private getReportByParticipant(ownerRn: string, page:number=1){
+  getReportByParticipant(ownerRn: string, page:number=1){
     this.loading = true
     this.examResultsService.getReportByParticipant(ownerRn, page).subscribe(response => {
       //@ts-ignore
       this.reports = this.reports.concat(new Report(response.data))
+      console.info(this.reports)
     }, error => {
       console.info(error);
       this.hasMore = false;
       this.loading= false;
       }
-     ,()=> {this.loading = false}
+     ,()=> {
+        this.loading = false;
+        if(this.reports.length < 1)
+          this.hasMore = false
+      }
     )
   }
 
-  loadMore() {
+  onScroll() {
     this.loading = true
     this.getReportByParticipant(this.owner, ++this.currentPage)
   }
 
-  private goToReport(report: Report): void {
-    // this.examReportService.setReport(report)
-    // this.router.navigateByUrl("/exam-report")
+  onClickResult(report: Report): void{
+    if(!report.hasAllDatasources)
+      return this.otusToasterService.showMessage('não há todos os resultados')
+    this.examResultsService.getTemplateReport(this.owner, report._id).subscribe(template => {
+       TemplateService(template.data);
+    })
   }
 }

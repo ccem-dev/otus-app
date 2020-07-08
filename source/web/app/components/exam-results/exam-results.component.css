@@ -1,3 +1,7 @@
+.exam-results-container {
+  height: 95%;
+  overflow-y: scroll;
+}
 
 .exam-title-page {
   margin-top: 30px;
@@ -7,22 +11,9 @@
   font-size: 2rem;
 }
 
-.search-form {
-  margin: 20px 60px;
-}
-
-.search-field{
-  width: 100%;
-}
-
-.exam-outside-div{
-  margin: 8px;
-}
-
 .exam-results-list{
-  margin: 8px;
+  margin: 80px 8px;
 }
-
 .exam-panel-title{
   display: flex;
   align-items: center;
@@ -60,6 +51,7 @@ exam-panel-status-info span{
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-14 { font-size: 14px; }
 .material-icons.green600 { color: green; }
+.material-icons.green { color: #006400; }
 .material-icons.orange { color: #CC6600; }
 .material-icons.red600 {color: orangered}
 

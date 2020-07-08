@@ -10,7 +10,7 @@ import any = jasmine.any;
 import {RouterTestingModule} from '@angular/router/testing';
 
 // describe('ExamResultsService', () => {
-//   let service: ExamResultsService;
+//   let template-service: ExamResultsService;
 //   let examClientService: ExamClientService;
 //
 //   beforeEach(async(() => {
@@ -26,11 +26,11 @@ import {RouterTestingModule} from '@angular/router/testing';
 //   }));
 //
 //   beforeEach(() => {
-//     service = TestBed.get(ExamResultsService);
+//     template-service = TestBed.get(ExamResultsService);
 //     examClientService = TestBed.get(ExamClientService);
 //   });
 //
 //   xit('should be created', () => {
-//     expect(service).toBeTruthy();
+//     expect(template-service).toBeTruthy();
 //   });
 // });

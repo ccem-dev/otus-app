@@ -15,7 +15,11 @@ export class ExamResultsService {
   getReportByParticipant(ownerRn: string, page: number = 1): Observable<Report> {
     return this.examClientService.getReportByParticipant(ownerRn, page).pipe(
       switchMap(response => response['data']),
-      concatMap(response => this.examClientService.getFullReport(ownerRn, response['_id']))
+      concatMap(response => this.examClientService.getFullReport(ownerRn, response['_id'])),
     )
+  }
+
+  getTemplateReport(ownerRn: string, reportId: string): Observable<any>{
+    return this.examClientService.getTemplateReport(ownerRn, reportId)
   }
 }

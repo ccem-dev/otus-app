@@ -36,10 +36,7 @@ export class Report{
     this.isAvailable = false;
     this.loading = false;
     this.isInApp = report.isInApp
-    this.status = {
-      color: "black",
-      icon: "load",
-    };
+    this.status = {};
     this.manageDataSources(this.dataSources);
     this.setStatus()
   }

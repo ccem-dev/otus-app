@@ -45,31 +45,31 @@ describe('AuthGuard', () => {
   // it('should call method randomizeParticipant', function () {
   //   const client: RandomizationClientService = TestBed.get(RandomizationClientService);
   //   spyOn(client, "randomizeParticipant");
-  //   service.randomizeParticipant();
+  //   template-service.randomizeParticipant();
   //   expect(client.randomizeParticipant).toHaveBeenCalledTimes(1)
   // });
   //
   // it('should call method searchParticipant', function () {
   //   const client: RandomizationClientService = TestBed.get(RandomizationClientService);
   //   spyOn(client, "searchParticipant");
-  //   service.searchParticipant();
+  //   template-service.searchParticipant();
   //   expect(client.searchParticipant).toHaveBeenCalledTimes(1)
   // });
   //
   // it('should setOwner method', function () {
-  //   service.setOwner('id');
-  //   expect(service.getOwner()).toEqual('id')
+  //   template-service.setOwner('id');
+  //   expect(template-service.getOwner()).toEqual('id')
   // });
   //
   // it('should setSelectedParticipant method', function () {
-  //   service.setSelectedParticipant({name: 'test'});
-  //   expect(service.getSelectedParticipant()).toEqual({name: 'test'});
+  //   template-service.setSelectedParticipant({name: 'test'});
+  //   expect(template-service.getSelectedParticipant()).toEqual({name: 'test'});
   // });
   //
   // it('should createProject method', function () {
   //   const client: RandomizationClientService = TestBed.get(RandomizationClientService);
   //   spyOn(client, "createProject");
-  //   service.createProject({});
+  //   template-service.createProject({});
   //   expect(client.createProject).toHaveBeenCalledTimes(1);
   // });
 });

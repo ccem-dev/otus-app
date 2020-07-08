@@ -51,12 +51,12 @@ import {MessagesComponent} from './components/project-contact/messages/messages.
 import {OtusSpinnerComponent} from './shared/components/spinner/otus-spinner/otus-spinner.component';
 import {CreateMessageFormComponent} from './components/project-contact/create-message-form/create-message-form.component';
 import {ExamResultsComponent} from './components/exam-results/exam-results.component';
-import {ExamReportComponent} from './components/exam-results/exam-report/exam-report.component';
 import {ActivityEventService} from './providers/activity/activity-event.service';
 import {ActivityClientService} from './providers/rest/activity/activity-client.service';
 import {EventClientService} from './providers/rest/event/event-client.service';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll'
+
 
 @NgModule({
   declarations: [
@@ -78,8 +78,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll'
     MessagesComponent,
     OtusSpinnerComponent,
     CreateMessageFormComponent,
-    ExamResultsComponent,
-    ExamReportComponent
+    ExamResultsComponent
   ],
   entryComponents: [
     ActivityAutofillEventComponent

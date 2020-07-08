@@ -17,4 +17,7 @@ export class ExamClientService {
   getFullReport(ownerRn: string, reportId: string){
     return this.http.get<any>(`${this.baseUrl.getBaseUrl()}${environment.reportBasePath}/participant/${ownerRn}/${reportId}`)
   }
+  getTemplateReport(ownerRn: string, reportId: string){
+    return this.http.post<any>(`${this.baseUrl.getBaseUrl()}${environment.templateBaseParh}/report/${ownerRn}/${reportId}`, {})
+  }
 }
