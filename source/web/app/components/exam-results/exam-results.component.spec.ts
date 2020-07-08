@@ -79,7 +79,6 @@ describe('ExamResultsComponent', () => {
      templateService(report.template)
      expect(spy).toHaveBeenCalledTimes(1)
    })
-
   it("if report haveAllDataSources is false, onClickResult should call examResultsService", () => {
      const report = {
        template: "",
