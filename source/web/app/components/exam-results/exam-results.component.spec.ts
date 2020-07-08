@@ -77,7 +77,7 @@ describe('ExamResultsComponent', () => {
      const spy = spyOn(examResultsService, "getTemplateReport").and.returnValue(new Observable)
      component.onClickResult(report);
      templateService(report.template)
-     expect(spy).toHaveBeenCalledTimes(1);
+     expect(spy).toHaveBeenCalledTimes(1)
    })
 
   it("if report haveAllDataSources is false, onClickResult should call examResultsService", () => {
