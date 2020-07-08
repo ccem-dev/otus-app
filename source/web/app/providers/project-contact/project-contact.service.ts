@@ -53,7 +53,7 @@ export class ProjectContactService {
         .subscribe((sender) => {
           message.senderInfo = {};
           message.senderInfo.objectType = sender.objectType;
-          message.senderInfo.name = sender.name;
+          message.senderInfo.fullName = `${sender.name} ${sender.surname || ""}`
         });
     });
   }

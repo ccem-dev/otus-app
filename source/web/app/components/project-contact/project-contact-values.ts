@@ -1,12 +1,12 @@
 export const ProjectContactValues = {
   toaster: {
     issue: {
-      createSuccess: 'comunicação OK: Chamado criado',
-      createFail: 'Falha na comunicação: Chamado não criado',
+      createSuccess: 'Chamado criado com sucesso.',
+      createFail: 'Não foi possível criar o chamado.',
     },
     message: {
-      createSucess: 'comunicação OK: Mensagem enviada',
-      createFail: 'Falha na comunicação: Mensagem não enviada',
+      createSucess: 'Mensagem criada com sucesso',
+      createFail: 'Não foi possível criar  a mensagem',
     }
   },
   status: {
@@ -38,8 +38,8 @@ export const ProjectContactValues = {
     issueInputText: 'Titulo',
     issueInputTextArea: 'Descreva a situação',
     messageInputTextArea: 'Escreva uma nova mensagem',
-    withoutContacts: 'Nenhum contato encontrado',
-    withoutMessage: 'Em breve responderemos o seu contato.',
+    withoutContacts: 'Nenhum chamado encontrado',
+    withoutMessage: 'Em breve responderemos o seu chamado.',
     lastMessage: 'Última mensagem |'
 
   },
