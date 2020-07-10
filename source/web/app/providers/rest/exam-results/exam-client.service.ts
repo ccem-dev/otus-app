@@ -19,6 +19,6 @@ export class ExamClientService {
     return this.http.get<Report>(`${this.baseUrl.getBaseUrl()}${environment.reportBasePath}/participant/${ownerRn}/${reportId}`)
   }
   getTemplateReport(ownerRn: string, reportId: string): Observable<any>{
-    return this.http.post<any>(`${this.baseUrl.getBaseUrl()}${environment.templateBaseParh}/report/${ownerRn}/${reportId}`, {})
+    return this.http.get<any>(`${this.baseUrl.getBaseUrl()}${environment.templateBaseParh}/${ownerRn}/${reportId}`)
   }
 }

@@ -51,6 +51,7 @@ export class ExamResultsComponent implements OnInit {
 
   onScroll() {
     this.loading = true
+    console.info("chegou")
     this.getReportByParticipant(this.owner, ++this.currentPage)
   }
 
