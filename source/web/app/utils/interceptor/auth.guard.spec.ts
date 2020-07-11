@@ -41,35 +41,4 @@ describe('AuthGuard', () => {
     spyOnProperty(service.authenticationService, 'currentUserValue').and.returnValue({});
     expect(service.canActivate(new ActivatedRouteSnapshot(), {url: 'testUrl'} as RouterStateSnapshot)).toEqual(true);
   });
-  //
-  // it('should call method randomizeParticipant', function () {
-  //   const client: RandomizationClientService = TestBed.get(RandomizationClientService);
-  //   spyOn(client, "randomizeParticipant");
-  //   template-service.randomizeParticipant();
-  //   expect(client.randomizeParticipant).toHaveBeenCalledTimes(1)
-  // });
-  //
-  // it('should call method searchParticipant', function () {
-  //   const client: RandomizationClientService = TestBed.get(RandomizationClientService);
-  //   spyOn(client, "searchParticipant");
-  //   template-service.searchParticipant();
-  //   expect(client.searchParticipant).toHaveBeenCalledTimes(1)
-  // });
-  //
-  // it('should setOwner method', function () {
-  //   template-service.setOwner('id');
-  //   expect(template-service.getOwner()).toEqual('id')
-  // });
-  //
-  // it('should setSelectedParticipant method', function () {
-  //   template-service.setSelectedParticipant({name: 'test'});
-  //   expect(template-service.getSelectedParticipant()).toEqual({name: 'test'});
-  // });
-  //
-  // it('should createProject method', function () {
-  //   const client: RandomizationClientService = TestBed.get(RandomizationClientService);
-  //   spyOn(client, "createProject");
-  //   template-service.createProject({});
-  //   expect(client.createProject).toHaveBeenCalledTimes(1);
-  // });
 });

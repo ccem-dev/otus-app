@@ -3,7 +3,6 @@ import {EventService} from '../../../providers/event/event.service';
 import {Router} from '@angular/router';
 import {events} from './events/events';
 import {OwnerService} from '../../../shared/owner/owner.service';
-// @ts-ignore
 import {AlertService} from '../../../providers';
 
 @Component({
