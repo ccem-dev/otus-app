@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProjectContactService} from '../../../providers/project-contact/project-contact.service';
 import {Router} from '@angular/router';
 import {ProjectContact} from '../../../model/contact/project-contact';
@@ -12,9 +12,9 @@ import {ProjectContactValues} from '../project-contact-values';
 export class ProjectContactItemComponent implements OnInit {
 
   @Input() public contactItem: ProjectContact;
-  @Output() networkLoading: boolean;
-  @Output() isEmptyMessages: boolean;
-  @Output() projectContactValues;
+  networkLoading: boolean;
+  isEmptyMessages: boolean;
+  projectContactValues;
 
   constructor(
     private router: Router,
@@ -28,9 +28,11 @@ export class ProjectContactItemComponent implements OnInit {
   }
 
   loadContactItemContent(projectContact: ProjectContact) {
+    let messages;
     if (!projectContact.messages) {
       this.projectContactService.getLastMessage(projectContact._id)
-        .subscribe(messages => [
+        .subscribe(response => [
+          messages = response.data,
           this.verifyMessages(messages),
           messages.length > 0 ? this.projectContactService.getSender(messages) : null,
           this.projectContactService.addLastMessage(projectContact, messages[messages.length-1]),

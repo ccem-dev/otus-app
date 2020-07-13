@@ -14,8 +14,8 @@ export class CreateMessageFormComponent implements OnInit {
   @Input() public contactItem: any;
   @Output() public notifyNewMessage = new EventEmitter<Message>();
   private messageForm: FormGroup;
-  @Output() viewMessageFormState: boolean = false;
-  @Output() projectContactValues;
+  viewMessageFormState: boolean = false;
+  projectContactValues;
 
   constructor(
     private fb: FormBuilder,

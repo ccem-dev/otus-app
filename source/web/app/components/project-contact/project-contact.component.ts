@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProjectContactService} from '../../providers/project-contact/project-contact.service';
 import {ProjectContact} from '../../model/contact/project-contact';
@@ -13,14 +13,14 @@ import {ProjectContactValues} from './project-contact-values';
   styleUrls: ['./project-contact.component.css']
 })
 export class ProjectContactComponent implements OnInit {
+  panelOpenState: boolean;
+  viewCallFormState: boolean;
+  networkLoading: boolean;
+  isEmptyProjectContacts: boolean;
+  projectContactValues;
+  @Output() projectContacts: ProjectContact[] = [];
   private projectContactForm: FormGroup;
-  private projectContacts: ProjectContact[] = [];
   private user: User;
-  private panelOpenState: boolean;
-  @Output() viewCallFormState: boolean;
-  @Output() networkLoading: boolean;
-  @Output() isEmptyProjectContacts: boolean;
-  @Output() projectContactValues;
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +43,7 @@ export class ProjectContactComponent implements OnInit {
     this.projectContactValues = ProjectContactValues;
   }
 
+
   onSubmit() {
     this.projectContactForm.markAllAsTouched();
     if (this.projectContactForm.invalid) {
@@ -62,8 +63,8 @@ export class ProjectContactComponent implements OnInit {
 
   getProjectContacts(): void {
     this.projectContactService.getProjectContacts()
-      .subscribe((projectContacts: ProjectContact[]) => [
-        this.projectContacts = projectContacts,
+      .subscribe((issues) => [
+        this.projectContacts = issues,
         this.verifyProjectContacts(this.projectContacts),
         this.networkLoading = false
       ]);
@@ -72,9 +73,9 @@ export class ProjectContactComponent implements OnInit {
   private create(projectContact: ProjectContact): void {
     this.projectContactService.createProjectContact(projectContact)
       .subscribe(() => [
-          this.getProjectContacts(),
           this.changeViewCallFormState(),
-          this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createSuccess)
+          this.otusToasterService.showMessage(this.projectContactValues.toaster.issue.createSuccess),
+          this.getProjectContacts()
         ],
         () => this.otusToasterService
           .showMessage(this.projectContactValues.toaster.issue.createFail, true));
