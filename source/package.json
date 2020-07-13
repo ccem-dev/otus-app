@@ -8,7 +8,7 @@
     "test": "./node_modules/.bin/ng test",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
-    "production": "npm install && npm test && ng build --prod"
+    "production": "rm -rf node_modules package-lock.json && npm install && npm test && ng build --prod"
   },
   "dependencies": {
     "@angular/animations": "8.2.14",
