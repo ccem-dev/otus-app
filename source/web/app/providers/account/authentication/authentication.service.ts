@@ -1,7 +1,7 @@
 ﻿import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../../../model';
-import {AccountClientService} from '../../rest/account-client.service';
+import {AccountClientService} from '../../rest/account/account-client.service';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({providedIn: 'root'})
@@ -10,6 +10,7 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
 
   constructor(private client: AccountClientService, private cookieService: CookieService) {
+
     const userJSON = JSON.parse(localStorage.getItem('currentUser'));
     if (userJSON) {
       const user: User = new User();

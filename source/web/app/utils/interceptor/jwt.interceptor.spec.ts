@@ -5,7 +5,7 @@ import {JwtInterceptor} from './jwt.interceptor';
 import {AccountClientService} from '../../providers';
 import {environment} from '../../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
-import {EventClientService} from '../../providers/rest/event-client.service';
+import {EventClientService} from '../../providers/rest/event/event-client.service';
 
 describe(`JwtInterceptor`, () => {
   let service;

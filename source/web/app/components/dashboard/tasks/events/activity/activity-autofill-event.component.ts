@@ -1,9 +1,9 @@
 ﻿import {Component, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {EventI} from '../event.interface';
 import {CookieService} from 'ngx-cookie-service';
-import {AlertService} from '../../../../../providers/alert.service';
+import {AlertService} from '../../../../../providers/alert/alert.service';
 import {AuthenticationService} from "../../../../../providers/account/authentication/authentication.service";
-import {ActivityEventService} from "../../../../../providers/activity-event.service";
+import {ActivityEventService} from "../../../../../providers/activity/activity-event.service";
 import {EventService} from "../../../../../providers";
 
 @Component({

@@ -10,6 +10,9 @@ import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {RecoveryPasswordComponent} from "./components/account/recovery-password/recovery-password.component";
 import {ProjectContactComponent} from './components/project-contact/project-contact.component';
 import {MessagesComponent} from './components/project-contact/messages/messages.component';
+import {ExamResultsComponent} from './components/exam-results/exam-results.component'
+
+
 
 const routes: Routes = [
   {
@@ -36,6 +39,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
+ {
+    path: 'exam-results',
+    component: ExamResultsComponent
+  },
   {
     path: 'project-contact/:id/messages',
     component:MessagesComponent,
