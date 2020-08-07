@@ -2,13 +2,13 @@
 @import "../node_modules/material-design-icons/iconfont/material-icons.css";
 @include mat-core();
 
-$otus-app-theme-primary: mat-palette($mat-indigo);
-$otus-app-theme-accent: mat-palette($mat-pink, A200, A100, A400);
-$otus-app-theme-warn: mat-palette($mat-red);
+$otus-app-primary: mat-palette($mat-indigo);
+$otus-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$otus-app-warn: mat-palette($mat-red);
 
-$otus-app-theme-theme: mat-light-theme($otus-app-theme-primary, $otus-app-theme-accent, $otus-app-theme-warn);
+$otus-app-theme: mat-light-theme($otus-app-primary, $otus-app-accent, $otus-app-warn);
 
-@include angular-material-theme($otus-app-theme-theme);
+@include angular-material-theme($otus-app-theme);
 
 body {
   display: block;
