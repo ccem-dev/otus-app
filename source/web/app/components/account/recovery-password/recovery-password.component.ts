@@ -48,6 +48,7 @@ export class RecoveryPasswordComponent implements OnInit {
 
     this.authenticationService.recoveryPassword(informedEmail)
       .toPromise()
+      .then(() => this.alertService.success('Solicitação enviada por email'))
       .then(() => this.loading = false)
       .then(() => this.redirectToLogin())
       .then(() => this.otusToasterService.showMessage('Solicitação enviada por email'))

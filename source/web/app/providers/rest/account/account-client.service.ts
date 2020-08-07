@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {map} from 'rxjs/operators';
-import {BaseUrlResolveService} from './base-url-resolve.service'
+import {BaseUrlResolveService} from '../base-url-resolve.service'
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,6 @@ export class AccountClientService {
   MODE: String = "participant";
 
   constructor(private http: HttpClient, private baseUrl:BaseUrlResolveService) {
-
   }
 
   public login(email: string, password: string, setCurrentUser: CallableFunction): Observable<any> {

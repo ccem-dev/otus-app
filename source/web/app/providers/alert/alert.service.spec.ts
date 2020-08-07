@@ -4,8 +4,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AlertService} from './alert.service';
 import {Observable, of} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
-import {DashboardComponent} from '../components/dashboard/dashboard.component';
-import {EventService} from './event.service';
+import {DashboardComponent} from '../../components/dashboard/dashboard.component';
+import {EventService} from '../event/event.service';
 
 describe('AlertService', () => {
   let service;

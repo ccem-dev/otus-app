@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {EventClientService} from './rest/event-client.service';
+import {EventClientService} from '../rest/event/event-client.service';
 
 @Injectable()
 export class EventService {

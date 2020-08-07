@@ -5,6 +5,8 @@ export const environment = {
   authBasePath: '/participant-authentication',
   activityBasePath: '/activities',
   registerPasswordUrl: '/participants/registerPassword',
+  reportBasePath: '/report',
+  templateBaseParh: '/template',
   loginUrl: '/auth',
   logoutUrl: '/invalidate',
   followUpBasePath: '/followUp',

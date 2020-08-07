@@ -1,0 +1,56 @@
+.exam-results-container {
+  height: 95%;
+  overflow-y: scroll;
+}
+
+.exam-title-page {
+  margin-top: 30px;
+}
+
+.exam-title-page h1{
+  font-size: 2rem;
+}
+
+.exam-results-list{
+  margin: 80px 8px;
+}
+.exam-panel-title{
+  display: flex;
+  align-items: center;
+}
+
+.exam-subtitle {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.exam-result-content-section {
+  display: flex;
+  flex-direction: column;
+}
+
+exam-panel-status-info span{
+  display: flex;
+  align-items: center;
+}
+
+.exam-item {
+  margin: 30px 0;
+}
+
+.datasources-item {
+  font-size: 15px;
+}
+
+.report-access {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-14 { font-size: 14px; }
+.material-icons.green600 { color: green; }
+.material-icons.green { color: #006400; }
+.material-icons.orange { color: #CC6600; }
+.material-icons.red600 {color: orangered}

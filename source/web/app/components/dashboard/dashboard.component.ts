@@ -1,6 +1,7 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {AuthenticationService, EventService} from '../../providers';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../../providers';
+import {OwnerService} from "../../shared/owner/owner.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +13,12 @@ export class DashboardComponent implements OnInit {
   title = 'Otus Randomization';
   private action: string;
 
-  constructor(private router: Router, private ngZone: NgZone, private authenticationService: AuthenticationService, private service: EventService) {
+  constructor(private ownerService: OwnerService,private router: Router, private ngZone: NgZone, private authenticationService: AuthenticationService) {
     this.ngZone.run(() => this.router.navigate(['dashboard/tasks'])).then();
   }
 
   ngOnInit() {
-    this.service.setOwner(this.authenticationService.currentUserValue.recruitmentNumber);
+    this.ownerService.setOwner(this.authenticationService.currentUserValue.recruitmentNumber);
     this.ngZone.run(() => this.router.navigate(['dashboard/tasks'])).then();
   }
 
