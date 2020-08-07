@@ -5,7 +5,11 @@
   "projects": {
     "papp": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": ".",
       "prefix": "source",
@@ -23,7 +27,7 @@
               "manifest.json"
             ],
             "styles": [
-              "web/styles.css"
+              "web/styles.scss"
             ],
             "scripts": []
           },
@@ -79,8 +83,7 @@
               "web/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "web/styles.css"
+              "web/styles.scss"
             ],
             "scripts": []
           }
