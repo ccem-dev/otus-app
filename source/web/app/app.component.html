@@ -6,11 +6,11 @@
         {{ title }}</button>
       <span fxFlex></span>
       <div fxFlex="" fxLayoutAlign="end center" fxLayoutGap="10px">
-        <button mat-button routerLink="/project-contact">
+        <button mat-button routerLink="/project-contact" *ngIf=false>
           <mat-icon>comments</mat-icon>
           Contato
         </button>
-        <button mat-button routerLink="/exam-results">
+        <button mat-button routerLink="/exam-results" *ngIf=false>
           <mat-icon>description</mat-icon>
           Exames
         </button>
