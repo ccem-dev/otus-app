@@ -1,14 +1,7 @@
 @import '../node_modules/@angular/material/theming';
 @import "../node_modules/material-design-icons/iconfont/material-icons.css";
+@import "assets/visual-identity/_variables.scss";
 @include mat-core();
-
-$otus-app-primary: mat-palette($mat-indigo);
-$otus-app-accent: mat-palette($mat-pink, A200, A100, A400);
-$otus-app-warn: mat-palette($mat-red);
-
-$otus-app-theme: mat-light-theme($otus-app-primary, $otus-app-accent, $otus-app-warn);
-
-@include angular-material-theme($otus-app-theme);
 
 body {
   display: block;
@@ -25,3 +18,16 @@ body {
   background-color: #bb0404;
   color: #fff;
 }
+
+//import { Component, OnInit, Renderer2, Inject } from '@angular/core';
+//import { DOCUMENT } from '@angular/platform-browser';
+//
+//@Component({
+//  selector: 'apps',
+//  templateUrl: './app.component.html'
+//})
+//export class AppComponent implements OnInit, OnDestroy {
+//  private currentTheme: string = 'slate';
+//
+//constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document) { }
+//https://stackoverflow.com/questions/44705611/angular-4-cli-webpack-switching-bootstrap-theme-dynamically-for-the-entire-web

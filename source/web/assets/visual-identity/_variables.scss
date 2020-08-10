@@ -1,0 +1,10 @@
+$otus-app-primary: mat-palette($mat-teal);
+$otus-app-accent: mat-palette($mat-blue, A200, A100, A400);
+$otus-app-warn: mat-palette($mat-red);
+
+$otus-app-theme: mat-light-theme($otus-app-primary, $otus-app-accent, $otus-app-warn);
+
+@include angular-material-theme($otus-app-theme);
+
+
+
