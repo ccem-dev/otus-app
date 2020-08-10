@@ -36,7 +36,6 @@
             </mat-list-item>
           </mat-list>
           <div fxLayoutAlign="flex-end flex-end" class="report-access">
-
           </div>
         </section>
       </mat-expansion-panel>
@@ -44,7 +43,7 @@
   </div>
   <mat-progress-bar *ngIf="loading" mode="indeterminate" value="40"></mat-progress-bar>
   <div fxLayoutAlign="center center">
-    <button *ngIf="hasMore && reports.length > 9" (click)="onLoadMore()" class="loadmore-button" mat-raised-button color="primary">Carregar Mais...</button>
+    <button *ngIf="hasMore && reports.length > 8" (click)="onLoadMore()" class="loadmore-button" mat-raised-button color="primary">Carregar Mais...</button>
     <p *ngIf="!hasMore">não há mais resultados</p>
   </div>
 </div>
