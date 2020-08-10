@@ -1,4 +1,5 @@
-
+@import '~@angular/material/theming';
+@import "web/assets/visual-identity/_variables.scss";
 
 .account-page {
   display: flex;
@@ -39,7 +40,7 @@
   }
   &:before {
     content: '';
-    background: blue;
+    background: mat-color($otus-app-primary);
     position: absolute;
     top: 50%;
     left: 0;
