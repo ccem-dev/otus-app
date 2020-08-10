@@ -1,46 +1,50 @@
-<div fxLayoutAlign="center center" *ngIf="!hasMore">
+<div fxLayoutAlign="center center" *ngIf="!hasReports">
   <h1>não há resultados de exames</h1>
 </div>
-<div class="exam-results-container" layout="column" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
+<div *ngIf="hasReports" class="exam-results-container" layout="column">
   <div fxLayoutAlign="center center" class="exam-title-page">
     <h1>Resultados de exames</h1>
   </div>
   <div class="exam-results-list">
     <mat-accordion *ngFor="let report of reports">
-      <mat-expansion-panel class="exam-item mat-elevation-z4">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="exam-panel-title">
-            <mat-chip-list aria-label="status" class="chip">
-                <i class="material-icons {{report.status.color}}">{{report.status.icon}}</i>
-            </mat-chip-list>
-            <span class="mat-card-subtitle exam-subtitle">{{report.label}}</span>
+      <mat-expansion-panel class="exam-item mat-elevation-z4" (opened)="report.seeMore = true" (closed)="report.seeMore = false" hideToggle="true">
+        <mat-expansion-panel-header fxLayoutAlign="space-between center">
+          <mat-panel-title class="exam-panel-title" fxLayoutAlign="start center">
+            {{report.label}}
           </mat-panel-title>
+          <span *ngIf="!report.hasAllDatasources" fxLayoutAlign="end center" class="{{report.status.color}}">Indisponível</span>
+          <span *ngIf="report.hasAllDatasources" class="green">
+            <button (click)="onClickResult(report)" mat-button *ngIf="report.hasAllDatasources">
+              <i class="material-icons md-20">get_app</i>
+              Gerar Relatório
+            </button>
+          </span>
+          <button mat-button *ngIf="!report.seeMore">ver +</button>
+          <button mat-button *ngIf="report.seeMore">ver -</button>
         </mat-expansion-panel-header>
         <section class="exam-result-content-section">
           <div class="exam-panel-status-info">
-            <span><i class="material-icons md-14 green600">fiber_manual_record</i>Recebidos</span>
-            <span><i class="material-icons md-14 red600">fiber_manual_record</i> Pendentes</span>
+            <span><i class="material-icons md-14 green600">fiber_manual_record</i><p>Recebidos</p></span>
+            <span><i class="material-icons md-14 red600">fiber_manual_record</i><p>Pendentes</p></span>
           </div>
           <mat-divider></mat-divider>
-          <mat-list class="datasources-list"  *ngFor="let dataSources of report.dataSources">
-            <mat-list-item class="datasources-item">
+          <mat-list role="list" class="datasources-list"  *ngFor="let dataSources of report.dataSources">
+            <mat-list-item role="listitem" class="datasources-item">
               <i *ngIf="!dataSources.result[0]" class="material-icons md-14 red600">fiber_manual_record</i>
               <i *ngIf="dataSources.result[0]" class="material-icons md-14 green600">fiber_manual_record</i>
-              {{dataSources['label']}}
+              <p>{{dataSources['label']}}</p>
             </mat-list-item>
           </mat-list>
-          <div class="report-access">
-            <mat-chip-list>
-              <p *ngIf="!report.hasAllDatasources" class="{{report.status.color}}">Indisponivel</p>
-              <button (click)="onClickResult(report)" mat-raised-button *ngIf="report.hasAllDatasources" class="mat-elevation-z7">
-                <i class="material-icons">description</i>
-                Acessar Report
-              </button>
-            </mat-chip-list>
+          <div fxLayoutAlign="flex-end flex-end" class="report-access">
+
           </div>
         </section>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
   <mat-progress-bar *ngIf="loading" mode="indeterminate" value="40"></mat-progress-bar>
+  <div fxLayoutAlign="center center">
+    <button *ngIf="hasMore && reports.length > 9" (click)="onLoadMore()" class="loadmore-button" mat-raised-button color="primary">Carregar Mais...</button>
+    <p *ngIf="!hasMore">não há mais resultados</p>
+  </div>
 </div>
