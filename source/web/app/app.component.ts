@@ -2,10 +2,12 @@ import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {User} from './model';
 import {Router} from '@angular/router';
 import {MatIconRegistry} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, Title} from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {AlertService, AuthenticationService} from './providers';
 import {first} from "rxjs/operators";
+import {projectName} from '../assets/visual-identity/data.json';
+
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,8 @@ export class AppComponent implements OnInit {
     private domSanitizer: DomSanitizer,
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private titleService: Title
   ) {
     this.authenticationService.CurrentUser.subscribe((user) => {
       this.currentUser = user;
@@ -58,6 +61,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.opened = !this.mobileQuery.matches && this.authenticationService.currentUserValue !== undefined && this.hasLogged();
+    this.titleService.setTitle(projectName);
   }
 
   hasLogged() {
