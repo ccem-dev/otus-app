@@ -16,7 +16,7 @@ import {projectName} from '../assets/visual-identity/data.json';
 })
 
 export class AppComponent implements OnInit {
-  title = 'Papp';
+  title = projectName;
   currentUser: User;
   mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;

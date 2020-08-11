@@ -24,7 +24,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "web/assets",
-              "manifest.json"
+              "manifest.json",
+              "favicon.ico"
             ],
             "styles": [
               "web/styles.scss"
@@ -125,5 +126,5 @@
       }
     }
   },
-  "defaultProject": "papp"
+  "defaultProject": "Papp"
 }
