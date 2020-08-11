@@ -13,11 +13,11 @@ import {OtusToasterService} from '../../shared/services/otus-toaster.service';
 export class ExamResultsComponent implements OnInit {
 
   reports: Report[] = [];
+  oldReports: Report[] =[]
   owner: string = "";
-
   loading: boolean = true;
-
   currentPage: number = 1;
+  hasReports: boolean = true;
   hasMore: boolean = true;
 
   constructor(private examResultsService: ExamResultsService,
@@ -32,26 +32,29 @@ export class ExamResultsComponent implements OnInit {
 
   getReportByParticipant(ownerRn: string, page:number=1){
     this.loading = true
-    this.examResultsService.getReportByParticipant(ownerRn, page).subscribe(response => {
-      //@ts-ignore
-      this.reports = this.reports.concat(new Report(response.data))
-      console.info(this.reports)
-    }, error => {
-      console.info(error);
-      this.hasMore = false;
-      this.loading= false;
-      }
-     ,()=> {
+    this.examResultsService.getReportByParticipant(ownerRn, page)
+      .subscribe(response => {
+        //@ts-ignore
+        this.reports = this.reports.concat(new Report(response.data))
+    },error => {
+        console.info(error);
+        this.hasReports = false;
+        this.loading= false;
+      },()=> {
         this.loading = false;
-        if(this.reports.length < 1)
+        if(this.reports.length < 1) {
+          this.hasReports = false
+        }
+        if(this.oldReports == this.reports){
           this.hasMore = false
+        }
       }
     )
   }
 
-  onScroll() {
+  onLoadMore() {
     this.loading = true
-    console.info("chegou")
+    this.oldReports = this.reports
     this.getReportByParticipant(this.owner, ++this.currentPage)
   }
 
