@@ -1,12 +1,12 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import {MatIconModule, MatMenuModule, MatSidenav, MatSidenavContainer, MatSidenavContent, MatToolbarModule} from '@angular/material';
+import {async, TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {MatIconModule, MatMenuModule, MatSidenavContainer, MatSidenavContent, MatToolbarModule} from '@angular/material';
 import {AppAlertComponent} from './components/alert/app-alert.component';
-import {Router, RouterOutlet} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
+import {projectName} from '../assets/visual-identity/data.json'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -53,6 +53,6 @@ describe('AppComponent', () => {
   it(`should have as title 'app'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Papp');
+    expect(app.title).toEqual(projectName);
   }));
 });
