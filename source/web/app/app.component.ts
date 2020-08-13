@@ -63,7 +63,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.opened = !this.mobileQuery.matches && this.authenticationService.currentUserValue !== undefined && this.hasLogged();
     this.titleService.setTitle(projectName);
-    console.log(iconToolbar)
   }
 
   hasLogged() {
