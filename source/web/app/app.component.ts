@@ -6,7 +6,7 @@ import {DomSanitizer, Title} from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {AlertService, AuthenticationService} from './providers';
 import {first} from "rxjs/operators";
-import {projectName, iconToolbar} from '../assets/visual-identity/data.json';
+import {projectName, iconToolbar} from '../assets/visual-identity/theme.json';
 
 
 @Component({

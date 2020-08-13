@@ -5,7 +5,7 @@ import {AuthenticationService} from '../../../providers/account/authentication/a
 import {AlertService} from '../../../providers/alert/alert.service';
 import {first} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
-import {projectName, logoLogin} from '../../../../assets/visual-identity/data.json';
+import {projectName, logoLogin} from '../../../../assets/visual-identity/theme.json';
 
 const {required, email} = Validators;
 
