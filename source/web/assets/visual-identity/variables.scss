@@ -1,5 +1,5 @@
-$otus-app-primary: mat-palette($mat-light-blue, 800);
-$otus-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$otus-app-primary: mat-palette($mat-blue, 800);
+$otus-app-accent: mat-palette($mat-blue-grey, A200, A100, A400);
 $otus-app-warn: mat-palette($mat-red);
 
 $otus-app-theme: mat-light-theme($otus-app-primary, $otus-app-accent, $otus-app-warn);

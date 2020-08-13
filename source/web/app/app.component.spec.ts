@@ -6,7 +6,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
-import {projectName} from '../assets/visual-identity/data.json'
+import {projectName} from '../assets/visual-identity/theme.json'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
