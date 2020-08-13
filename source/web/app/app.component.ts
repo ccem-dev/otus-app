@@ -6,7 +6,7 @@ import {DomSanitizer, Title} from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {AlertService, AuthenticationService} from './providers';
 import {first} from "rxjs/operators";
-import {projectName} from '../assets/visual-identity/data.json';
+import {projectName, iconToolbar} from '../assets/visual-identity/data.json';
 
 
 @Component({
@@ -17,6 +17,7 @@ import {projectName} from '../assets/visual-identity/data.json';
 
 export class AppComponent implements OnInit {
   title = projectName;
+  iconToolbar = iconToolbar;
   currentUser: User;
   mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
@@ -62,6 +63,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.opened = !this.mobileQuery.matches && this.authenticationService.currentUserValue !== undefined && this.hasLogged();
     this.titleService.setTitle(projectName);
+    console.log(iconToolbar)
   }
 
   hasLogged() {

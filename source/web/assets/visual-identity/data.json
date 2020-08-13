@@ -1,5 +1,8 @@
 {
-  "icon": "visual-identity/images/icon_toolbar.png",
-  "logo": "visual-identity/images/logo_login.png",
+  "iconToolbar": "web/assets/visual-identity/img/icon_toolbar.png",
+  "logoLogin": "web/assets/visual-identity/img/logo_login.png",
+  "iconPWA": "web/assets/visual-identity/img/icon_pwa.png",
+  "favicon": "web/assets/visual-identity/img/favicon.ico",
   "projectName": "ELSA-Brasil"
 }
+

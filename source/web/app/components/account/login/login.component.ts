@@ -5,7 +5,7 @@ import {AuthenticationService} from '../../../providers/account/authentication/a
 import {AlertService} from '../../../providers/alert/alert.service';
 import {first} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
-import {projectName, logo} from '../../../../assets/visual-identity/data.json';
+import {projectName, logoLogin} from '../../../../assets/visual-identity/data.json';
 
 const {required, email} = Validators;
 
@@ -17,7 +17,7 @@ const {required, email} = Validators;
 export class LoginComponent implements OnInit {
 
   title = projectName;
-  logo = logo;
+  logoLogin = logoLogin;
   hide = true;
 
   loginForm: FormGroup;
