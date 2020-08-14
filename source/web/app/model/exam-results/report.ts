@@ -19,6 +19,7 @@ export class Report{
     color?: string,
     icon?: string
   };
+  seeMore?: boolean
 
   constructor(report: Report) {
     this._id = report._id;
@@ -35,6 +36,7 @@ export class Report{
     this.hasAllDatasources = false;
     this.isAvailable = false;
     this.loading = false;
+    this.seeMore = false;
     this.isInApp = report.isInApp
     this.status = {};
     this.manageDataSources(this.dataSources);

@@ -27,7 +27,6 @@ describe('ExamResultsComponent', () => {
        imports: [
          MatChipsModule,
          HttpClientTestingModule,
-         InfiniteScrollModule,
          MatSnackBarModule,
          NoopAnimationsModule
        ],
@@ -64,7 +63,7 @@ describe('ExamResultsComponent', () => {
    })
   it("onScroll should call getReportByParticipant and loading should be true", () => {
      const spy = spyOn(component, "getReportByParticipant").and.returnValue(null)
-     component.onScroll();
+     component.onLoadMore();
      expect(component.loading).toEqual(true);
      expect(spy).toHaveBeenCalledTimes(1);
    })
