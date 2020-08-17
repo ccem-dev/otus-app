@@ -6,15 +6,6 @@
         {{ title }}</button>
       <span fxFlex></span>
       <div fxFlex="" fxLayoutAlign="end center" fxLayoutGap="10px">
-        <button mat-button routerLink="/project-contact">
-          <mat-icon>comments</mat-icon>
-          Contato
-        </button>
-        <button mat-button routerLink="/exam-results">
-          <mat-icon>description</mat-icon>
-          Exames
-        </button>
-
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon aria-hidden="false" aria-label="user" matBadgeOverlap="false" matBadgeColor="warn"
                     matBadgePosition="before">account_circle
@@ -27,6 +18,19 @@
             Sair
           </button>
         </mat-menu>
+
+        <button mat-icon-button [matMenuTriggerFor]="Menu"><mat-icon>menu</mat-icon></button>
+        <mat-menu #Menu="matMenu" xPosition="before" fxLayout="row">
+          <button mat-menu-item routerLink="/project-contact">
+            <mat-icon>comments</mat-icon>
+            Contato
+          </button>
+          <button mat-menu-item routerLink="/exam-results">
+            <mat-icon>description</mat-icon>
+            Exames
+          </button>
+        </mat-menu>
+
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
