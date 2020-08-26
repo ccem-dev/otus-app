@@ -1,7 +1,11 @@
 <div class="account-page">
   <div class="content">
     <mat-card class="mat-elevation-z11">
-      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-title>
+        <figure>
+          <img mat-card-image src={{logoLogin}}>
+        </figure>
+        </mat-card-title>
       <mat-card-content fxLayout="column">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <p>

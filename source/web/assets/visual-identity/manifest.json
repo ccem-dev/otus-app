@@ -1,14 +1,14 @@
 {
-  "name": "Papp",
-  "short_name": "Papp",
-  "theme_color": "#1976d2",
+  "name": "ELSA-Brasil",
+  "short_name": "ELSA-Brasil",
+  "theme_color": "#000000",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "icons": [
     {
-      "src": "web/assets/icons/participant-app.png",
+      "src": "img/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
