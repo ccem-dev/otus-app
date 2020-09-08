@@ -55,7 +55,7 @@ import {ActivityEventService} from './providers/activity/activity-event.service'
 import {ActivityClientService} from './providers/rest/activity/activity-client.service';
 import {EventClientService} from './providers/rest/event/event-client.service';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll'
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -78,7 +78,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll'
     MessagesComponent,
     OtusSpinnerComponent,
     CreateMessageFormComponent,
-    ExamResultsComponent
+    ExamResultsComponent,
   ],
   entryComponents: [
     ActivityAutofillEventComponent
