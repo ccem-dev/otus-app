@@ -1,22 +1,20 @@
 <div fxLayout="column" fxFlexFill>
   <mat-toolbar color="primary" *ngIf="currentUser">
     <mat-toolbar-row>
-      <div fxFlex="33" fxLayoutAlign="start center" fxPadding fxLayoutGap="10px">
+      <div fxFlex="15" fxLayoutAlign="start center" fxPadding fxLayoutGap="10px">
         <button mat-icon-button id="title" routerLink="/dashboard">
           <img src="{{iconToolbar}}">
         </button>
         <span fxShow="false" fxShow.gt-sm>{{ title }}</span>
       </div>
 
-      <div fxFlex="33" fxLayoutAlign="center center" fxLayoutGap="10px">
-        <mat-icon aria-hidden="false" aria-label="user" fxShow="false" fxShow.gt-sm>account_circle
-        </mat-icon>
-        <div fxFlex>{{ currentUser.name }} </div>
-
+      <div fxFlex="70" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-icon aria-hidden="false" aria-label="user" fxShow="false" fxShow.gt-sm>account_circle</mat-icon>
+        <div class="flex-child">{{ currentUser.name }} </div>
       </div>
 
-      <div fxFlex="33" fxLayoutAlign="end center" fxLayoutGap="10px">
-        <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+      <div fxFlex="15" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <div fxHide="true" fxShow.gt-md>
           <button mat-button routerLink="/project-contact">
             <mat-icon fxLayoutGap="10px">comments</mat-icon><span style="margin-left:5px">Contato</span>
           </button>
@@ -27,7 +25,7 @@
             <mat-icon>exit_to_app</mat-icon><span style="margin-left:5px">Sair</span>
           </button>
         </div>
-        <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+        <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-md>
           <mat-icon>menu</mat-icon>
         </button>
       </div>
