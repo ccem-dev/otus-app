@@ -18,7 +18,8 @@ export class ActivityAutofillEventComponent implements EventI, OnInit {
   private appAddress: string;
   translatedStatus = {
     ACCOMPLISHED: {translation: 'Realizado', style: {color: '#1B9A59'}},
-    PENDING: {translation: ' Pendente', style: {color: '#bfbe00'}}
+    PENDING: {translation: ' Pendente', style: {color: '#bfbe00'}},
+    REOPENED: {translation: ' Reaberto', style: {color: '#bfbe00'}}
   };
 
 
