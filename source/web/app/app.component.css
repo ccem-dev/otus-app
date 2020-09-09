@@ -3,3 +3,8 @@ a{
   color: #ffffff;
 }
 
+.flex-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
