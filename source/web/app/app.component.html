@@ -21,11 +21,11 @@
 
         <button mat-icon-button [matMenuTriggerFor]="Menu"><mat-icon>menu</mat-icon></button>
         <mat-menu #Menu="matMenu" xPosition="before" fxLayout="row">
-          <button mat-menu-item routerLink="/project-contact">
+          <button mat-menu-item routerLink="/project-contact" *ngIf=false>
             <mat-icon>comments</mat-icon>
             Contato
           </button>
-          <button mat-menu-item routerLink="/exam-results">
+          <button mat-menu-item routerLink="/exam-results" *ngIf=false>
             <mat-icon>description</mat-icon>
             Exames
           </button>
