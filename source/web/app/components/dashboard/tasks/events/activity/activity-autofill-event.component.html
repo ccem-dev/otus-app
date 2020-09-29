@@ -1,13 +1,27 @@
 ﻿<mat-card>
   <mat-card-header fxLayoutAlign="center center">
-    <div mat-card-avatar ><mat-icon>description</mat-icon></div>
+    <div mat-card-avatar>
+      <mat-icon>description</mat-icon>
+    </div>
     <div fxFlex>
       <mat-card-title>{{data.acronym}}-{{data.name}}</mat-card-title>
       <mat-card-subtitle>Criado em: {{data.date | date : "dd/MM/yyy HH:mm"}}</mat-card-subtitle>
     </div>
-    <button mat-fab class="mat-mini-fab" matTooltip="Preencher atividade" aria-label="Preencher atividade" on-click="callPreview()" [disabled]="data.status !== 'PENDING'">
-      <mat-icon>play_circle_outline</mat-icon>
+    <button *ngIf="data.status === 'PENDING'" mat-fab class="mat-mini-fab" matTooltip="Preencher atividade"
+            aria-label="Preencher atividade" on-click="callPreview()" [disabled]="data.status === 'ACCOMPLISHED'">
+      <mat-icon>play_arrow</mat-icon>
     </button>
+
+    <button *ngIf="data.status === 'REOPENED'" mat-fab class="mat-mini-fab" matTooltip="Repreencher atividade"
+            aria-label="Repreencher atividade" on-click="callPreview()" [disabled]="data.status === 'ACCOMPLISHED'">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+
+    <button *ngIf= "data.status === 'ACCOMPLISHED'" mat-fab class="mat-mini-fab" matTooltip="atividade preenchida"
+            aria-label="atividade prenchida" readonly="true" disabled>
+      <mat-icon>checked</mat-icon>
+    </button>
+
   </mat-card-header>
   <mat-card-content>
     <p fxFlex="80" fxLayoutAlign="start center">
