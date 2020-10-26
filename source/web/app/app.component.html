@@ -1,52 +1,55 @@
 <div fxLayout="column" fxFlexFill>
-  <mat-toolbar color="primary" *ngIf="currentUser">
-    <mat-toolbar-row>
-      <div fxFlex="15" fxLayoutAlign="start center" fxPadding fxLayoutGap="10px">
-        <button mat-icon-button id="title" routerLink="/dashboard">
-          <img src="{{iconToolbar}}">
-        </button>
-        <span fxShow="false" fxShow.gt-sm>{{ title }}</span>
-      </div>
-
-      <div fxFlex="70" fxLayoutAlign="center center" fxLayoutGap="10px">
-        <mat-icon aria-hidden="false" aria-label="user" fxShow="false" fxShow.gt-sm>account_circle</mat-icon>
-        <div class="flex-child">{{ currentUser.name }} </div>
-      </div>
-
-      <div fxFlex="15" fxLayoutAlign="end center" fxLayoutGap="10px">
-        <div fxHide="true" fxShow.gt-md>
-          <button mat-button routerLink="/project-contact">
-            <mat-icon fxLayoutGap="10px">comments</mat-icon><span style="margin-left:5px">Contato</span>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <mat-toolbar color="primary" class="fixed-top" *ngIf="currentUser">
+      <mat-toolbar-row>
+        <div fxFlex="15" fxLayoutAlign="start center" fxPadding fxLayoutGap="10px">
+          <button mat-icon-button id="title" routerLink="/dashboard">
+            <img src="{{iconToolbar}}">
           </button>
-          <button mat-button routerLink="/exam-results">
-            <mat-icon>description</mat-icon><span style="margin-left:5px">Exames</span>
-          </button>
-          <button mat-button (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon><span style="margin-left:5px">Sair</span>
+          <span fxShow="false" fxShow.gt-sm>{{ title }}</span>
+        </div>
+
+        <div fxFlex="70" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-icon aria-hidden="false" aria-label="user" fxShow="false" fxShow.gt-sm>account_circle</mat-icon>
+          <div class="flex-child">{{ currentUser.name }} </div>
+        </div>
+
+        <div fxFlex="15" fxLayoutAlign="end center" fxLayoutGap="10px">
+          <div fxHide="true" fxShow.gt-md>
+            <button mat-button routerLink="/project-contact">
+              <mat-icon fxLayoutGap="10px">comments</mat-icon><span style="margin-left:5px">Contato</span>
+            </button>
+            <button mat-button routerLink="/exam-results">
+              <mat-icon>description</mat-icon><span style="margin-left:5px">Exames</span>
+            </button>
+            <button mat-button (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon><span style="margin-left:5px">Sair</span>
+            </button>
+          </div>
+          <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-md>
+            <mat-icon>menu</mat-icon>
           </button>
         </div>
-        <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-md>
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
 
-      <mat-menu x-position="before" #menu="matMenu" fxLayoutAlign="center center">
-        <button mat-menu-item routerLink="/project-contact">
-          <mat-icon>comments</mat-icon>
-          Contato
-        </button>
-        <button mat-menu-item routerLink="/exam-results">
-          <mat-icon>description</mat-icon>
-          Exames
-        </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon aria-label="menu">exit_to_app</mat-icon>
-          Sair
-        </button>
-      </mat-menu>
+        <mat-menu x-position="before" #menu="matMenu" fxLayoutAlign="center center">
+          <button mat-menu-item routerLink="/project-contact">
+            <mat-icon>comments</mat-icon>
+            Contato
+          </button>
+          <button mat-menu-item routerLink="/exam-results">
+            <mat-icon>description</mat-icon>
+            Exames
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon aria-label="menu">exit_to_app</mat-icon>
+            Sair
+          </button>
+        </mat-menu>
 
-    </mat-toolbar-row>
-  </mat-toolbar>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </nav>
+
   <app-alert></app-alert>
   <mat-sidenav-container fxFlex="100">
     <mat-sidenav-content style="background-color: #ffffff">
