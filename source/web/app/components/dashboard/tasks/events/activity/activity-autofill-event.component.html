@@ -34,6 +34,10 @@
     grid-area: status
   }
 
+  .event-subtitle {
+    color: gray;
+  }
+
 </style>
 
 
@@ -41,7 +45,7 @@
   <mat-icon class="avatar">description</mat-icon>
   <div class="event-title">
     <p class="mat-h3">{{data.acronym}}-{{data.name}}</p>
-    <p class="mat-small">Criado em: {{data.date | date : "dd/MM/yyy HH:mm"}}</p>
+    <p class="mat-small event-subtitle">Criado em: {{data.date | date : "dd/MM/yyy HH:mm"}}</p>
   </div>
 
 
