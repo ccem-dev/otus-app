@@ -1,12 +1,19 @@
-.example-card {
-  max-width: 400px;
-}
+/*!*.card-display {*!*/
+/*!*  display: flex;*!*/
+/*!*  flex-direction: column;*!*/
+/*!*  box-sizing: border-box;*!*/
+/*!*  justify-content: center;*!*/
+/*!*}*!*/
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
+/*.example-card {*/
+/*  max-width: 400px;*/
+/*}*/
 
-::ng-deep .mat-card-header-text {
-  margin: 0 !important;
-}
+/*.example-header-image {*/
+/*  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');*/
+/*  background-size: cover;*/
+/*}*/
+
+/*::ng-deep .mat-card-header-text {*/
+/*  margin: 0 !important;*/
+/*}*/
