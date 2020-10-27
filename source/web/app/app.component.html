@@ -1,58 +1,59 @@
-<div fxLayout="column">
+<mat-toolbar class="nav-toolbar fixed-top" color="primary" *ngIf="currentUser">
+  <mat-toolbar-row class="toolbar-layout">
+    <div class="icon">
+      <button mat-icon-button id="title" routerLink="/dashboard">
+        <img src="{{iconToolbar}}">
+      </button>
+      <span fxHide.lt-md fxHide.md>{{ title }}</span>
+    </div>
 
-  <mat-toolbar class="fixed-top" color="primary" *ngIf="currentUser">
-    <mat-toolbar-row class="toolbar-layout">
-      <div class="icon">
-        <button mat-icon-button id="title" routerLink="/dashboard">
-          <img src="{{iconToolbar}}">
+    <div class="user-name" fxLayout="row" fxLayoutAlign="center center">
+      <mat-icon fxHide.lt-md aria-label="user" style="padding-right: 30px">account_circle</mat-icon>
+      <div class="responsive-font">{{ currentUser.name }} </div>
+    </div>
+
+    <div class="menu">
+      <div fxHide.lt-md fxHide.md>
+        <button mat-button routerLink="/project-contact">
+          <mat-icon fxLayoutGap="10px">comments</mat-icon>
+          <span style="margin-left:5px">Contato</span>
         </button>
-        <span fxHide.lt-md fxHide.md>{{ title }}</span>
-      </div>
-
-      <div class="user-name" fxLayout="row" fxLayoutAlign="center center">
-        <mat-icon fxHide.lt-md aria-label="user" style="padding-right: 30px">account_circle</mat-icon>
-        <div class="responsive-font">{{ currentUser.name }} </div>
-      </div>
-
-      <div class="menu">
-        <div fxHide.lt-md fxHide.md>
-          <button mat-button routerLink="/project-contact">
-            <mat-icon fxLayoutGap="10px">comments</mat-icon><span style="margin-left:5px">Contato</span>
-          </button>
-          <button mat-button routerLink="/exam-results">
-            <mat-icon>description</mat-icon><span style="margin-left:5px">Exames</span>
-          </button>
-          <button mat-button (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon><span style="margin-left:5px">Sair</span>
-          </button>
-        </div>
-        <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-md>
-          <mat-icon>menu</mat-icon>
+        <button mat-button routerLink="/exam-results">
+          <mat-icon>description</mat-icon>
+          <span style="margin-left:5px">Exames</span>
         </button>
-
-        <mat-menu fxHide.gt-md x-position="before" #menu="matMenu" fxLayoutAlign="center center">
-          <button mat-menu-item routerLink="/project-contact">
-            <mat-icon>comments</mat-icon>
-            Contato
-          </button>
-          <button mat-menu-item routerLink="/exam-results">
-            <mat-icon>description</mat-icon>
-            Exames
-          </button>
-          <button mat-menu-item (click)="logout()">
-            <mat-icon aria-label="menu">exit_to_app</mat-icon>
-            Sair
-          </button>
-        </mat-menu>
+        <button mat-button (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span style="margin-left:5px">Sair</span>
+        </button>
       </div>
+      <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-md>
+        <mat-icon>menu</mat-icon>
+      </button>
 
-    </mat-toolbar-row>
-  </mat-toolbar>
+      <mat-menu fxHide.gt-md x-position="before" #menu="matMenu" fxLayoutAlign="center center">
+        <button mat-menu-item routerLink="/project-contact">
+          <mat-icon>comments</mat-icon>
+          Contato
+        </button>
+        <button mat-menu-item routerLink="/exam-results">
+          <mat-icon>description</mat-icon>
+          Exames
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon aria-label="menu">exit_to_app</mat-icon>
+          Sair
+        </button>
+      </mat-menu>
+    </div>
 
-  <app-alert></app-alert>
-  <mat-sidenav-container>
-    <mat-sidenav-content style="background-color: #ffffff">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-alert></app-alert>
+<mat-sidenav-container>
+  <mat-sidenav-content style="background-color: #ffffff">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

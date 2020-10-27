@@ -4,7 +4,7 @@
     grid-template-columns: 1.5fr 11fr .5fr;
     grid-template-rows: 1fr .5fr;
     box-sizing: border-box;
-    font-size: .5em !important;
+    font-size: .5em;
 
 
     grid-template-areas:
@@ -19,8 +19,6 @@
   .event-title {
     grid-area: title;
   }
-
-
 
   .event-play {
     grid-area: play
@@ -67,8 +65,8 @@
     <mat-icon>checked</mat-icon>
   </button>
 
-
-    <p class="event-description  mat-body-strong">{{data.description}}</p>
-    <p class="event-status mat-body-strong" [ngStyle]="translatedStatus[data.status].style">{{translatedStatus[data.status].translation}}</p>
+  <p class="event-description  mat-body-strong">{{data.description}}</p>
+  <p class="event-status mat-body-strong"
+     [ngStyle]="translatedStatus[data.status].style">{{translatedStatus[data.status].translation}}</p>
 
 </mat-card>

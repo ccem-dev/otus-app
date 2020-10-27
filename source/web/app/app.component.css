@@ -1,3 +1,9 @@
+.nav-toolbar {
+  /*display: -webkit-flex; !* OLD - iOS 6-, Safari 3.1-6 *!*/
+  flex: 1 1 auto;
+}
+
+
 .toolbar-layout {
   padding: 0px;
   display: grid;
