@@ -3,8 +3,8 @@
     display: grid;
     grid-template-columns: 1.5fr 11fr .5fr;
     grid-template-rows: 1fr .5fr;
-    box-sizing: border-box;
-    /*font-size: .5em;*/
+    /*box-sizing: border-box;*/
+
 
 
     grid-template-areas:
@@ -14,6 +14,9 @@
 
   .avatar {
     grid-area: avatar;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .event-title {
@@ -21,7 +24,9 @@
   }
 
   .event-play {
-    grid-area: play
+    grid-area: play;
+    display: flex;
+    justify-content: center;
   }
 
   .event-description {
@@ -29,7 +34,10 @@
   }
 
   .event-status {
-    grid-area: status
+    grid-area: status;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .event-subtitle {
@@ -40,30 +48,34 @@
 
 
 <mat-card class="card-layout">
-  <mat-icon class="avatar">description</mat-icon>
+  <div class="avatar">
+    <mat-icon>description</mat-icon>
+  </div>
+
   <div class="event-title">
     <p class="mat-title mb-0 responsive-font" >{{data.acronym}}-{{data.name}}</p>
     <p class="mat-small event-subtitle">Criado em: {{data.date | date : "dd/MM/yyy HH:mm"}}</p>
   </div>
 
+  <div class="event-play">
+    <button *ngIf="data.status === 'PENDING'" mat-mini-fab
+            matTooltip="Preencher atividade"
+            aria-label="Preencher atividade" on-click="callPreview()" [disabled]="data.status === 'ACCOMPLISHED'">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
 
-  <button class="event-play" *ngIf="data.status === 'PENDING'" mat-fab class="mat-mini-fab"
-          matTooltip="Preencher atividade"
-          aria-label="Preencher atividade" on-click="callPreview()" [disabled]="data.status === 'ACCOMPLISHED'">
-    <mat-icon>play_arrow</mat-icon>
-  </button>
+    <button *ngIf="data.status === 'REOPENED'" mat-mini-fab
+            matTooltip="Repreencher atividade"
+            aria-label="Repreencher atividade" on-click="callPreview()" [disabled]="data.status === 'ACCOMPLISHED'">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
 
-  <button class="event-play" *ngIf="data.status === 'REOPENED'" mat-fab class="mat-mini-fab"
-          matTooltip="Repreencher atividade"
-          aria-label="Repreencher atividade" on-click="callPreview()" [disabled]="data.status === 'ACCOMPLISHED'">
-    <mat-icon>play_arrow</mat-icon>
-  </button>
-
-  <button class="event-play " *ngIf="data.status === 'ACCOMPLISHED'" mat-fab class="mat-mini-fab"
-          matTooltip="atividade preenchida"
-          aria-label="atividade prenchida" readonly="true" disabled>
-    <mat-icon>checked</mat-icon>
-  </button>
+    <button *ngIf="data.status === 'ACCOMPLISHED'" mat-mini-fab
+            matTooltip="atividade preenchida"
+            aria-label="atividade prenchida" readonly="true" disabled>
+      <mat-icon>checked</mat-icon>
+    </button>
+  </div>
 
   <p class="event-description  mat-body-strong responsive-font">{{data.description}}</p>
   <p class="event-status mat-body-strong responsive-font"
