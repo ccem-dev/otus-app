@@ -1,5 +1,9 @@
-<mat-toolbar class="nav-toolbar fixed-top" color="primary" *ngIf="currentUser">
-  <mat-toolbar-row class="toolbar-layout">
+<style>
+
+</style>
+
+<div class="fixed-top">
+<mat-toolbar color="primary" *ngIf="currentUser">
     <div class="icon">
       <button mat-icon-button id="title" routerLink="/dashboard">
         <img src="{{iconToolbar}}">
@@ -47,14 +51,14 @@
         </mat-menu>
       </div>
     </div>
-
-  </mat-toolbar-row>
 </mat-toolbar>
+  <app-alert></app-alert>
 
-<app-alert></app-alert>
-<mat-sidenav-container>
-  <mat-sidenav-content style="background-color: #ffffff">
     <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+
+
+</div>
+
+
 
