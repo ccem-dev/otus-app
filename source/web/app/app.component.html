@@ -27,24 +27,25 @@
           <span style="margin-left:5px">Sair</span>
         </button>
       </div>
-      <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-md>
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <mat-menu fxHide.gt-md x-position="before" #menu="matMenu" fxLayoutAlign="center center">
-        <button mat-menu-item routerLink="/project-contact">
-          <mat-icon>comments</mat-icon>
-          Contato
+      <div fxHide.gt-md>
+        <button mat-button [mat-menu-trigger-for]="menu">
+          <mat-icon>menu</mat-icon>
         </button>
-        <button mat-menu-item routerLink="/exam-results">
-          <mat-icon>description</mat-icon>
-          Exames
-        </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon aria-label="menu">exit_to_app</mat-icon>
-          Sair
-        </button>
-      </mat-menu>
+        <mat-menu x-position="before" #menu="matMenu" fxLayoutAlign="center center">
+          <button mat-menu-item routerLink="/project-contact">
+            <mat-icon>comments</mat-icon>
+            Contato
+          </button>
+          <button mat-menu-item routerLink="/exam-results">
+            <mat-icon>description</mat-icon>
+            Exames
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon aria-label="menu">exit_to_app</mat-icon>
+            Sair
+          </button>
+        </mat-menu>
+      </div>
     </div>
 
   </mat-toolbar-row>
