@@ -4,7 +4,7 @@
     grid-template-columns: 1.5fr 11fr .5fr;
     grid-template-rows: 1fr .5fr;
     box-sizing: border-box;
-    font-size: .5em;
+    /*font-size: .5em;*/
 
 
     grid-template-areas:
@@ -42,7 +42,7 @@
 <mat-card class="card-layout">
   <mat-icon class="avatar">description</mat-icon>
   <div class="event-title">
-    <p class="mat-h3 mb-0 responsive-font" >{{data.acronym}}-{{data.name}}</p>
+    <p class="mat-title mb-0 responsive-font" >{{data.acronym}}-{{data.name}}</p>
     <p class="mat-small event-subtitle">Criado em: {{data.date | date : "dd/MM/yyy HH:mm"}}</p>
   </div>
 
@@ -65,7 +65,7 @@
     <mat-icon>checked</mat-icon>
   </button>
 
-  <p class="event-description  mat-body-strong">{{data.description}}</p>
+  <p class="event-description  mat-body-strong responsive-font">{{data.description}}</p>
   <p class="event-status mat-body-strong responsive-font"
      [ngStyle]="translatedStatus[data.status].style">{{translatedStatus[data.status].translation}}</p>
 
