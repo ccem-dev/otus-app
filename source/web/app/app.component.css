@@ -3,20 +3,6 @@
   flex: 1 1 auto;
 }
 
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.content {
-  width:100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
 .toolbar-layout {
   padding: 0px;
   display: grid;

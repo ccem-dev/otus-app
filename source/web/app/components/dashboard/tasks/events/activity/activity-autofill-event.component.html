@@ -42,7 +42,7 @@
 <mat-card class="card-layout">
   <mat-icon class="avatar">description</mat-icon>
   <div class="event-title">
-    <p class="mat-h3 mb-0">{{data.acronym}}-{{data.name}}</p>
+    <p class="mat-h3 mb-0 responsive-font" >{{data.acronym}}-{{data.name}}</p>
     <p class="mat-small event-subtitle">Criado em: {{data.date | date : "dd/MM/yyy HH:mm"}}</p>
   </div>
 
@@ -66,7 +66,7 @@
   </button>
 
   <p class="event-description  mat-body-strong">{{data.description}}</p>
-  <p class="event-status mat-body-strong"
+  <p class="event-status mat-body-strong responsive-font"
      [ngStyle]="translatedStatus[data.status].style">{{translatedStatus[data.status].translation}}</p>
 
 </mat-card>
