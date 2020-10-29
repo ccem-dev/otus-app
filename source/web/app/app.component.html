@@ -1,10 +1,14 @@
 <style>
   .app-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; 
+    z-index: 1000;
+  }
+
+  .app-toolbar-itens {
     display: flex;
     justify-content: space-between;
-    position: fixed;
-    z-index: 1;
-
   }
 
   .app-toolbar-icon {
@@ -16,10 +20,10 @@
     margin-right: 1em;
   }
 
-  @media screen and (min-device-width : 375px)
-    and (max-device-width : 812px)
-    and (-webkit-device-pixel-ratio : 3) {
-    .app-toolbar, .c-app-content{
+  @media screen and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .app-toolbar, .app-content {
       flex: 1;
       width: 90vw;
     }
@@ -28,56 +32,60 @@
 
 </style>
 
-<mat-toolbar class="app-toolbar" color="primary" *ngIf="currentUser">
-  <div class="app-toolbar-icon">
-    <button mat-icon-button id="title" routerLink="/dashboard">
-      <img src="{{iconToolbar}}">
-    </button>
-    <span fxHide.lt-md fxHide.md>{{ title }}</span>
-  </div>
+<div class="app-toolbar">
+  <mat-toolbar class="app-toolbar-itens" color="primary" *ngIf="currentUser">
 
-  <div class="toolbar-user-name content" fxLayout="row" fxLayoutAlign="center center">
-    <mat-icon fxHide.lt-md aria-label="user" style="padding-right: 30px">account_circle</mat-icon>
-    <div class="truncate responsive-font">{{ currentUser.name }} </div>
-  </div>
-
-  <div class="toolbar-menu">
-    <div fxHide.lt-md fxHide.md>
-      <button mat-button routerLink="/project-contact">
-        <mat-icon fxLayoutGap="10px">comments</mat-icon>
-        <span style="margin-left:5px">Contato</span>
+    <div class="app-toolbar-icon">
+      <button mat-icon-button id="title" routerLink="/dashboard">
+        <img src="{{iconToolbar}}">
       </button>
-      <button mat-button routerLink="/exam-results">
-        <mat-icon>description</mat-icon>
-        <span style="margin-left:5px">Exames</span>
-      </button>
-      <button mat-button (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span style="margin-left:5px">Sair</span>
-      </button>
+      <span fxHide.lt-md fxHide.md>{{ title }}</span>
     </div>
-    <div fxHide.gt-md>
-      <button mat-button [mat-menu-trigger-for]="menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <mat-menu x-position="before" #menu="matMenu" fxLayoutAlign="center center">
-        <button mat-menu-item routerLink="/project-contact">
-          <mat-icon>comments</mat-icon>
-          Contato
+
+    <div class="toolbar-user-name content" fxLayout="row" fxLayoutAlign="center center">
+      <mat-icon fxHide.lt-md aria-label="user" style="padding-right: 30px">account_circle</mat-icon>
+      <div class="truncate responsive-font">{{ currentUser.name }} </div>
+    </div>
+
+    <div class="toolbar-menu">
+      <div fxHide.lt-md fxHide.md>
+        <button mat-button routerLink="/project-contact">
+          <mat-icon fxLayoutGap="10px">comments</mat-icon>
+          <span style="margin-left:5px">Contato</span>
         </button>
-        <button mat-menu-item routerLink="/exam-results">
+        <button mat-button routerLink="/exam-results">
           <mat-icon>description</mat-icon>
-          Exames
+          <span style="margin-left:5px">Exames</span>
         </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon aria-label="menu">exit_to_app</mat-icon>
-          Sair
+        <button mat-button (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span style="margin-left:5px">Sair</span>
         </button>
-      </mat-menu>
+      </div>
+      <div fxHide.gt-md>
+        <button mat-button [mat-menu-trigger-for]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu x-position="before" #menu="matMenu" fxLayoutAlign="center center">
+          <button mat-menu-item routerLink="/project-contact">
+            <mat-icon>comments</mat-icon>
+            Contato
+          </button>
+          <button mat-menu-item routerLink="/exam-results">
+            <mat-icon>description</mat-icon>
+            Exames
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon aria-label="menu">exit_to_app</mat-icon>
+            Sair
+          </button>
+        </mat-menu>
+      </div>
     </div>
-  </div>
-</mat-toolbar>
-<div class="c-app-content">
+
+  </mat-toolbar>
+</div>
+<div class="app-content md-container">
   <app-alert></app-alert>
   <router-outlet></router-outlet>
 
