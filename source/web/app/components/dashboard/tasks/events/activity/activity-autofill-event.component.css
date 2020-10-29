@@ -1,12 +1,44 @@
-.example-card {
-  max-width: 400px;
+.card-layout {
+  display: grid;
+  grid-template-columns: 2fr 11fr .5fr;
+  grid-template-rows: 1fr .5fr;
+  box-sizing: border-box;
+
+  grid-template-areas:
+    "avatar title play"
+    ".      description status"
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.avatar {
+  grid-area: avatar;
+  display: flex;
+  justify-content: center;
 }
 
-::ng-deep .mat-card-header-text {
-  margin: 0 !important;
+.event-title {
+  grid-area: title;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event-play {
+  grid-area: play;
+  display: flex;
+  justify-content: center;
+}
+
+.event-description {
+  grid-area: description;
+}
+
+.event-status {
+  grid-area: status;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-subtitle {
+  color: gray;
 }

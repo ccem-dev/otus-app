@@ -56,6 +56,7 @@ import {ActivityClientService} from './providers/rest/activity/activity-client.s
 import {EventClientService} from './providers/rest/event/event-client.service';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -83,36 +84,37 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   entryComponents: [
     ActivityAutofillEventComponent
   ],
-  imports: [
-    BrowserModule,
-    MatNativeDateModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatListModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    FlexLayoutModule,
-    ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production}),
-    MatMenuModule,
-    MatSidenavModule,
-    RouterModule,
-    HttpClientModule,
-    AppRoutingModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatRadioModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    MatExpansionModule,
-    MatChipsModule,
-    MatSnackBarModule,
-    MatProgressBarModule,
-    InfiniteScrollModule
-  ],
+    imports: [
+        BrowserModule,
+        MatNativeDateModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatListModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        FlexLayoutModule,
+        ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production}),
+        MatMenuModule,
+        MatSidenavModule,
+        RouterModule,
+        HttpClientModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatRadioModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+        MatExpansionModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        MatProgressBarModule,
+        InfiniteScrollModule,
+        ScrollingModule
+    ],
   exports: [
     InputTextComponent,
     InputTextAreaComponent
