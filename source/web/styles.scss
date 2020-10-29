@@ -1,11 +1,9 @@
-@import '../node_modules/@angular/material/theming';
+@import "../node_modules/@angular/material/theming";
 @import "../node_modules/material-design-icons/iconfont/material-icons.css";
 @import "assets/visual-identity/variables.scss";
 @include mat-core();
 
 body {
-  display: block;
-  margin: 0px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -18,3 +16,46 @@ body {
   background-color: #bb0404;
   color: #fff;
 }
+
+.contentChart {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  animation: rotator 1.4s linear infinite;
+}
+
+
+//start truncate universal configuration
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content {
+  //width:50vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+//end truncate universal configuration
+
+@media screen {
+  .responsive-font {
+    font-size: .8em;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .responsive-font {
+    font-size: 1.0em;
+  }
+}
+
+
+
+
