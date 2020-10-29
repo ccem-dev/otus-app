@@ -1,34 +1,29 @@
-/*.nav-toolbar {*/
-  /*display: -webkit-flex; !* OLD - iOS 6-, Safari 3.1-6 *!*/
-  /*flex: 1 1 auto;*/
-/*}*/
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0;
+  z-index: 1000;
+}
 
-/*.toolbar-layout {*/
-/*  padding: 0px;*/
-/*  display: grid;*/
-/*  grid-template-columns: 1.5fr 7fr .5fr;*/
-/*  grid-template-rows: 1fr;*/
-/*  grid-template-areas: "icon userName menu"*/
-/*}*/
+.app-toolbar-itens {
+  display: flex;
+  justify-content: space-between;
+}
 
-/*@media screen and (max-width: 600px) {*/
-/*  .icon {*/
-/*    grid-area: icon;*/
-/*    padding: 8px;*/
-/*  }*/
-/*}*/
-/*@media screen and (min-width: 601px) {*/
-/*  .icon {*/
-/*    grid-area: icon;*/
-/*    padding: 16px;*/
-/*  }*/
-/*}*/
+.app-toolbar-icon {
+  display: flex;
+  align-items: baseline;
+}
 
-/*.user-name {*/
-/*  grid-area: userName;*/
-/*}*/
+.app-toolbar-icon #title {
+  margin-right: 1em;
+}
 
-/*.menu {*/
-/*  grid-area: menu;*/
-/*}*/
-
+@media screen and (min-device-width: 375px)
+and (max-device-width: 812px)
+and (-webkit-device-pixel-ratio: 3) {
+  .app-toolbar, .app-content {
+    flex: 1;
+    width: 90vw;
+  }
+}
