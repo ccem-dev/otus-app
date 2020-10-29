@@ -1,22 +1,28 @@
 <style>
+  .app-toolbar{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index:10;
+  }
 
 </style>
 
-<div class="fixed-top">
-<mat-toolbar color="primary" *ngIf="currentUser">
-    <div class="icon">
+<div class="">
+<mat-toolbar class="app-toolbar"color="primary" *ngIf="currentUser">
+    <div class="toolbar-icon">
       <button mat-icon-button id="title" routerLink="/dashboard">
         <img src="{{iconToolbar}}">
       </button>
       <span fxHide.lt-md fxHide.md>{{ title }}</span>
     </div>
 
-    <div class="user-name content" fxLayout="row" fxLayoutAlign="center center">
+    <div class="toolbar-user-name content" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon fxHide.lt-md aria-label="user" style="padding-right: 30px">account_circle</mat-icon>
       <div class="truncate responsive-font">{{ currentUser.name }} </div>
     </div>
 
-    <div class="menu">
+    <div class="toolbar-menu">
       <div fxHide.lt-md fxHide.md>
         <button mat-button routerLink="/project-contact">
           <mat-icon fxLayoutGap="10px">comments</mat-icon>
@@ -53,12 +59,9 @@
     </div>
 </mat-toolbar>
   <app-alert></app-alert>
-
     <router-outlet></router-outlet>
-
-
-
 </div>
+
 
 
 
